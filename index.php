@@ -34,6 +34,22 @@
             <div id="toolbar">
               <input type="text" id="filter" name="filter" placeholder="Filter :type any text here"  />
               <a id="showaddformbutton" class="button green"><i class="fa fa-plus"></i> Add new row</a>
+              
+              
+                tables:
+              <?php
+              require_once('pdoDB.php'); 
+              $tablename = isset($_GET['db_tablename'])?$_GET['db_tablename']:'country';
+              $list_tables = $db->list_tables();
+              
+              ?>
+              <select name="db_tablename" onchange="location='?db_tablename='+this.value;">
+              <?php foreach($list_tables as $i => $v){
+                echo '<option' .  ($v==$tablename?' selected':'') . '>'.  $v. '</option>';  
+              }
+              ?>
+              </select>
+              
             </div>
 			<!-- Grid contents -->
 			<div id="tablecontent"></div>
@@ -50,7 +66,7 @@
 
 		<script type="text/javascript">
 		
-            var datagrid = new DatabaseGrid();
+            var datagrid = new DatabaseGrid('<?php echo $tablename; ?>');
 			window.onload = function() { 
 
                 // key typed in the filter field
@@ -78,14 +94,33 @@
 
         <!-- simple form, used to add a new row -->
         <div id="addform">
+        
+        <?php
+            
+            
+            $cols = $db->get_table_columns($tablename);
+             //var_dump($cols);
+            foreach($cols as $k => $v){
+                
+            
+                $name = $v['name'];
+                if($name == 'id' || count($v['flags']) < 1)
+                    continue;
+                
+              ?>
 
             <div class="row">
-                <input type="text" id="name" name="name" placeholder="name" />
+                <input type="text" id="<?php echo $name?>" name="<?php echo $name?>" placeholder="<?php echo $name?>" />
             </div>
 
-             <div class="row">
-                <input type="text" id="firstname" name="firstname" placeholder="firstname" />
-            </div>
+            <?php
+            
+            }
+            
+            
+            ?>
+            
+             
 
             <div class="row tright">
               <a id="addbutton" class="button green" ><i class="fa fa-save"></i> Apply</a>

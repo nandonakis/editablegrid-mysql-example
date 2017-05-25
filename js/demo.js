@@ -22,7 +22,7 @@ function highlight(div_id, style) {
 function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue, row, onResponse)
 {      
 	$.ajax({
-		url: 'update.php',
+		url: 'backend.php?action=update',
 		type: 'POST',
 		dataType: "html",
 	   		data: {
@@ -47,9 +47,9 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
    
 
 
-function DatabaseGrid() 
+function DatabaseGrid(table='demo') 
 { 
-	this.editableGrid = new EditableGrid("demo", {
+	this.editableGrid = new EditableGrid(table, {
 		enableSort: true,
 	    // define the number of row visible by page
       	pageSize: 50,
@@ -60,13 +60,13 @@ function DatabaseGrid()
    	    	updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
        	}
  	});
-	this.fetchGrid(); 
+	this.fetchGrid(table); 
 	
 }
 
-DatabaseGrid.prototype.fetchGrid = function()  {
+DatabaseGrid.prototype.fetchGrid = function(table)  {
 	// call a PHP script to get the data
-	this.editableGrid.loadJSON("loaddata.php?db_tablename=demo");
+	this.editableGrid.loadJSON("backend.php?db_tablename="+table);
 };
 
 DatabaseGrid.prototype.initializeGrid = function(grid) {
@@ -76,7 +76,8 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
 // render for the action column
 	grid.setCellRenderer("action", new CellRenderer({ 
 		render: function(cell, id) {                 
-		      cell.innerHTML+= "<i onclick=\"datagrid.deleteRow("+id+");\" class='fa fa-trash-o red' ></i>";
+		      cell.innerHTML+= "<a href='#' onclick=\"datagrid.deleteRow("+id+");\"><i  class='fa fa-trash-o red' ></i></a>";
+              cell.innerHTML+= "  <a href='#' onclick=\"datagrid.duplicateRow("+id+");\"><i  class='fa fa-copy' ></i></a>";
 		}
 	})); 
 
@@ -92,7 +93,7 @@ DatabaseGrid.prototype.deleteRow = function(id)
   if ( confirm('Are you sur you want to delete the row id ' + id )  ) {
 
         $.ajax({
-		url: 'delete.php',
+		url: 'backend.php?action=delete',
 		type: 'POST',
 		dataType: "html",
 		data: {
@@ -111,7 +112,38 @@ DatabaseGrid.prototype.deleteRow = function(id)
         
   }
 			
-}; 
+};
+DatabaseGrid.prototype.duplicateRow = function(id) 
+{
+
+  var self = this;
+
+  
+    $.ajax({
+    url: 'backend.php?action=duplicate',
+    type: 'POST',
+    dataType: "html",
+    data: {
+        tablename : self.editableGrid.name,
+        id: id 
+    },
+    success: function (response) 
+    { 
+        if (response == "ok" ){
+            
+            alert("Row duplicated : reload model");
+            self.fetchGrid(self.editableGrid.name);
+        }
+            
+    },
+    error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
+    async: true
+});
+
+    
+  
+			
+};  
 
 
 DatabaseGrid.prototype.addRow = function(id) 
@@ -120,7 +152,7 @@ DatabaseGrid.prototype.addRow = function(id)
   var self = this;
 
         $.ajax({
-		url: 'add.php',
+		url: 'backend.php?action=add',
 		type: 'POST',
 		dataType: "html",
 		data: {
@@ -138,7 +170,7 @@ DatabaseGrid.prototype.addRow = function(id)
                 $("#firstname").val('');
 			    
                 alert("Row added : reload model");
-                self.fetchGrid();
+                self.fetchGrid(self.editableGrid.name);
            	}
             else 
               alert("error");
