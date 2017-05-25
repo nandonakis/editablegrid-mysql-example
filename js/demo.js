@@ -150,34 +150,39 @@ DatabaseGrid.prototype.addRow = function(id)
 {
 
   var self = this;
-
-        $.ajax({
-		url: 'backend.php?action=add',
-		type: 'POST',
-		dataType: "html",
-		data: {
-			tablename : self.editableGrid.name,
-			name:  $("#name").val(),
-			firstname:  $("#firstname").val()
-		},
-		success: function (response) 
-		{ 
-			if (response == "ok" ) {
-   
-                // hide form
-                showAddForm();   
-        		$("#name").val('');
-                $("#firstname").val('');
-			    
-                alert("Row added : reload model");
-                self.fetchGrid(self.editableGrid.name);
-           	}
-            else 
-              alert("error");
-		},
-		error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
-		async: true
-	});
+  
+  
+  
+        
+    $.ajax({
+    url: 'backend.php?action=add',
+    type: 'POST',
+    dataType: "html",
+    data: {
+        tablename: self.editableGrid.name,
+    },
+    success: function (response) 
+    { 
+        if (response.indexOf("error")<0 ) {
+            var row = jQuery.parseJSON(response);
+            // hide form
+            //showAddForm();   
+            //form.find("input[type=text]").val("");
+            var id = row.id;
+            alert("Row added : reload model:"+id);
+            //self.fetchGrid(self.editableGrid.name);
+            var rowIndex = self.editableGrid.pageSize < 0?0:self.editableGrid.pageSize-1;
+            //var row = self.editableGrid.getRowValues(rowIndex);
+            //row.id = id;
+            console.log('rowCount:', rowIndex, ' row:', row );
+            self.editableGrid.insertAfter(rowIndex-1, id, row);
+        }
+        else 
+          alert("error");
+    },
+    error: function(XMLHttpRequest, textStatus, exception) { alert("Ajax failure\n" + errortext); },
+    async: true
+});
 
         
 			

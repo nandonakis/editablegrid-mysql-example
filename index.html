@@ -36,19 +36,8 @@
               <a id="showaddformbutton" class="button green"><i class="fa fa-plus"></i> Add new row</a>
               
               
-                tables:
-              <?php
-              require_once('pdoDB.php'); 
-              $tablename = isset($_GET['db_tablename'])?$_GET['db_tablename']:'country';
-              $list_tables = $db->list_tables();
-              
-              ?>
-              <select name="db_tablename" onchange="location='?db_tablename='+this.value;">
-              <?php foreach($list_tables as $i => $v){
-                echo '<option' .  ($v==$tablename?' selected':'') . '>'.  $v. '</option>';  
-              }
-              ?>
-              </select>
+                tables: <a href="?demo">Demo</a> <a href="?country">Country</a> <a href="?continent">Continent</a>
+             
               
             </div>
 			<!-- Grid contents -->
@@ -65,8 +54,11 @@
 		<script src="js/demo.js" ></script>
 
 		<script type="text/javascript">
-		
-            var datagrid = new DatabaseGrid('<?php echo $tablename; ?>');
+            var tablename = location.search?location.search:'demo';
+            tablename = tablename.replace('?','');
+            console.log('tablename:', tablename);
+            
+            var datagrid = new DatabaseGrid(tablename);
 			window.onload = function() { 
 
                 // key typed in the filter field
@@ -78,7 +70,8 @@
                   });
 
                 $("#showaddformbutton").click( function()  {
-                  showAddForm();
+                  //showAddForm();
+                  datagrid.addRow();
                 });
                 $("#cancelbutton").click( function() {
                   showAddForm();
@@ -92,41 +85,7 @@
 			}; 
 		</script>
 
-        <!-- simple form, used to add a new row -->
-        <div id="addform">
-        
-        <?php
-            
-            
-            $cols = $db->get_table_columns($tablename);
-             //var_dump($cols);
-            foreach($cols as $k => $v){
-                
-            
-                $name = $v['name'];
-                if($name == 'id' || count($v['flags']) < 1)
-                    continue;
-                
-              ?>
-
-            <div class="row">
-                <input type="text" id="<?php echo $name?>" name="<?php echo $name?>" placeholder="<?php echo $name?>" />
-            </div>
-
-            <?php
-            
-            }
-            
-            
-            ?>
-            
-             
-
-            <div class="row tright">
-              <a id="addbutton" class="button green" ><i class="fa fa-save"></i> Apply</a>
-              <a id="cancelbutton" class="button delete">Cancel</a>
-            </div>
-        </div>
+       
         
 	</body>
 

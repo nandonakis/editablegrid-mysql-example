@@ -73,9 +73,17 @@ class DBClass{
         return $cols;
     }
     
+    public function get($id, $tablename){
+        
+        $rs = $this->dbh->query(sprintf("select * from %s where id=%s", $tablename, $id), PDO::FETCH_ASSOC);
+        return $rs->fetch(PDO::FETCH_ASSOC);
+    }
+    
     public function add(){
         global $_POST;
         $tablename = strip_tags($_POST['tablename']);
+        //$tablename = 'demo';
+        
         $cols = $this->get_table_columns($tablename);
         $fields = array();
         $values = array();
@@ -88,7 +96,10 @@ class DBClass{
         }
         $query = sprintf("INSERT INTO %s  (%s) VALUES (%s)", $tablename, join(',', $fields), join(',',$values)); 
         file_put_contents('update.log', $query ."\n");
-        return $this->dbh->query($query);
+        $this->dbh->query($query);
+        $id = $this->dbh->lastInsertId();
+        return $this->get($id, $tablename);
+        
     }
     
     public function update(){

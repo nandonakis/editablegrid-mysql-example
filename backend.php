@@ -52,6 +52,8 @@ function add_columns_from_meta($result, $grid){
     global $db;
     
     $meta = $db->get_column_meta($result);
+    //var_dump($meta);die;
+    
     //$grid->addColumn('id', 'ID', 'integer', NULL, false); 
     foreach($meta as $k => $v){
         //if($v['name'] == 'id')
@@ -80,7 +82,23 @@ $action = (isset($_GET['action'])) ? stripslashes($_GET['action']) : 'list';
 if($action == 'add'){
     
     $return = $db->add($mydb_tablename);
-    echo $return ? "ok" : "error";  
+    //var_dump($return);
+    
+    
+    
+    
+    
+    if($return){
+        $json = json_encode($return);
+        //file_put_contents('update.log', $json ."\n");
+        echo $json;
+        
+    }else{
+        
+        echo "error";  
+    }
+    
+    //echo $return ? $data . $return : "error";  
     die;
 }
 if ($action == 'update'){
