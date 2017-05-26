@@ -19,27 +19,49 @@
 	<script src="js/jquery-1.11.1.min.js" ></script>
 	<!-- EditableGrid test if jQuery UI is present. If present, a datepicker is automatically used for date type -->
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-	<script src="js/demo.js" ></script>
+	<script src="js/backend.js" ></script>
 
-	<h2>Demo (now works)</h2>
+<pre>
+	This stuff needs to be put into the js file, and needs to act on class, not id
+
+    // key typed in the filter field
+                $("#filter").keyup(function() {
+                    datagrid.editableGrid.filter( $(this).val());
+
+                    // To filter on some columns, you can set an array of column index 
+                    //datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
+                  });
+
+                $("#showaddformbutton").click( function()  {
+                  //showAddForm();
+                  datagrid.addRow();
+                });
+                $("#cancelbutton").click( function() {
+                  showAddForm();
+                });
+
+                $("#addbutton").click(function() {
+                  datagrid.addRow();
+                });
+</pre>
+
+
+	<h2>Demo</h2>
 	<div class="foo" id="demo"></div>
-
-	<h2>Countries</h2>
-	<div class="foo" id="countries"></div>
 
 	<h2>Continent</h2>
 	<div class="foo" id="continent"></div>
 
+	<h2>Country</h2>
+	<div class="foo" id="country"></div>
+
 	<h2>Minimal</h2>
 	<div class="foo" id="minimal"></div>
 
-	<h2>Minimal2</h2>
-	<div class="foo" id="minimal2"></div>
-	
 	<script type="text/javascript">
-		var demo  = new DatabaseGrid('demo'); 
-		var continent = new DatabaseGrid('continent'); 
-		var countries = new DatabaseGrid('countries'); 
+		new DatabaseGrid('demo'); 
+		new DatabaseGrid('continent'); 
+		new DatabaseGrid('country'); 
 
 		window.onload = function() {
 			editableGrid = new EditableGrid("minimal"); 
@@ -51,6 +73,9 @@
 			editableGrid.loadXML("grid.xml");
 		} 
 	</script>
+
+
+
 
 </body>
 
