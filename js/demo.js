@@ -53,7 +53,7 @@ function DatabaseGrid(table='demo')
       	pageSize: 50,
       // Once the table is displayed, we update the paginator state
         tableRendered:  function() {  updatePaginator(this); },
-   	    tableLoaded: function() { datagrid.initializeGrid(this,table); },
+   	    tableLoaded: function() { datagrid.initializeGrid(this); },
 				modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
    	   	updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
        	}
@@ -67,7 +67,7 @@ DatabaseGrid.prototype.fetchGrid = function(table)  {
 	this.editableGrid.loadJSON("backend.php?db_tablename="+table);
 };
 
-DatabaseGrid.prototype.initializeGrid = function(grid,table) {
+DatabaseGrid.prototype.initializeGrid = function(grid) {
 
   var self = this;
 
@@ -79,7 +79,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid,table) {
 		}
 	})); 
 
-	grid.renderGrid(table, "testgrid");
+	grid.renderGrid("tablecontent", "testgrid");
 };    
 
 DatabaseGrid.prototype.deleteRow = function(id) 

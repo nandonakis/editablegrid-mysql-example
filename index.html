@@ -37,16 +37,27 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 		<script src="js/demo.js" ></script>
 		
-		Minimal
+		<h2>Minimal</h2>
 		<div class="foo" id="minimal"></div>
-		Minimal2
+
+		<h2>Minimal2</h2>
 		<div class="foo" id="minimal2"></div>
-		Countries
+
+		<h2>TableContent</h2>
+		<div class="foo" id="tablecontent"></div>
+
+		<h2>Demo (doesn't work yet)</h2>
+		<div class="foo" id="demo"></div>
+
+		<h2>Countries</h2>
 		<div class="foo" id="countries"></div>
-		Continent
+
+		<h2>Continent</h2>
 		<div class="foo" id="continent"></div>
 		
 		<script type="text/javascript">
+			var datagrid = new DatabaseGrid('demo'); // this works
+			var demo = new DatabaseGrid('demo'); // this doesn't work
 			window.onload = function() {
 				editableGrid = new EditableGrid("minimal"); 
 				editableGrid.tableLoaded = function() { this.renderGrid("minimal", "testgrid"); };
@@ -56,7 +67,7 @@
 				editableGrid.tableLoaded = function() { this.renderGrid("minimal2", "testgrid"); };
 				editableGrid.loadXML("grid.xml");
 
-				countries = new DatabaseGrid("countries"); 
+
 			} 
 		</script>
   
