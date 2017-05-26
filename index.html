@@ -36,17 +36,8 @@
 		<!-- EditableGrid test if jQuery UI is present. If present, a datepicker is automatically used for date type -->
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 		<script src="js/demo.js" ></script>
-		
-		<h2>Minimal</h2>
-		<div class="foo" id="minimal"></div>
 
-		<h2>Minimal2</h2>
-		<div class="foo" id="minimal2"></div>
-
-		<h2>TableContent</h2>
-		<div class="foo" id="tablecontent"></div>
-
-		<h2>Demo (doesn't work yet)</h2>
+		<h2>Demo (now works)</h2>
 		<div class="foo" id="demo"></div>
 
 		<h2>Countries</h2>
@@ -54,10 +45,18 @@
 
 		<h2>Continent</h2>
 		<div class="foo" id="continent"></div>
+
+		<h2>Minimal</h2>
+		<div class="foo" id="minimal"></div>
+
+		<h2>Minimal2</h2>
+		<div class="foo" id="minimal2"></div>
+
 		
 		<script type="text/javascript">
 			var datagrid = new DatabaseGrid('demo'); // this works
-			var demo = new DatabaseGrid('demo'); // this doesn't work
+			//var foobar = new DatabaseGrid('demo'); // this doesn't work
+			
 			window.onload = function() {
 				editableGrid = new EditableGrid("minimal"); 
 				editableGrid.tableLoaded = function() { this.renderGrid("minimal", "testgrid"); };

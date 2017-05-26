@@ -45,7 +45,7 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
    
 }
    
-function DatabaseGrid(table='demo') 
+function DatabaseGrid(table) 
 { 
 	this.editableGrid = new EditableGrid(table, {
 		enableSort: true,
@@ -53,7 +53,7 @@ function DatabaseGrid(table='demo')
       	pageSize: 50,
       // Once the table is displayed, we update the paginator state
         tableRendered:  function() {  updatePaginator(this); },
-   	    tableLoaded: function() { datagrid.initializeGrid(this); },
+   	    tableLoaded: function() { datagrid.initializeGrid(this,table); },
 				modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
    	   	updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
        	}
@@ -67,7 +67,7 @@ DatabaseGrid.prototype.fetchGrid = function(table)  {
 	this.editableGrid.loadJSON("backend.php?db_tablename="+table);
 };
 
-DatabaseGrid.prototype.initializeGrid = function(grid) {
+DatabaseGrid.prototype.initializeGrid = function(grid,table) {
 
   var self = this;
 
@@ -78,8 +78,9 @@ DatabaseGrid.prototype.initializeGrid = function(grid) {
         cell.innerHTML+= "  <a href='#' onclick=\"datagrid.duplicateRow("+id+");\"><i  class='fa fa-copy' ></i></a>";
 		}
 	})); 
-
-	grid.renderGrid("tablecontent", "testgrid");
+  console.log('table is: '+ table);
+//	grid.renderGrid('demo',"testgrid");
+ 	grid.renderGrid(table,"testgrid");
 };    
 
 DatabaseGrid.prototype.deleteRow = function(id) 
