@@ -1,75 +1,57 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-
-<!--
-/*
- * examples/mysql/index.html
- * 
- * This file is part of EditableGrid.
- * http://editablegrid.net
- *
- * Copyright (c) 2011 Webismymind SPRL
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://editablegrid.net/license
- */
--->
-
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>EditableGrid Demo - Database Link</title>
-		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
-		<link rel="stylesheet" href="css/responsive.css" type="text/css" media="screen">
-
-   <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-		<link rel="stylesheet" href="css/font-awesome-4.1.0/css/font-awesome.min.css" type="text/css" media="screen">
-    </head>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>EditableGrid Demo - Database Link</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/responsive.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+	<link rel="stylesheet" href="css/font-awesome-4.1.0/css/font-awesome.min.css" type="text/css" media="screen">
+ </head>
+<body>
+	<div id="wrap">
+	<h1>EditableGrid Demo - Database Link</h1> 
 	
-	<body>
-		<div id="wrap">
-		<h1>EditableGrid Demo - Database Link</h1> 
-		
-		<!-- General message zone for any tables on page?  -->
-		<div id="message"></div>
-    
-		<script src="js/editablegrid-2.1.0-b25.js"></script>   
-		<script src="js/jquery-1.11.1.min.js" ></script>
-		<!-- EditableGrid test if jQuery UI is present. If present, a datepicker is automatically used for date type -->
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-		<script src="js/demo.js" ></script>
+	<!-- General message zone for any tables on page?  -->
+	<div id="message"></div>
+	
+	<script src="js/editablegrid-2.1.0-b25.js"></script>   
+	<script src="js/jquery-1.11.1.min.js" ></script>
+	<!-- EditableGrid test if jQuery UI is present. If present, a datepicker is automatically used for date type -->
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+	<script src="js/demo.js" ></script>
 
-		<h2>Demo (now works)</h2>
-		<div class="foo" id="demo"></div>
+	<h2>Demo (now works)</h2>
+	<div class="foo" id="demo"></div>
 
-		<h2>Countries</h2>
-		<div class="foo" id="countries"></div>
+	<h2>Countries</h2>
+	<div class="foo" id="countries"></div>
 
-		<h2>Continent</h2>
-		<div class="foo" id="continent"></div>
+	<h2>Continent</h2>
+	<div class="foo" id="continent"></div>
 
-		<h2>Minimal</h2>
-		<div class="foo" id="minimal"></div>
+	<h2>Minimal</h2>
+	<div class="foo" id="minimal"></div>
 
-		<h2>Minimal2</h2>
-		<div class="foo" id="minimal2"></div>
+	<h2>Minimal2</h2>
+	<div class="foo" id="minimal2"></div>
+	
+	<script type="text/javascript">
+		var demo  = new DatabaseGrid('demo'); 
+		var continent = new DatabaseGrid('continent'); 
+		var countries = new DatabaseGrid('countries'); 
 
-		
-		<script type="text/javascript">
-			var datagrid = new DatabaseGrid('demo'); // this works
-			//var foobar = new DatabaseGrid('demo'); // this doesn't work
-			
-			window.onload = function() {
-				editableGrid = new EditableGrid("minimal"); 
-				editableGrid.tableLoaded = function() { this.renderGrid("minimal", "testgrid"); };
-				editableGrid.loadXML("grid.xml");
+		window.onload = function() {
+			editableGrid = new EditableGrid("minimal"); 
+			editableGrid.tableLoaded = function() { this.renderGrid("minimal", "testgrid"); };
+			editableGrid.loadXML("grid.xml");
+	
+			editableGrid = new EditableGrid("minimal2"); 
+			editableGrid.tableLoaded = function() { this.renderGrid("minimal2", "testgrid"); };
+			editableGrid.loadXML("grid.xml");
+		} 
+	</script>
 
-				editableGrid = new EditableGrid("minimal2"); 
-				editableGrid.tableLoaded = function() { this.renderGrid("minimal2", "testgrid"); };
-				editableGrid.loadXML("grid.xml");
-
-
-			} 
-		</script>
-  
-	</body>
+</body>
 
 </html>
