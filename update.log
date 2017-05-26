@@ -1,1 +1,1 @@
-INSERT INTO demo  () VALUES ()
+INSERT INTO demo (name,firstname,age,height,id_continent,id_country,email,freelance,lastvisit,website,income) SELECT name,firstname,age,height,id_continent,id_country,email,freelance,lastvisit,website,income FROM demo WHERE id='102'

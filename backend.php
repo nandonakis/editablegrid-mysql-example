@@ -1,45 +1,60 @@
 <?php     
 
-require_once('config.php');      
+
+/*
+ * examples/mysql/backend.php
+ * 
+ * This file is part of EditableGrid.
+ * http://editablegrid.net
+ *
+ * Copyright (c) 2011 Webismymind SPRL
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://editablegrid.net/license
+ */
+                              
+
+
+/**
+ * This script loads data from the database and returns it to the js
+ *
+ */
+       
+//require_once('config.php');      
 require_once('EditableGrid.php');            
 require_once('pdoDB.php'); 
 
 function get_js_type($type){
+    //var_dump($type);
+    if(strpos($type, 'char')>=0)
+        return 'string';
+    if(strpos($type,'int')>=0)
+        return 'interger';
     
-    switch($type){
-        case 'STRING';
-        case 'VAR_STRING';
-            return 'string';
-            break;
-        case 'TINY':
-            return 'boolean';
-            break;
-        case "NEWDECIMAL":
-            return 'float';
-            break;
-        case "DATE":
-            return 'date';
-            break;
-            
-        default:
-            return 'interger';
+    if(strpos($type, 'decimal')>=0)
+        return 'float';
+    if(strpos($type, 'date')>=0)
+        return 'date';
+    if(strpos($type, 'tiny')>=0)
+        return 'boolean';
+    
+    
            
-        
-    }
+    return 'string';
+    
     
     
 }
-function add_columns_from_meta($result, $grid){
+function add_columns_from_meta($result, $grid, $mydb_tablename){
     global $db;
     
-    $meta = $db->get_column_meta($result);
-    //var_dump($meta);die;
+    $meta = $db->get_table_columns($mydb_tablename);
+    
     
     //$grid->addColumn('id', 'ID', 'integer', NULL, false); 
-    foreach($meta as $k => $v){
+    foreach($meta as $name => $v){
         //if($v['name'] == 'id')
         //    continue;
-        $name = $v['name'];
+        //$name = $v['name'];
         $pos = strpos($name, 'id_');
         if($pos !== false){
         //if($name == 'id_country'){
@@ -48,7 +63,7 @@ function add_columns_from_meta($result, $grid){
             $grid->addColumn($name, $instr, 'string', $db->fetch_pairs('SELECT id, name FROM ' . $instr),true );  
         }else{
             
-                $grid->addColumn($name, $name, get_js_type($v['native_type']));
+                $grid->addColumn($name, $name, get_js_type($v['Type']));
         }
         
         
@@ -133,7 +148,7 @@ $grid->addColumn('action', 'Action', 'html', NULL, false, 'id');
 $result = $db->query('SELECT * FROM '.$mydb_tablename );
 
 
-add_columns_from_meta($result, $grid);
+add_columns_from_meta($result, $grid, $mydb_tablename);
 
 //var_dump($meta);die;
 //die;

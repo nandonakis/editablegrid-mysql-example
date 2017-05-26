@@ -46,27 +46,29 @@ class DBClass{
         return $rows;
     }
     
-    public function get_column_meta($rs){
-        $meta = array();
+    public function get_column_meta($tablename){
         
+        /*
+        $meta = array();
         for($i=0; $i< $rs->columnCount()-1; $i++){
             $meta[] = $rs->getColumnMeta($i);
             
             
         }
-    
-        return $meta;
+        */
+        $rs  = $this->dbh->query("desc $tablename", PDO::FETCH_ASSOC);
+        return $rs->fetchAll();
         
     }
     public function get_table_columns($tablename){
         
-        $rs = $this->dbh->query(sprintf("select * from %s limit 0", $tablename));
+        //$rs = $this->dbh->query(sprintf("select * from %s limit 0", $tablename));
     
-        $meta = $this->get_column_meta($rs);
+        $meta = $this->get_column_meta($tablename);
         $cols = array();
         foreach($meta as $i => $v){
-            $k = $v['name'];
-            $t= $v['native_type'];
+            $k = $v["Field"];
+            //$t= $v["Type"];
             $cols[$k] = $v; 
             
         }
@@ -96,9 +98,14 @@ class DBClass{
         }
         $query = sprintf("INSERT INTO %s  (%s) VALUES (%s)", $tablename, join(',', $fields), join(',',$values)); 
         file_put_contents('update.log', $query ."\n");
-        $this->dbh->query($query);
-        $id = $this->dbh->lastInsertId();
-        return $this->get($id, $tablename);
+        if($this->dbh->query($query)){
+                
+            $id = $this->dbh->lastInsertId();
+            return $this->get($id, $tablename);
+            
+        }
+        return FALSE;
+        
         
     }
     

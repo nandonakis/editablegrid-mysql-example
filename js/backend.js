@@ -78,12 +78,62 @@ DatabaseGrid.prototype.initializeGrid = function(grid, table) {
 	// render for the action column
 	grid.setCellRenderer("action", new CellRenderer({
 		render: function(cell, id) {
-			cell.innerHTML += "<a href='#' onclick=\"datagrid.deleteRow(" + id + ");\"><i  class='fa fa-trash-o red' ></i></a>";
-			cell.innerHTML += "  <a href='#' onclick=\"datagrid.duplicateRow(" + id + ");\"><i  class='fa fa-copy' ></i></a>";
+			cell.innerHTML += "<a href='#' class='delete-row' ><i  class='fa fa-trash-o red' ></i></a>";
+			cell.innerHTML += "  <a href='#' class='copy-row' ><i  class='fa fa-copy' ></i></a>";
 		}
 	}));
+    grid.setCellRenderer("name", new CellRenderer({
+		render: function(cell, id) {
+			cell.innerHTML += "<a href='#' class='cell-name' data-value='"+id+"'>"+id+"</a>";
+			
+		}
+	}));
+    
+    function get_table_id(ele){
+        
+        var id = ele.closest('tr').prop('id');
+        var x = id.split('_');
+        id = x.pop();
+        var table = x.join('_');
+        return {id: id, table:table};
+    }
+   
+   $('body').on('click', '.cell-name',function(e){
+       alert("It's current value:"+$(this).data('value') + ' of ' + self.editableGrid.name + ' table');
+       
+   });
+   $('body').on('click', '.delete-row',function(e){
+       var xdata = get_table_id($(this));
+      
+       //console.log('row id: ',  xdata);
+       if(xdata.table == self.editableGrid.name)
+            self.deleteRow(xdata.id);
+   });
+   $('body').on('click', '.copy-row',function(e){
+       var xdata = get_table_id($(this));
+      
+       //console.log('row id: ',  xdata);
+       if(xdata.table == self.editableGrid.name)
+            self.duplicateRow(xdata.id);
+   });
+    
 	console.log('table is: ' + table);
 	//	grid.renderGrid('demo',"testgrid");
+    
+    // add
+    $("#addbutton").click(function() {
+        console.log('adding row');
+                  self.addRow();
+                });
+    //filter
+    $("#filter").keyup(function() {
+                    self.editableGrid.filter( $(this).val());
+
+                    // To filter on some columns, you can set an array of column index 
+                    //datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
+                  });
+    
+    
 	grid.renderGrid(table, "testgrid");
 };
 
@@ -162,11 +212,13 @@ DatabaseGrid.prototype.addRow = function(id) {
 				var id = row.id;
 				alert("Row added : reload model:" + id);
 				//self.fetchGrid(self.editableGrid.name);
-				var rowIndex = self.editableGrid.pageSize < 0 ? 0 : self.editableGrid.pageSize - 1;
+				var rowIndex = self.editableGrid.pageSize < 0 ? 0 : self.editableGrid.pageSize;
+                var rowNum = self.editableGrid.getRowCount();
+                rowIndex = Math.min(rowIndex, rowNum); 
 				//var row = self.editableGrid.getRowValues(rowIndex);
 				//row.id = id;
-				console.log('rowCount:', rowIndex, ' row:', row);
-				self.editableGrid.insertAfter(rowIndex - 1, id, row);
+				//console.log('rowCount:', rowIndex, ' row:', row);
+				self.editableGrid.insert(rowIndex-1, id, row, null, true);
 			} else
 				alert("error");
 		},

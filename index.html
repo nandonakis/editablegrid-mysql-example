@@ -15,38 +15,30 @@
 	<!-- General message zone for any tables on page?  -->
 	<div id="message"></div>
 	
-	<script src="js/editablegrid-2.1.0-b25.js"></script>   
+	<script src="js/editablegrid.js"></script>
+    <script src="js/editablegrid_renderers.js"></script>
+    <script src="js/editablegrid_editors.js"></script>
+    <script src="js/editablegrid_validators.js"></script>
+    
+    <script src="js/editablegrid_utils.js"></script>   
 	<script src="js/jquery-1.11.1.min.js" ></script>
 	<!-- EditableGrid test if jQuery UI is present. If present, a datepicker is automatically used for date type -->
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 	<script src="js/backend.js" ></script>
+    
 
-<pre>
-	This stuff needs to be put into the js file, and needs to act on class, not id
-
-    // key typed in the filter field
-                $("#filter").keyup(function() {
-                    datagrid.editableGrid.filter( $(this).val());
-
-                    // To filter on some columns, you can set an array of column index 
-                    //datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
-                  });
-
-                $("#showaddformbutton").click( function()  {
-                  //showAddForm();
-                  datagrid.addRow();
-                });
-                $("#cancelbutton").click( function() {
-                  showAddForm();
-                });
-
-                $("#addbutton").click(function() {
-                  datagrid.addRow();
-                });
-</pre>
 
 
 	<h2>Demo</h2>
+    
+    <!-- Feedback message zone -->
+			<div id="message"></div>
+
+            <div id="toolbar">
+              <input type="text" id="filter" name="filter" placeholder="Filter :type any text here"  />
+              <a id="addbutton" class="button green"><i class="fa fa-plus"></i> Add new row</a>
+            </div>
+    
 	<div class="foo" id="demo"></div>
 
 	<h2>Continent</h2>
@@ -71,6 +63,13 @@
 			editableGrid = new EditableGrid("minimal2"); 
 			editableGrid.tableLoaded = function() { this.renderGrid("minimal2", "testgrid"); };
 			//editableGrid.loadXML("grid.xml");
+            
+            
+            
+
+                
+
+                
 		} 
 	</script>
 
