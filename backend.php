@@ -1,25 +1,6 @@
 <?php     
 
-
-/*
- * examples/mysql/backend.php
- * 
- * This file is part of EditableGrid.
- * http://editablegrid.net
- *
- * Copyright (c) 2011 Webismymind SPRL
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://editablegrid.net/license
- */
-                              
-
-
-/**
- * This script loads data from the database and returns it to the js
- *
- */
-       
-//require_once('config.php');      
+require_once('config.php');      
 require_once('EditableGrid.php');            
 require_once('pdoDB.php'); 
 

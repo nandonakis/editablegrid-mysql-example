@@ -59,9 +59,9 @@
 	<div class="foo" id="minimal"></div>
 
 	<script type="text/javascript">
-		new DatabaseGrid('demo'); 
-		new DatabaseGrid('continent'); 
-		new DatabaseGrid('country'); 
+		var one = new DatabaseGrid('demo'); 
+		var two = new DatabaseGrid('continent'); 
+		var three = new DatabaseGrid('country'); 
 
 		window.onload = function() {
 			editableGrid = new EditableGrid("minimal"); 
@@ -70,7 +70,7 @@
 	
 			editableGrid = new EditableGrid("minimal2"); 
 			editableGrid.tableLoaded = function() { this.renderGrid("minimal2", "testgrid"); };
-			editableGrid.loadXML("grid.xml");
+			//editableGrid.loadXML("grid.xml");
 		} 
 	</script>
 
