@@ -45,8 +45,6 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
    
 }
    
-
-
 function DatabaseGrid(table='demo') 
 { 
 	this.editableGrid = new EditableGrid(table, {
@@ -55,9 +53,9 @@ function DatabaseGrid(table='demo')
       	pageSize: 50,
       // Once the table is displayed, we update the paginator state
         tableRendered:  function() {  updatePaginator(this); },
-   	    tableLoaded: function() { datagrid.initializeGrid(this); },
-		modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
-   	    	updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
+   	    tableLoaded: function() { datagrid.initializeGrid(this,table); },
+				modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
+   	   	updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
        	}
  	});
 	this.fetchGrid(table); 
@@ -69,25 +67,23 @@ DatabaseGrid.prototype.fetchGrid = function(table)  {
 	this.editableGrid.loadJSON("backend.php?db_tablename="+table);
 };
 
-DatabaseGrid.prototype.initializeGrid = function(grid) {
+DatabaseGrid.prototype.initializeGrid = function(grid,table) {
 
   var self = this;
 
 // render for the action column
 	grid.setCellRenderer("action", new CellRenderer({ 
 		render: function(cell, id) {                 
-		      cell.innerHTML+= "<a href='#' onclick=\"datagrid.deleteRow("+id+");\"><i  class='fa fa-trash-o red' ></i></a>";
-              cell.innerHTML+= "  <a href='#' onclick=\"datagrid.duplicateRow("+id+");\"><i  class='fa fa-copy' ></i></a>";
+	      cell.innerHTML+= "<a href='#' onclick=\"datagrid.deleteRow("+id+");\"><i  class='fa fa-trash-o red' ></i></a>";
+        cell.innerHTML+= "  <a href='#' onclick=\"datagrid.duplicateRow("+id+");\"><i  class='fa fa-copy' ></i></a>";
 		}
 	})); 
 
-
-	grid.renderGrid("tablecontent", "testgrid");
+	grid.renderGrid(table, "testgrid");
 };    
 
 DatabaseGrid.prototype.deleteRow = function(id) 
 {
-
   var self = this;
 
   if ( confirm('Are you sur you want to delete the row id ' + id )  ) {
@@ -150,10 +146,6 @@ DatabaseGrid.prototype.addRow = function(id)
 {
 
   var self = this;
-  
-  
-  
-        
     $.ajax({
     url: 'backend.php?action=add',
     type: 'POST',

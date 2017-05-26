@@ -20,9 +20,9 @@
 		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="css/responsive.css" type="text/css" media="screen">
 
-        <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+   <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
 		<link rel="stylesheet" href="css/font-awesome-4.1.0/css/font-awesome.min.css" type="text/css" media="screen">
-        	</head>
+    </head>
 	
 	<body>
 		<div id="wrap">
@@ -31,88 +31,35 @@
 		<!-- General message zone for any tables on page?  -->
 		<div id="message"></div>
     
-		<!-- Countries Table  -->
-		<div class=datagrid id=country>
-			<div class="toolbar">
-				<input type="text" id="filter" name="filter" placeholder="Filter :type any text here"  />
-				<a id="showaddformbutton" class="button green"><i class="fa fa-plus"></i> Add new row</a>
-			</div>
-			<!-- Grid contents -->
-			<div class="tablecontent"></div>
-			<!-- Paginator control -->
-			<div class="paginator"></div>
-		</div>
-
-		<!-- Continents Table  -->
-		<div class=datagrid id=continents>
-			<div class="toolbar">
-				<input type="text" id="filter" name="filter" placeholder="Filter :type any text here"  />
-				<a id="showaddformbutton" class="button green"><i class="fa fa-plus"></i> Add new row</a>
-			</div>
-			<!-- Grid contents -->
-			<div class="tablecontent"></div>
-			<!-- Paginator control -->
-			<div class="paginator"></div>
-		</div>
-
-		<!-- Demo Table  -->
-		<div class=datagrid id=demo>
-			<div class="toolbar">
-				<input type="text" id="filter" name="filter" placeholder="Filter :type any text here"  />
-				<a id="showaddformbutton" class="button green"><i class="fa fa-plus"></i> Add new row</a>
-			</div>
-			<!-- Grid contents -->
-			<div class="tablecontent"></div>
-			<!-- Paginator control -->
-			<div class="paginator"></div>
-		</div>
-
-		<!-- Is this possible? Optional-->
-		<div class=datagrid id=demo2>
-		</div>
-		
 		<script src="js/editablegrid-2.1.0-b25.js"></script>   
 		<script src="js/jquery-1.11.1.min.js" ></script>
 		<!-- EditableGrid test if jQuery UI is present. If present, a datepicker is automatically used for date type -->
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+		<script src="js/demo.js" ></script>
 		
-		<script src="js/datagrid.js" ></script>
-
-		All of this javascript should be moved to datagrid.js
+		Minimal
+		<div class="foo" id="minimal"></div>
+		Minimal2
+		<div class="foo" id="minimal2"></div>
+		Countries
+		<div class="foo" id="countries"></div>
+		Continent
+		<div class="foo" id="continent"></div>
+		
 		<script type="text/javascript">
-			var tablename = location.search?location.search:'demo';
-			tablename = tablename.replace('?','');
-			console.log('tablename:', tablename);
-			var datagrid = new DatabaseGrid(tablename);
-			
 			window.onload = function() {
-					$(".datagrid").something("backend.php?db_tablename="+table_id);
-				
-					// key typed in the filter field
-					$(".filter").keyup(function() {
-							datagrid.editableGrid.filter( $(this).val());
+				editableGrid = new EditableGrid("minimal"); 
+				editableGrid.tableLoaded = function() { this.renderGrid("minimal", "testgrid"); };
+				editableGrid.loadXML("grid.xml");
 
-							// To filter on some columns, you can set an array of column index 
-							//datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
-						});
+				editableGrid = new EditableGrid("minimal2"); 
+				editableGrid.tableLoaded = function() { this.renderGrid("minimal2", "testgrid"); };
+				editableGrid.loadXML("grid.xml");
 
-					$(".showaddformbutton").click( function()  {
-						//showAddForm();
-						datagrid.addRow();
-					});
-					$(".cancelbutton").click( function() {
-						showAddForm();
-					});
-
-					$(".addbutton").click(function() {
-						datagrid.addRow();
-					});
-        
-			}; 
+				countries = new DatabaseGrid("countries"); 
+			} 
 		</script>
-
-       
-        
+  
 	</body>
 
 </html>
