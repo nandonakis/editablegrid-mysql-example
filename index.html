@@ -84,7 +84,10 @@
 			tablename = tablename.replace('?','');
 			console.log('tablename:', tablename);
 			var datagrid = new DatabaseGrid(tablename);
-			window.onload = function() { 
+			
+			window.onload = function() {
+					$(".datagrid").something("backend.php?db_tablename="+table_id);
+				
 					// key typed in the filter field
 					$(".filter").keyup(function() {
 							datagrid.editableGrid.filter( $(this).val());
