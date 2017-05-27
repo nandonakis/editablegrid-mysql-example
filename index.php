@@ -23,15 +23,15 @@
 <body>
 	<div id="wrap">
 	<h1>Database EditableGrid Demo</h1> 
-	
-	<!-- Global Feedback message zone -->
-	<div class='grid_message' id="grid_message"></div>
 
 <?php 
+	
 	$tables = array('demo','continent','country');
 	foreach($tables as $table){
 		echo <<<HERE
+	
 	<h1>$table</h1>
+	<div class='grid_message' id="$table_message"></div>
 	<div class="grid_toolbar">
 		<input type="text" class="grid_filter" name="$table_filter" placeholder="Filter :type any text here"  />
 		<a id="$table_addbutton" class="grid_addbutton button green"><i class="fa fa-plus"></i> Add new row</a>
@@ -49,6 +49,7 @@
 		var $table = new DatabaseGrid('$table');
 	</script>
 	<HR>
+
 HERE;
 }
 ?>
