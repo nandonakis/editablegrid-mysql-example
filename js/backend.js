@@ -51,7 +51,7 @@ function DatabaseGrid(table='demo') {
 	this.editableGrid = new EditableGrid(table, {
 		enableSort: true,
 		// define the number of row visible by page
-		pageSize: 50,
+		pageSize: 10,
 		// Once the table is displayed, we update the paginator state
 		tableRendered: function() {
 			updatePaginator(this);
