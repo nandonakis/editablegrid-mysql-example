@@ -24,22 +24,25 @@ require_once('EditableGrid.php');
 require_once('pdoDB.php'); 
 
 function get_js_type($type){
-    //var_dump($type);
-    if(strpos($type, 'char')>=0)
-        return 'string';
-    if(strpos($type,'int')>=0)
-        return 'interger';
+    //echo $type;
+    //$type=strtolower($type);
+    //echo "...". $type."\n";
     
-    if(strpos($type, 'decimal')>=0)
+    if(strpos($type, 'STRING') !== false)
+        return 'string';
+    if(strpos($type,'LONG') !== false)
+        return 'integer';
+    
+    if(strpos($type, 'DECIMAL')!== false)
         return 'float';
-    if(strpos($type, 'date')>=0)
+    if(strpos($type, 'DATE')!== false)
         return 'date';
-    if(strpos($type, 'tiny')>=0)
+    if(strpos($type, 'TINY')!== false)
         return 'boolean';
     
     
            
-    return 'string';
+    return 'integer';
     
     
     
@@ -48,6 +51,7 @@ function add_columns_from_meta($result, $grid, $mydb_tablename){
     global $db;
     
     $meta = $db->get_table_columns($mydb_tablename);
+    //var_dump($meta);die;
     
     
     //$grid->addColumn('id', 'ID', 'integer', NULL, false); 
@@ -62,13 +66,17 @@ function add_columns_from_meta($result, $grid, $mydb_tablename){
             $instr = substr($name, 3);
             $grid->addColumn($name, $instr, 'string', $db->fetch_pairs('SELECT id, name FROM ' . $instr),true );  
         }else{
-            
-                $grid->addColumn($name, $name, get_js_type($v['Type']));
+                $type = get_js_type($v["native_type"]);
+                $grid->addColumn($name, $name, $type);
+               //echo $v["native_type"] . "...$type\n";
         }
         
         
     }
-    $grid->addColumn('action', 'Action', 'html', NULL, false, 'id');  
+    $grid->addColumn('action', 'Action', 'html', NULL, false, 'id'); 
+    
+    
+    //die;
 }  
 
 

@@ -28,6 +28,11 @@
 	
 	$tables = array('demo','continent','country');
 	foreach($tables as $table){
+        $table_filter = "${table}_filter";
+        $table_message = "${table}_message";
+        $table_addbutton = "${table}_addbutton";
+        $table_paginator = "${table}_paginator";
+        
 		echo <<<HERE
 	
 	<h1>$table</h1>

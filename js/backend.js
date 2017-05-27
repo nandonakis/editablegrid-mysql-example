@@ -54,7 +54,7 @@ function DatabaseGrid(table='demo') {
 		pageSize: 10,
 		// Once the table is displayed, we update the paginator state
 		tableRendered: function() {
-			updatePaginator(this);
+			updatePaginator(this, table+'_paginator');
 		},
 		tableLoaded: function() {
 			that.initializeGrid(this, table);
@@ -82,12 +82,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid, table) {
 			cell.innerHTML += "  <a href='#' class='copy-row' ><i  class='fa fa-copy' ></i></a>";
 		}
 	}));
-    grid.setCellRenderer("name", new CellRenderer({
-		render: function(cell, id) {
-			cell.innerHTML += "<a href='#' class='cell-name' data-value='"+id+"'>"+id+"</a>";
-			
-		}
-	}));
+    
     
     function get_table_id(ele){
         
@@ -121,18 +116,27 @@ DatabaseGrid.prototype.initializeGrid = function(grid, table) {
 	//	grid.renderGrid('demo',"testgrid");
     
     // add
-    $("#addbutton").click(function() {
-        console.log('adding row');
-                  self.addRow();
-                });
-    //filter
-    $("#filter").keyup(function() {
-                    self.editableGrid.filter( $(this).val());
-
-                    // To filter on some columns, you can set an array of column index 
-                    //datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
-                  });
+    $(".grid_addbutton").click(function(e) {
+        if($(this).prop('id').indexOf(self.editableGrid.name)>=0){
+            //console.log('adding row');
+              self.addRow();
+            };
+    });
     
+    //filter
+    $(".grid_filter").keyup(function(e) {
+        if($(e.target).prop('name').indexOf(self.editableGrid.name)>=0){
+            
+            console.log('grid_filter:', e.target);
+        
+            self.editableGrid.filter( $(this).val());
+        }
+
+
+        // To filter on some columns, you can set an array of column index 
+        //datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
+      });
+
     
 	grid.renderGrid(table, "testgrid");
 };
@@ -217,7 +221,7 @@ DatabaseGrid.prototype.addRow = function(id) {
                 rowIndex = Math.min(rowIndex, rowNum); 
 				//var row = self.editableGrid.getRowValues(rowIndex);
 				//row.id = id;
-				//console.log('rowCount:', rowIndex, ' row:', row);
+				console.log('rowCount:', rowIndex, ' id:', id);
 				self.editableGrid.insert(rowIndex-1, id, row, null, true);
 			} else
 				alert("error");

@@ -47,28 +47,30 @@ class DBClass{
     }
     
     public function get_column_meta($tablename){
+        $rs = $this->dbh->query(sprintf("select * from %s limit 1", $tablename));
         
-        /*
         $meta = array();
-        for($i=0; $i< $rs->columnCount()-1; $i++){
+        for($i=0; $i< $rs->columnCount(); $i++){
             $meta[] = $rs->getColumnMeta($i);
             
             
         }
-        */
-        $rs  = $this->dbh->query("desc $tablename", PDO::FETCH_ASSOC);
-        return $rs->fetchAll();
+        // for compatible with all other 
+        //$rs  = $this->dbh->query("desc $tablename", PDO::FETCH_ASSOC);
+        //return $rs->fetchAll();
+        return $meta;
         
     }
     public function get_table_columns($tablename){
         
-        //$rs = $this->dbh->query(sprintf("select * from %s limit 0", $tablename));
+        //
     
         $meta = $this->get_column_meta($tablename);
         $cols = array();
         foreach($meta as $i => $v){
-            $k = $v["Field"];
+            //$k = $v["Field"];
             //$t= $v["Type"];
+            $k = $v["name"];
             $cols[$k] = $v; 
             
         }
