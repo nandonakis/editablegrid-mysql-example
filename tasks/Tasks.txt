@@ -1,0 +1,24 @@
+TODO
+1) Fix Pagination styling
+
+2) Error handling/reporting
+Currently when things go wrong, very hard to debug and tell what went wrong.
+I need the error handling updated so we can see what is going on.
+
+Whenever there is a database operation or other error, log a descriptive error
+a) by the red coloring it seems to do in the cell
+b) in the message area? (is this used by the product?)
+c) to the javascript console
+
+Log database operations to db.log
+Ajax operations can be logged to a file
+
+3) Handle datetime field in database.
+Always show dates and datetimes in iso format
+0000-00-00 for dates and 0000-00-00 00:00:00 for datetimes
+with dates, the clue is it goes red as soon as you click on it.
+
+TO BE DISCUSSED
+Read table configuration from a csv file (e.g. metadata, readonly or editable, display or not)
+Security?
+
