@@ -130,7 +130,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid, table) {
 		// To filter on some columns, you can set an array of column index 
 		//datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
 	});
-	grid.renderGrid(table, "testgrid");
+	grid.renderGrid(table,'excel testgrid');
 };
 
 DatabaseGrid.prototype.deleteRow = function(id) {

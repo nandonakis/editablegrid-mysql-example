@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="css/responsive.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
 	<link rel="stylesheet" href="css/font-awesome-4.1.0/css/font-awesome.min.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/sds.css" type="text/css" media="screen">
 
 	<script src="js/editablegrid.js"></script>
 	<script src="js/editablegrid_renderers.js"></script>
@@ -37,6 +38,7 @@
 		<input type="text" class="grid_filter" name="${table}_filter" placeholder="Filter :type any text here"  />
 		<a id="${table}_addbutton" class="grid_addbutton button green"><i class="fa fa-plus"></i> Add new row</a>
 	</div>
+	
 	<!-- Grid contents -->
 	<div class='grid' id="$table">
 	</div>
@@ -60,7 +62,7 @@ HERE;
 	<script type="text/javascript">
 		window.onload = function() {
 			sample = new EditableGrid("minimal"); 
-			sample.tableLoaded = function() { this.renderGrid("minimal", "testgrid"); };
+			sample.tableLoaded = function() { this.renderGrid("minimal", "excel testgrid"); };
 			sample.loadXML("grid.xml");
 		} 
 	</script>
