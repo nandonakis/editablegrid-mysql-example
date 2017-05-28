@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="content-language" content="en" />
 	<title>EditableGrid Demo - Database Link</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="css/responsive.css" type="text/css" media="screen">
@@ -26,7 +27,7 @@
 
 <?php 
 	
-	$tables = array('demo','continent','country');
+	$tables = array('demo2','demo','continent','country');
 	foreach($tables as $table){
         $table_filter = "${table}_filter";
         $table_message = "${table}_message";
@@ -46,7 +47,6 @@
 	</div>
 
 	<!-- Paginator control -->
-	paginator currently not showing because based on id
 	<div class='paginator' id="$table_paginator">
 	</div>
 
