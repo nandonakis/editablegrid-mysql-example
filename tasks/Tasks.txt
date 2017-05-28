@@ -1,4 +1,5 @@
-TODO
+MILESTONE 2
+
 1) Fix Pagination styling
 
 2) Error handling/reporting
@@ -33,4 +34,10 @@ Primary key and whether it autoincrements should be identified from the table ab
 NB. this means if the primary key being named "id" is hardcoded in the solution, this needs to be changed.
 IF there is auto_increment, use that.
 If not, then find the maximum id and increment
+
+6) POSTGRES
+Reproduce scenario1 and scenario2 in postgres and write the sql dumps for them.
+Note that postgres uses serial instead of autoincrement.
+Adapt mysql_meta.sql to pgsql_meta.sql for postgres. There might be slight variation.
+Update get_col_type for major postgres types.
 
