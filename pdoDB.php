@@ -117,8 +117,20 @@ class DBClass{
         $id = $this->dbh->quote(strip_tags($_POST['id']));
         $field = strip_tags($_POST['colname']);
         $value = $this->dbh->quote(strip_tags($_POST['newvalue']));
-        $query = sprintf("UPDATE %s SET %s=%s WHERE id = %s", $tablename, $field, $value, $id );
-        //file_put_contents('update.log', $query);
+        $coltype = strip_tags($_POST['coltype']);
+        if($coltype == 'date'){
+            
+            if ($value === "")
+                $value = NULL;
+            else{
+                
+                $date_info = date_parse_from_format('d/m/Y', $value);
+                $value = "{$date_info['year']}-{$date_info['month']}-{$date_info['day']}";
+            }
+            
+        }
+        $query = sprintf("UPDATE %s SET %s='%s' WHERE id = %s", $tablename, $field, $value, $id );
+        file_put_contents('update.log', $query);
         
         return $this->dbh->query($query);
     }

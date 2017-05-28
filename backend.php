@@ -151,9 +151,12 @@ $grid->addColumn('website', 'Website', 'string');
 $grid->addColumn('action', 'Action', 'html', NULL, false, 'id');  
 
 */
-
-                                                                       
-$result = $db->query('SELECT * FROM '.$mydb_tablename );
+$sql = 'SELECT * FROM '.$mydb_tablename;
+if ($mydb_tablename == 'demo'){
+   $sql='SELECT * , date_format(lastvisit, "%d/%m/%Y") as lastvisit FROM ' . $mydb_tablename;
+   
+}                                                                       
+$result = $db->query($sql );
 
 
 add_columns_from_meta($result, $grid, $mydb_tablename);
