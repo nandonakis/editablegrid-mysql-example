@@ -1,8 +1,8 @@
 <?php	 
 
-require_once('config.php'); 
-require_once('EditableGrid.php');
-require_once('pdoDB.php'); 
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
 
 function debug($op,$query,$sth='no_result')  {
 	$result = $sth ? 'ok' : 'error';
@@ -14,29 +14,30 @@ function get_col_type($type,$name){
 	//echo $type;
 	//echo "...". $type."\n";
 	$type=strtolower($type);
-	if ($name === 'email') 
+	
+	if ($name === 'email') {
 		return 'email';
-	elseif(strpos($type,'string') !== false)
+	}
+	elseif(preg_match('/string|blob|char|text/',$type)) {
 		return 'string';
-	elseif(strpos($type,'long') !== false)
+	}
+	elseif(preg_match('/int|long/',$type)) {
 		return 'integer';
-	elseif(strpos($type, 'decimal')!== false)
+	}
+	elseif(preg_match('/float|decimal|numeric/',$type)) {
 		return 'float';
-	elseif(strpos($type, 'float')!== false)
-		return 'float';
-	elseif(strpos($type, 'date')!== false)
+	}
+	elseif(preg_match('/date|time/',$type)) {
 		return 'date';
-	elseif(strpos($type, 'tiny')!== false) // only true for mysql?
+	}
+	elseif(preg_match('/tiny|bool/',$type)) {
 		return 'boolean';
-	elseif(strpos($type, 'bool')!== false)
-		return 'boolean';
-	elseif(strpos($type, 'blob')!== false)
-		return 'string';
+	}
 	else {
 		echo "Unrecognised type $type";
 		die;
 	}
-	return 'integer';
+	return 'string';
 }
 
 function add_columns_from_meta($result, $grid, $table){
@@ -48,24 +49,30 @@ function add_columns_from_meta($result, $grid, $table){
 		$editable = true; $name === 'id' and $editable = false;
 		$type = get_col_type($v["native_type"],$name);
 		$grid->addColumn($name,$name,$type,NULL,$editable);
-		//echo $v["native_type"] . "...$type\n";
-		//if($v['name'] == 'id')
-		//	continue;
-		//$name = $v['name'];
-		//$pos = strpos($name, 'id_');
-		//if($pos !== false){
-		//	$instr = substr($name, 3);
-		//	$grid->addColumn($name, $instr, 'string', $db->fetch_pairs('SELECT id, name FROM ' . $instr),true );  
-		//}else{
-		//public function addColumn($name, $label, $type, $values = NULL, $editable = true, $field = NULL, $bar = true, $hidden = false)
+			//echo $v["native_type"] . "...$type\n";
+			//if($v['name'] == 'id') continue;
+			//$name = $v['name'];
+			//$pos = strpos($name, 'id_');
+			//if($pos !== false){
+			//	$instr = substr($name, 3);
+			//	$grid->addColumn($name, $instr, 'string', $db->fetch_pairs('SELECT id, name FROM ' . $instr),true );  
+			//}else{
+			//public function addColumn($name, $label, $type, $values = NULL, $editable = true, $field = NULL, $bar = true, $hidden = false)
 	}
 	$grid->addColumn('action', 'Action', 'html', NULL, false, 'id');
 	//die;
 }  
 
-	$table = (isset($_GET['table'])) ? stripslashes($_GET['table']) : 'demo';
-	$action = (isset($_GET['action'])) ? stripslashes($_GET['action']) : 'list';
+$action = (isset($_GET['action'])) ? stripslashes($_GET['action']) : die ("no action");
+$table = (isset($_GET['table'])) ? stripslashes($_GET['table']) : die ("No table");
+$config_id= (isset($_GET['config'])) ? stripslashes($_GET['config']) : die("No config");
 
+
+require_once("db/${config_id}/config.php");
+require_once('EditableGrid.php');
+require_once('pdoDB.php'); 
+
+// create a new EditableGrid object
 if($action == 'add'){
 	$return = $db->add($table);
 	//var_dump($return);
@@ -99,9 +106,22 @@ if ($action == 'duplicate'){
 	echo $return ? "ok" : "error";  
 	die;
 }
-				
-// create a new EditableGrid object
+
+
+
+
 $grid = new EditableGrid();
+$sql = 'SELECT * FROM '.$table;
+$result = $db->query($sql);
+add_columns_from_meta($result, $grid, $table);
+
+//var_dump($meta);die;
+//die;
+// send data to the browser
+$grid->renderJSON($result);
+
+
+
 /* 
 *  Add columns. The first argument of addColumn is the name of the field in the databse. 
 *  The second argument is the label that will be displayed in the header
@@ -124,13 +144,3 @@ $grid->addColumn('lastvisit', 'Lastvisit', 'date');
 $grid->addColumn('website', 'Website', 'string');  
 $grid->addColumn('action', 'Action', 'html', NULL, false, 'id');  
 */
-
-$sql = 'SELECT * FROM '.$table;
-$result = $db->query($sql);
-add_columns_from_meta($result, $grid, $table);
-
-//var_dump($meta);die;
-//die;
-// send data to the browser
-$grid->renderJSON($result);
-

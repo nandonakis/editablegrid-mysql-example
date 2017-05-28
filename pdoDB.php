@@ -1,24 +1,23 @@
 <?php
 
 class DBClass{
-	private $pdh;
-	private $db_type;
-	private $db_name;
-	private $db_host;
-	private $db_password;
-	private $db_user;
-	private $db_table;
+	//private $pdh;
+	//private $db_type;
+	//private $db_name;
+	//private $db_host;
+	//private $db_password;
+	//private $db_user;
+	//private $db_table;
 	
-	function __construct($db_type='mysql',$host='localhost',$db='demo',$user='demo',$pw='demo') {
-		$this->db_type = $db_type;
-		$this->db_name = $db;
-		$this->db_host = $host;
-		$this->db_password = $pw;
-		$this->db_user = $user;
-		$this->init_db();
-	}
-	private function init_db(){
-		$this->dbh = new PDO(sprintf('%s:host=%s;dbname=%s', $this->db_type, $this->db_host, $this->db_name ), $this->db_user, $this->db_password);
+	function __construct($config) {
+		$params = array('db_type','db_host','db_name','db_user','db_password');
+		//foreach isset check or die
+	
+		$this->dbh = new PDO(sprintf('%s:host=%s;dbname=%s', $config['db_type'],$config['db_host'],$config['db_name']), $config['db_user'], $config['db_password']);
+		if(isset($config['db_schema']) and $config['db_type'] == 'pgsql') {
+			$schema = $config['db_schema'];
+			$this->dbh->exec("SET search_path TO $schema");
+		}
 	}
 	
 	public function query($query, $args=array()){
@@ -156,4 +155,6 @@ function quote_identifier($field) {
 		return "`".str_replace("`","``",$field)."`";
 }
 
-$db = new DBClass($config['db_type'], $config['db_host'],$config['db_name'], $config['db_user'], $config['db_password']);
+$db = new DBClass($config);
+									
+
