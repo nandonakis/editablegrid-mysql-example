@@ -3,18 +3,14 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-
-function debug($op,$query,$sth='no_result')  {
+function debug($op,$query,$sth)  {
 	$result = $sth ? 'ok' : 'error';
 	file_put_contents('db.log', "$op\n$query\n$result\n\n",FILE_APPEND);
 }
 debug('op','query','result',0);
 
 function get_col_type($type,$name){
-	//echo $type;
-	//echo "...". $type."\n";
 	$type=strtolower($type);
-	
 	if ($name === 'email') {
 		return 'email';
 	}
@@ -34,8 +30,7 @@ function get_col_type($type,$name){
 		return 'boolean';
 	}
 	else {
-		echo "Unrecognised type $type";
-		die;
+		die ("Unrecognised type $type");
 	}
 	return 'string';
 }
@@ -49,15 +44,15 @@ function add_columns_from_meta($result, $grid, $table){
 		$editable = true; $name === 'id' and $editable = false;
 		$type = get_col_type($v["native_type"],$name);
 		$grid->addColumn($name,$name,$type,NULL,$editable);
-			//echo $v["native_type"] . "...$type\n";
-			//if($v['name'] == 'id') continue;
-			//$name = $v['name'];
-			//$pos = strpos($name, 'id_');
-			//if($pos !== false){
-			//	$instr = substr($name, 3);
-			//	$grid->addColumn($name, $instr, 'string', $db->fetch_pairs('SELECT id, name FROM ' . $instr),true );  
-			//}else{
-			//public function addColumn($name, $label, $type, $values = NULL, $editable = true, $field = NULL, $bar = true, $hidden = false)
+		//public function addColumn($name, $label, $type, $values = NULL, $editable = true, $field = NULL, $bar = true, $hidden = false)
+		//echo $v["native_type"] . "...$type\n";
+		//if($v['name'] == 'id') continue;
+		//$name = $v['name'];
+		//$pos = strpos($name, 'id_');
+		//if($pos !== false){
+		//	$instr = substr($name, 3);
+		//	$grid->addColumn($name, $instr, 'string', $db->fetch_pairs('SELECT id, name FROM ' . $instr),true );  
+		//}else{
 	}
 	$grid->addColumn('action', 'Action', 'html', NULL, false, 'id');
 	//die;
@@ -67,8 +62,8 @@ $action = (isset($_GET['action'])) ? stripslashes($_GET['action']) : die ("no ac
 $table = (isset($_GET['table'])) ? stripslashes($_GET['table']) : die ("No table");
 $config_id= (isset($_GET['config'])) ? stripslashes($_GET['config']) : die("No config");
 
-
 require_once("db/${config_id}/config.php");
+isset($config) or die("Invalid config");
 require_once('EditableGrid.php');
 require_once('pdoDB.php'); 
 
