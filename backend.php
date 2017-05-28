@@ -1,4 +1,4 @@
-<?php     
+<?php	 
 
 
 /*
@@ -11,118 +11,107 @@
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://editablegrid.net/license
  */
-                              
+							  
 
 
 /**
  * This script loads data from the database and returns it to the js
  *
  */
-       
-//require_once('config.php');      
-require_once('EditableGrid.php');            
+	   
+//require_once('config.php');	  
+require_once('EditableGrid.php');
 require_once('pdoDB.php'); 
 
 function get_js_type($type){
-    //echo $type;
-    //$type=strtolower($type);
-    //echo "...". $type."\n";
-    
-    if(strpos($type, 'STRING') !== false)
-        return 'string';
-    if(strpos($type,'LONG') !== false)
-        return 'integer';
-    
-    if(strpos($type, 'DECIMAL')!== false)
-        return 'float';
-    if(strpos($type, 'DATE')!== false)
-        return 'date';
-    if(strpos($type, 'TINY')!== false)
-        return 'boolean';
-    
-    
-           
-    return 'integer';
-    
-    
-    
+	//echo $type;
+	//$type=strtolower($type);
+	//echo "...". $type."\n";
+	
+	if(strpos($type, 'STRING') !== false)
+		return 'string';
+	if(strpos($type,'LONG') !== false)
+		return 'integer';
+	if(strpos($type, 'DECIMAL')!== false)
+		return 'float';
+	if(strpos($type, 'DATE')!== false)
+		return 'date';
+	if(strpos($type, 'TINY')!== false)
+		return 'boolean';
+		   
+	return 'integer';
+	
+	
+	
 }
-function add_columns_from_meta($result, $grid, $mydb_tablename){
-    global $db;
-    
-    $meta = $db->get_table_columns($mydb_tablename);
-    //var_dump($meta);die;
-    
-    
-    //$grid->addColumn('id', 'ID', 'integer', NULL, false); 
-    foreach($meta as $name => $v){
-        //if($v['name'] == 'id')
-        //    continue;
-        //$name = $v['name'];
-        $pos = strpos($name, 'id_');
-        if($pos !== false){
-        //if($name == 'id_country'){
-            
-            $instr = substr($name, 3);
-            $grid->addColumn($name, $instr, 'string', $db->fetch_pairs('SELECT id, name FROM ' . $instr),true );  
-        }else{
-                $type = get_js_type($v["native_type"]);
-                $grid->addColumn($name, $name, $type);
-               //echo $v["native_type"] . "...$type\n";
-        }
-        
-        
-    }
-    $grid->addColumn('action', 'Action', 'html', NULL, false, 'id'); 
-    
-    
-    //die;
+function add_columns_from_meta($result, $grid, $table){
+	global $db;
+	
+	$meta = $db->get_table_columns($table);
+	//var_dump($meta);die;
+	
+	
+	//$grid->addColumn('id', 'ID', 'integer', NULL, false); 
+	foreach($meta as $name => $v){
+		//if($v['name'] == 'id')
+		//	continue;
+		//$name = $v['name'];
+		$pos = strpos($name, 'id_');
+		if($pos !== false){
+			$instr = substr($name, 3);
+			$grid->addColumn($name, $instr, 'string', $db->fetch_pairs('SELECT id, name FROM ' . $instr),true );  
+		}else{
+        $type = get_js_type($v["native_type"]);
+        $grid->addColumn($name, $name, $type);
+			   //echo $v["native_type"] . "...$type\n";
+		}
+		
+		
+	}
+	$grid->addColumn('action', 'Action', 'html', NULL, false, 'id'); 
+	
+	
+	//die;
 }  
 
 
-$mydb_tablename = (isset($_GET['db_tablename'])) ? stripslashes($_GET['db_tablename']) : 'demo';
+$table = (isset($_GET['table'])) ? stripslashes($_GET['table']) : 'demo';
 $action = (isset($_GET['action'])) ? stripslashes($_GET['action']) : 'list';
 
 if($action == 'add'){
-    
-    $return = $db->add($mydb_tablename);
-    //var_dump($return);
-    
-    
-    
-    
-    
-    if($return){
-        $json = json_encode($return);
-        //file_put_contents('update.log', $json ."\n");
-        echo $json;
-        
-    }else{
-        
-        echo "error";  
-    }
-    
-    //echo $return ? $data . $return : "error";  
-    die;
+	$return = $db->add($table);
+	//var_dump($return);
+	if($return){
+		$json = json_encode($return);
+		file_put_contents('update.log', $json ."\n");
+		echo $json;
+		
+	}
+  else{
+		echo "error";  
+	}
+	
+	//echo $return ? $data . $return : "error";  
+	die;
 }
 if ($action == 'update'){
-    $return = $db->update($mydb_tablename);
-    echo $return ? "ok" : "error";  
-    die;
+	$return = $db->update($table);
+	echo $return ? "ok" : "error";  
+	die;
 }
 
 if ($action == 'delete'){
-    $return = $db->delete($mydb_tablename);
-    echo $return ? "ok" : "error";  
-    die;
+	$return = $db->delete($table);
+	echo $return ? "ok" : "error";  
+	die;
 }
 if ($action == 'duplicate'){
-    $return = $db->duplicate($mydb_tablename);
-    echo $return ? "ok" : "error";  
-    die;
+	$return = $db->duplicate($table);
+	echo $return ? "ok" : "error";  
+	die;
 }
 
-                    
+					
 // create a new EditableGrid object
 $grid = new EditableGrid();
 
@@ -144,13 +133,13 @@ $grid->addColumn('height', 'Height', 'float');
 /*
 $grid->addColumn('id_continent', 'Continent', 'string' , $db->fetch_pairs('SELECT id, name FROM continent'),true);  
 $grid->addColumn('id_country', 'Country', 'string', $db->fetch_pairs('SELECT id, name FROM country'),true );  
-$grid->addColumn('email', 'Email', 'email');                                               
+$grid->addColumn('email', 'Email', 'email');											   
 $grid->addColumn('freelance', 'Freelance', 'boolean');  
 $grid->addColumn('lastvisit', 'Lastvisit', 'date');  
 $grid->addColumn('website', 'Website', 'string');  
 $grid->addColumn('action', 'Action', 'html', NULL, false, 'id');  
-
 */
+
 $sql = 'SELECT * FROM '.$mydb_tablename;
 if ($mydb_tablename == 'demo'){
    $sql='SELECT * , date_format(lastvisit, "%d/%m/%Y") as lastvisit FROM ' . $mydb_tablename;
