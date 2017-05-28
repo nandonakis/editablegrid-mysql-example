@@ -18,7 +18,19 @@ Always show dates and datetimes in iso format
 0000-00-00 for dates and 0000-00-00 00:00:00 for datetimes
 with dates, the clue is it goes red as soon as you click on it.
 
-TO BE DISCUSSED
-Read table configuration from a csv file (e.g. metadata, readonly or editable, display or not)
-Security?
+4) TABLE CONFIGURATION
+When initialising the table, 
+if tablename.spec.tsv exists, use that
+Else if tablename.tsv exists, use that
+Else 
+	The database table metatdata should be scanned by querying information_schema in a way which is portable to mysql and postgres.
+	run the [mysql|pgsql]_meta.sql query
+	write the results to tablename.tsv
+	use the results
+
+5) PRIMARY KEY
+Primary key and whether it autoincrements should be identified from the table above
+NB. this means if the primary key being named "id" is hardcoded in the solution, this needs to be changed.
+IF there is auto_increment, use that.
+If not, then find the maximum id and increment
 
