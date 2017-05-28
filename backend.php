@@ -140,15 +140,14 @@ $grid->addColumn('website', 'Website', 'string');
 $grid->addColumn('action', 'Action', 'html', NULL, false, 'id');  
 */
 
-$sql = 'SELECT * FROM '.$mydb_tablename;
-if ($mydb_tablename == 'demo'){
-   $sql='SELECT * , date_format(lastvisit, "%d/%m/%Y") as lastvisit FROM ' . $mydb_tablename;
-   
-}                                                                       
-$result = $db->query($sql );
+$sql = 'SELECT * FROM '.$table;
+//if ($table == 'demo'){
+//   $sql='SELECT * , date_format(lastvisit, "%Y-%m-%d") as lastvisit FROM ' . $table;
+//}                                                                       
+$result = $db->query($sql);
 
 
-add_columns_from_meta($result, $grid, $mydb_tablename);
+add_columns_from_meta($result, $grid, $table);
 
 //var_dump($meta);die;
 //die;
