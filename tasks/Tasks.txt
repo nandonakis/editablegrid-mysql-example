@@ -43,10 +43,13 @@ If not, then find the maximum id and increment
 When we write the tablename.tsv above, the primary key should be marked as non-editable.
 
 6) POSTGRES
-Reproduce scenario1 and scenario2 in postgres and write the sql dumps for them.
+Reproduce scenario1 and scenario2 in postgres and write the sql dumps for them (done)
+Update get_col_type for major postgres types (done).
+
 Note that postgres uses serial instead of autoincrement.
-Adapt mysql_meta.sql to pgsql_meta.sql for postgres. There might be slight variation.
-Update get_col_type for major postgres types.
+Adapt meta.sql for postgres. You will need to write special code to get postgres primary keys.
+We only need to support single column primary keys.
+
 
 7) CHARACTER LENGTHS
 I Postgres will error if you try and update a charater field greater than it's maximum (whereas by default MYSQL will truncate).

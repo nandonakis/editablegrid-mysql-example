@@ -1,2 +1,4 @@
 /config.php
 /db.log
+/db/mysql/config.php
+/db/postgres/config.php
