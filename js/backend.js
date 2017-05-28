@@ -43,18 +43,16 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 		},
 		async: true
 	});
-
 }
 
-function DatabaseGrid(table='demo') {
+function DatabaseGrid(table = 'demo') {
 	var that = this;
 	this.editableGrid = new EditableGrid(table, {
 		enableSort: true,
-		// define the number of row visible by page
 		pageSize: 10,
 		// Once the table is displayed, we update the paginator state
 		tableRendered: function() {
-			updatePaginator(this, table+'_paginator');
+			updatePaginator(this, table + '_paginator');
 		},
 		tableLoaded: function() {
 			that.initializeGrid(this, table);
@@ -64,7 +62,6 @@ function DatabaseGrid(table='demo') {
 		}
 	});
 	this.fetchGrid(table);
-
 }
 
 DatabaseGrid.prototype.fetchGrid = function(table) {
@@ -82,70 +79,64 @@ DatabaseGrid.prototype.initializeGrid = function(grid, table) {
 			cell.innerHTML += "  <a href='#' class='copy-row' ><i  class='fa fa-copy' ></i></a>";
 		}
 	}));
-    
-    
-    function get_table_id(ele){
-        
-        var id = ele.closest('tr').prop('id');
-        var x = id.split('_');
-        id = x.pop();
-        var table = x.join('_');
-        return {id: id, table:table};
-    }
-   
-   $('body').on('click', '.cell-name',function(e){
-       alert("It's current value:"+$(this).data('value') + ' of ' + self.editableGrid.name + ' table');
-       
-   });
-   $('body').on('click', '.delete-row',function(e){
-       var xdata = get_table_id($(this));
-      
-       //console.log('row id: ',  xdata);
-       if(xdata.table == self.editableGrid.name)
-            self.deleteRow(xdata.id);
-   });
-   $('body').on('click', '.copy-row',function(e){
-       var xdata = get_table_id($(this));
-      
-       //console.log('row id: ',  xdata);
-       if(xdata.table == self.editableGrid.name)
-            self.duplicateRow(xdata.id);
-   });
-    
+
+	function get_table_id(ele) {
+
+		var id = ele.closest('tr').prop('id');
+		var x = id.split('_');
+		id = x.pop();
+		var table = x.join('_');
+		return {
+			id: id,
+			table: table
+		};
+	}
+
+	$('body').on('click', '.cell-name', function(e) {
+		alert("It's current value:" + $(this).data('value') + ' of ' + self.editableGrid.name + ' table');
+
+	});
+	$('body').on('click', '.delete-row', function(e) {
+		var xdata = get_table_id($(this));
+
+		//console.log('row id: ',  xdata);
+		if (xdata.table == self.editableGrid.name)
+			self.deleteRow(xdata.id);
+	});
+	$('body').on('click', '.copy-row', function(e) {
+		var xdata = get_table_id($(this));
+
+		//console.log('row id: ',  xdata);
+		if (xdata.table == self.editableGrid.name)
+			self.duplicateRow(xdata.id);
+	});
+
 	console.log('table is: ' + table);
 	//	grid.renderGrid('demo',"testgrid");
-    
-    // add
-    $(".grid_addbutton").click(function(e) {
-        if($(this).prop('id').indexOf(self.editableGrid.name)>=0){
-            //console.log('adding row');
-              self.addRow();
-            };
-    });
-    
-    //filter
-    $(".grid_filter").keyup(function(e) {
-        if($(e.target).prop('name').indexOf(self.editableGrid.name)>=0){
-            
-            console.log('grid_filter:', e.target);
-        
-            self.editableGrid.filter( $(this).val());
-        }
+	// add
+	$(".grid_addbutton").click(function(e) {
+		if ($(this).prop('id').indexOf(self.editableGrid.name) >= 0) {
+			//console.log('adding row');
+			self.addRow();
+		};
+	});
 
-
-        // To filter on some columns, you can set an array of column index 
-        //datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
-      });
-
-    
+	//filter
+	$(".grid_filter").keyup(function(e) {
+		if ($(e.target).prop('name').indexOf(self.editableGrid.name) >= 0) {
+			console.log('grid_filter:', e.target);
+			self.editableGrid.filter($(this).val());
+		}
+		// To filter on some columns, you can set an array of column index 
+		//datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
+	});
 	grid.renderGrid(table, "testgrid");
 };
 
 DatabaseGrid.prototype.deleteRow = function(id) {
 	var self = this;
 
-	if (confirm('Are you sur you want to delete the row id ' + id)) {
-
+	if (confirm('Are you sure you want to delete the row id ' + id)) {
 		$.ajax({
 			url: 'backend.php?action=delete',
 			type: 'POST',
@@ -163,11 +154,9 @@ DatabaseGrid.prototype.deleteRow = function(id) {
 			},
 			async: true
 		});
-
-
 	}
-
 };
+
 DatabaseGrid.prototype.duplicateRow = function(id) {
 	var self = this;
 	$.ajax({
@@ -180,8 +169,8 @@ DatabaseGrid.prototype.duplicateRow = function(id) {
 		},
 		success: function(response) {
 			if (response == "ok") {
-
 				alert("Row duplicated : reload model");
+				//console.log("Row duplicated");
 				self.fetchGrid(self.editableGrid.name);
 			}
 
@@ -191,10 +180,6 @@ DatabaseGrid.prototype.duplicateRow = function(id) {
 		},
 		async: true
 	});
-
-
-
-
 };
 
 
@@ -217,12 +202,12 @@ DatabaseGrid.prototype.addRow = function(id) {
 				alert("Row added : reload model:" + id);
 				//self.fetchGrid(self.editableGrid.name);
 				var rowIndex = self.editableGrid.pageSize < 0 ? 0 : self.editableGrid.pageSize;
-                var rowNum = self.editableGrid.getRowCount();
-                rowIndex = Math.min(rowIndex, rowNum); 
+				var rowNum = self.editableGrid.getRowCount();
+				rowIndex = Math.min(rowIndex, rowNum);
 				//var row = self.editableGrid.getRowValues(rowIndex);
 				//row.id = id;
 				console.log('rowCount:', rowIndex, ' id:', id);
-				self.editableGrid.insert(rowIndex-1, id, row, null, true);
+				self.editableGrid.insert(rowIndex - 1, id, row, null, true);
 			} else
 				alert("error");
 		},
@@ -231,13 +216,7 @@ DatabaseGrid.prototype.addRow = function(id) {
 		},
 		async: true
 	});
-
-
-
 };
-
-
-
 
 function updatePaginator(grid, divId) {
 	divId = divId || "paginator";

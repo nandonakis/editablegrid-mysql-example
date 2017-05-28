@@ -26,28 +26,23 @@
 	<h1>Database EditableGrid Demo</h1> 
 
 <?php 
-	
-	$tables = array('demo2','demo','continent','country');
+	//,'demo','continent'
+	$tables = array('scenario1','scenario2');
 	foreach($tables as $table){
-        $table_filter = "${table}_filter";
-        $table_message = "${table}_message";
-        $table_addbutton = "${table}_addbutton";
-        $table_paginator = "${table}_paginator";
-        
 		echo <<<HERE
 	
 	<h1>$table</h1>
-	<div class='grid_message' id="$table_message"></div>
+	<div class='grid_message' id="${table}_message"></div>
 	<div class="grid_toolbar">
-		<input type="text" class="grid_filter" name="$table_filter" placeholder="Filter :type any text here"  />
-		<a id="$table_addbutton" class="grid_addbutton button green"><i class="fa fa-plus"></i> Add new row</a>
+		<input type="text" class="grid_filter" name="${table}_filter" placeholder="Filter :type any text here"  />
+		<a id="${table}_addbutton" class="grid_addbutton button green"><i class="fa fa-plus"></i> Add new row</a>
 	</div>
 	<!-- Grid contents -->
 	<div class='grid' id="$table">
 	</div>
 
 	<!-- Paginator control -->
-	<div class='paginator' id="$table_paginator">
+	<div class='paginator' id="${table}_paginator">
 	</div>
 
 	<script type="text/javascript">
@@ -59,14 +54,14 @@ HERE;
 }
 ?>
 
-	<h2>Minimal</h2>
+	<h2>Sample</h2>
 	<div class="foo" id="minimal"></div>
 
 	<script type="text/javascript">
 		window.onload = function() {
-			editableGrid = new EditableGrid("minimal"); 
-			editableGrid.tableLoaded = function() { this.renderGrid("minimal", "testgrid"); };
-			editableGrid.loadXML("grid.xml");
+			sample = new EditableGrid("minimal"); 
+			sample.tableLoaded = function() { this.renderGrid("minimal", "testgrid"); };
+			sample.loadXML("grid.xml");
 		} 
 	</script>
 </body>
