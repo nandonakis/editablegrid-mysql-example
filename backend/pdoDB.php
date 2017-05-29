@@ -116,8 +116,8 @@ class DBClass{
 	
 	public function update(){
 		global $_POST;
-		$tablename = quote_identifier(strip_tags($_POST['tablename']));
-		$field = quote_identifier(strip_tags($_POST['colname']));
+		$tablename = $this->quote_identifier(strip_tags($_POST['tablename']));
+		$field = $this->quote_identifier(strip_tags($_POST['colname']));
 		$id = $this->dbh->quote(strip_tags($_POST['id']));
 		$value = $this->dbh->quote(strip_tags($_POST['newvalue']));
 		$coltype = strip_tags($_POST['coltype']);
