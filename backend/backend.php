@@ -3,11 +3,6 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-function debug($op,$query,$sth)  {
-	$result = $sth ? 'ok' : 'error';
-	file_put_contents('db.log', "$op\n$query\n$result\n\n",FILE_APPEND);
-}
-debug('op','query','result',0);
 
 function get_col_type($type,$name){
 	$type=strtolower($type);
@@ -71,7 +66,10 @@ $profile = (isset($_GET['profile'])) ? stripslashes($_GET['profile']) : die("No 
 require_once("profiles/$profile/config.php");
 isset($config) or die("Invalid config");
 require_once('EditableGrid.php');
-require_once('pdoDB.php'); 
+require_once('pdoDB.php');
+
+$db = new DBClass($config);
+isset($db) or die("No DB");
 
 // create a new EditableGrid object
 if($action == 'add'){
@@ -108,12 +106,8 @@ if ($action == 'duplicate'){
 	die;
 }
 
-
-
-
-
 $grid = new EditableGrid();
-$sql = 'SELECT * FROM '.$table;
+$sql = "SELECT * FROM $table";
 $result = $db->query($sql);
 add_columns_from_meta($result, $grid, $table);
 
@@ -121,7 +115,6 @@ add_columns_from_meta($result, $grid, $table);
 //die;
 // send data to the browser
 $grid->renderJSON($result);
-
 
 /* 
 *  Add columns. The first argument of addColumn is the name of the field in the databse. 

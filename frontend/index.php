@@ -48,7 +48,7 @@
 	</div>
 
 	<script type="text/javascript">
-		var $table = new DatabaseGrid('$table','postgres');
+		var ${table}_grid = new DatabaseGrid('$table','postgres');
 	</script>
 	<HR>
 
