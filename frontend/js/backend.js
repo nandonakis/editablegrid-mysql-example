@@ -18,13 +18,15 @@ function highlight(div_id, style) {
 	highlightRow(div_id, style == "error" ? "#e5afaf" : style == "warning" ? "#ffcc00" : "#8dc70a");
 }
 
-function log(op,type,message) {
+function log(op,type,message, table=null) {
 	debug = 1;
 	line = op + ":" + type + ':' + message;
 	//if (debug && type === 'ok') {
 	console.log(line);
 	if(type == 'error') {
-		show_message(editableGrid.name, line);
+		if(!table)
+			table = editableGrid.name;
+		show_message(table, line);
 	}
 }
 
@@ -188,12 +190,16 @@ DatabaseGrid.prototype.deleteRow = function(id) {
 				id: id,
 			},
 			success: function(response) {
-				if (response == "ok")
+				if (response == "ok"){
 					self.editableGrid.removeRow(id);
+					log('deleteRow','ok', "RowId:"+id +" has been removed!", self.editableGrid.name);
+				}
+					
 			},
 			error: function(XMLHttpRequest, textStatus, exception) {
 				//alert("Ajax failure\n" + errortext);
-        show_message(self.editableGrid.name,errortext);
+        //show_message(self.editableGrid.name,errortext);
+				log('deleteRow','error', errortext, self.editableGrid.name);
 			},
 			async: true
 		});
@@ -212,17 +218,21 @@ DatabaseGrid.prototype.duplicateRow = function(id) {
 			id: id,
 		},
 		success: function(response) {
-			if (response == "ok") {
+			if (response && response.indexOf('error') <0) {
 				//alert("Row duplicated : reload model");
         show_message(self.editableGrid.name,"Row duplicated : reload model");
 				//console.log("Row duplicated");
 				self.fetchGrid(self.editableGrid.name);
+				log('duplicateRow','ok', "RowId:"+id +" has been duplicated!", self.editableGrid.name);
+			}else{
+				log('duplicateRow','error', response, self.editableGrid.name);
 			}
 
 		},
 		error: function(XMLHttpRequest, textStatus, exception) {
 			//alert("Ajax failure\n" + errortext);
-      show_message(self.editableGrid.name,errortext);
+      //show_message(self.editableGrid.name,errortext);
+			log('duplicateRow','error', errortext, self.editableGrid.name);
 		},
 		async: true
 	});
@@ -255,17 +265,20 @@ DatabaseGrid.prototype.addRow = function(id) {
 				rowIndex = Math.min(rowIndex, rowNum);
 				//var row = self.editableGrid.getRowValues(rowIndex);
 				//row.id = id;
-				console.log('rowCount:', rowIndex, ' id:', id);
+				//console.log('rowCount:', rowIndex, ' id:', id);
 				self.editableGrid.insert(rowIndex - 1, id, row, null, true);
+				log('addRow','ok', "Row:" + id + " has been added", self.editableGrid.name);
 			} else{
-                //alert("error");
-                show_message(self.editableGrid.name,response);
-            }
+					//alert("error");
+					//show_message(self.editableGrid.name,response);
+					log('addRow','error', response, self.editableGrid.name);
+      }
 				
 		},
 		error: function(XMLHttpRequest, textStatus, exception) {
 			//alert("Ajax failure\n" + errortext);
-            show_message(self.editableGrid.name,errortext);
+            //show_message(self.editableGrid.name,errortext);
+						log('addRow','error', exception, self.editableGrid.name);
 		},
 		async: true
 	});

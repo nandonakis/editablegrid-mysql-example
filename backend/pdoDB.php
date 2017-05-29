@@ -148,7 +148,7 @@ class DBClass{
 	
 	public function duplicate(){
 		global $_POST;
-		$tablename = strip_tags($_POST['tablename']);
+		$tablename = strip_tags($_POST['table']);
 		$cols = $this->get_table_columns($tablename);
 		$fields = join(',',array_diff(array_keys($cols), ['id']));
 		$id = $this->dbh->quote(strip_tags($_POST['id']));

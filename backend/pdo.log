@@ -1,0 +1,34 @@
+2017-05-29 10:20:51:ok:scenario1_enum
+2017-05-29 10:20:51:ok:scenario2_enum
+2017-05-29 10:20:58:ok:UPDATE "scenario1" SET "currency"='5.5512' WHERE id = '2'
+2017-05-29 10:21:01:error:UPDATE "scenario1" SET "currency"='xxx' WHERE id = '4'
+2017-05-29 10:21:01:ok:22P02
+2017-05-29 10:21:09:ok:UPDATE "scenario1" SET "datetime"='2017-5-11' WHERE id = '2'
+2017-05-29 10:26:20:ok:scenario1_enum
+2017-05-29 10:26:20:ok:scenario2_enum
+2017-05-29 10:26:24:ok:UPDATE "scenario1" SET "date"='2017-5-3' WHERE id = '5'
+2017-05-29 10:26:44:ok:UPDATE "scenario1" SET "datetime"='2017-5-17' WHERE id = '2'
+2017-05-29 10:28:29:ok:UPDATE "scenario2" SET "date"='2017-5-25' WHERE id = '1'
+2017-05-29 10:28:58:ok:UPDATE "scenario2" SET "varchar_10"='xxx' WHERE id = '1'
+2017-05-29 10:29:04:ok:UPDATE "scenario2" SET "default"='xxx' WHERE id = '2'
+2017-05-29 10:29:11:ok:UPDATE "scenario2" SET "currency"='222' WHERE id = '3'
+2017-05-29 10:32:34:ok:scenario1_enum
+2017-05-29 10:32:34:ok:scenario2_enum
+2017-05-29 10:32:42:ok:scenario2_enum
+2017-05-29 10:32:42:ok:scenario1_enum
+2017-05-29 10:32:45:ok:UPDATE "scenario1" SET "date"='2017-3-5' WHERE id = '5'
+2017-05-29 17:38:15:ok:scenario2_enum
+2017-05-29 17:38:15:ok:scenario1_enum
+2017-05-29 17:38:38:ok:UPDATE "scenario1" SET "date"='2017-5-3' WHERE id = '5'
+2017-05-29 17:38:45:ok:INSERT INTO scenario1  () VALUES ()
+2017-05-29 17:38:45:ok:42601
+2017-05-29 17:40:22:ok:scenario1_enum
+2017-05-29 17:40:22:ok:scenario2_enum
+2017-05-29 17:40:30:ok:scenario2_enum
+2017-05-29 17:40:30:ok:scenario1_enum
+2017-05-29 17:40:32:error:INSERT INTO scenario1 (name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default) SELECT name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default FROM scenario1 WHERE id='4'
+2017-05-29 17:40:32:ok:42601
+2017-05-29 17:42:01:ok:scenario2_enum
+2017-05-29 17:42:01:ok:scenario1_enum
+2017-05-29 17:42:03:error:INSERT INTO scenario1 (name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default) SELECT name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default FROM scenario1 WHERE id='4'
+2017-05-29 17:42:03:ok:42601
