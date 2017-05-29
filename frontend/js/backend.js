@@ -22,7 +22,7 @@ function highlight(div_id, style) {
 
 function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue, row, onResponse) {
 	$.ajax({
-		url: 'backend.php?action=update',
+		url: '../backend/backend.php?action=update',
 		type: 'POST',
 		dataType: "html",
 		data: {
@@ -68,7 +68,7 @@ function DatabaseGrid(table,config) {
 
 DatabaseGrid.prototype.fetchGrid = function(table,config) {
 	// call a PHP script to get the data
-	url = "backend.php?action=load&config="+config+ "&table=" + table;
+	url = "../backend/backend.php?action=load&config="+config+ "&table=" + table;
 	this.editableGrid.loadJSON(url);
 };
 
@@ -140,7 +140,7 @@ DatabaseGrid.prototype.deleteRow = function(id) {
 
 	if (confirm('Are you sure you want to delete the row id ' + id)) {
 		$.ajax({
-			url: 'backend.php?action=delete',
+			url: '../backend/backend.php?action=delete',
 			type: 'POST',
 			dataType: "html",
 			data: {
@@ -162,7 +162,7 @@ DatabaseGrid.prototype.deleteRow = function(id) {
 DatabaseGrid.prototype.duplicateRow = function(id) {
 	var self = this;
 	$.ajax({
-		url: 'backend.php?action=duplicate',
+		url: '../backend/backend.php?action=duplicate',
 		type: 'POST',
 		dataType: "html",
 		data: {
@@ -188,7 +188,7 @@ DatabaseGrid.prototype.duplicateRow = function(id) {
 DatabaseGrid.prototype.addRow = function(id) {
 	var self = this;
 	$.ajax({
-		url: 'backend.php?action=add',
+		url: '../backend/backend.php?action=add',
 		type: 'POST',
 		dataType: "html",
 		data: {
