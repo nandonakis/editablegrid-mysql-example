@@ -105,6 +105,7 @@ class DBClass{
 			else{
 				$date_info = date_parse_from_format('d/m/Y', $value);
 				$value = "{$date_info['year']}-{$date_info['month']}-{$date_info['day']}";
+                $value = $this->dbh->quote($value);
 			}
 		}
 		$query = sprintf("UPDATE %s SET %s=%s WHERE id = %s", $tablename, $field, $value, $id );
@@ -148,6 +149,11 @@ class DBClass{
 		}
 		return $tableList;
 	}
+    public function errorInfo(){
+        $err = $this->dbh->errorInfo();
+        debug('errorInfo',$err[0],$err[1],$err[2]);
+        return $err[2];
+    }
 }
 
 function quote_identifier($field) {

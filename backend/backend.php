@@ -30,7 +30,9 @@ function get_col_type($type,$name){
 		return 'boolean';
 	}
 	else {
-		die ("Unrecognised type $type");
+		//die ("Unrecognised type $type");
+        debug('get_col_type', $type,'Unrecognised type',0);
+        return false;
 	}
 	return 'string';
 }
@@ -43,6 +45,10 @@ function add_columns_from_meta($result, $grid, $table){
 	foreach($meta as $name => $v){
 		$editable = true; $name === 'id' and $editable = false;
 		$type = get_col_type($v["native_type"],$name);
+        if($type === false)
+            continue;
+        
+        
 		$grid->addColumn($name,$name,$type,NULL,$editable);
 		//public function addColumn($name, $label, $type, $values = NULL, $editable = true, $field = NULL, $bar = true, $hidden = false)
 		//echo $v["native_type"] . "...$type\n";
@@ -78,7 +84,7 @@ if($action == 'add'){
 		echo $json;
 	}
   else{
-		echo "error";  
+		echo json_encode(array('error' => $db->errorInfo()));
 	}
 	//echo $return ? $data . $return : "error";  
 	die;
@@ -86,21 +92,22 @@ if($action == 'add'){
 
 if ($action == 'update'){
 	$return = $db->update($table);
-	echo $return ? "ok" : "error";  
+	echo $return ? "ok" : json_encode(array('error' => $db->errorInfo()));
 	die;
 }
 
 if ($action == 'delete'){
 	$return = $db->delete($table);
-	echo $return ? "ok" : "error";  
+	echo $return ? "ok" : json_encode(array('error' => $db->errorInfo()));
 	die;
 }
 
 if ($action == 'duplicate'){
 	$return = $db->duplicate($table);
-	echo $return ? "ok" : "error";  
+	echo $return ? "ok" : json_encode(array('error' => $db->errorInfo()));
 	die;
 }
+
 
 
 
