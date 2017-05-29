@@ -1,5 +1,11 @@
 <?php
 
+function debug($op,$query,$sth)  {
+	$result = $sth ? 'ok' : 'error';
+	$stamp = date("Y-m-d H:i:s");
+	file_put_contents('pdo.log', "$stamp:$result:$query\n",FILE_APPEND);
+}
+
 class DBClass{
 	//private $pdh;
 	//private $db_type;
@@ -11,8 +17,10 @@ class DBClass{
 	
 	function __construct($config) {
 		$params = array('db_type','db_host','db_name','db_user','db_password');
+		//TODO: Add these back into the object
 		//foreach isset check or die
-	
+		
+		$this->db_type = $config['db_type'];
 		$this->dbh = new PDO(sprintf('%s:host=%s;dbname=%s', $config['db_type'],$config['db_host'],$config['db_name']), $config['db_user'], $config['db_password']);
 		if(isset($config['db_schema']) and $config['db_type'] == 'pgsql') {
 			$schema = $config['db_schema'];
@@ -20,6 +28,20 @@ class DBClass{
 		}
 	}
 	
+	public function quote_identifier($field) {
+		//todo; add postgres support
+		$type = $this->db_type; 
+		if ($type == 'mysql') {
+			return "`".str_replace("`","``",$field)."`";
+		}
+		elseif($type == 'pgsql') {
+			return '"'.$field.'"';
+		}
+		else {
+			die("Unrecognised type $type");
+		}
+	}
+
 	public function query($query, $args=array()){
 		return $this->dbh->query($query, PDO::FETCH_ASSOC);
 	}
@@ -149,12 +171,4 @@ class DBClass{
 		return $tableList;
 	}
 }
-
-function quote_identifier($field) {
-		//todo; add postgres support
-		return "`".str_replace("`","``",$field)."`";
-}
-
-$db = new DBClass($config);
-									
 
