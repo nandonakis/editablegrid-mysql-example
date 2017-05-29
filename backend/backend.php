@@ -60,9 +60,9 @@ function add_columns_from_meta($result, $grid, $table){
 
 $action = (isset($_GET['action'])) ? stripslashes($_GET['action']) : die ("no action");
 $table = (isset($_GET['table'])) ? stripslashes($_GET['table']) : die ("No table");
-$config_id= (isset($_GET['config'])) ? stripslashes($_GET['config']) : die("No config");
+$profile = (isset($_GET['profile'])) ? stripslashes($_GET['profile']) : die("No profile");
 
-require_once("db/${config_id}/config.php");
+require_once("profiles/$profile/config.php");
 isset($config) or die("Invalid config");
 require_once('EditableGrid.php');
 require_once('pdoDB.php'); 
@@ -114,7 +114,6 @@ add_columns_from_meta($result, $grid, $table);
 //die;
 // send data to the browser
 $grid->renderJSON($result);
-
 
 
 /* 

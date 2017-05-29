@@ -45,9 +45,9 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 	});
 }
 
-function DatabaseGrid(table,config) {
+function DatabaseGrid(table,profile) {
 // 	isset(table) or die;
-//	isset(config) or die;
+//	isset(profile) or die;
 	var that = this;
 	this.editableGrid = new EditableGrid(table, {
 		enableSort: true,
@@ -63,12 +63,12 @@ function DatabaseGrid(table,config) {
 			updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
 		}
 	});
-	this.fetchGrid(table,config);
+	this.fetchGrid(table,profile);
 }
 
-DatabaseGrid.prototype.fetchGrid = function(table,config) {
+DatabaseGrid.prototype.fetchGrid = function(table,profile) {
 	// call a PHP script to get the data
-	url = "../backend/backend.php?action=load&config="+config+ "&table=" + table;
+	url = "../backend/backend.php?action=load&profile="+profile+ "&table=" + table;
 	this.editableGrid.loadJSON(url);
 };
 
