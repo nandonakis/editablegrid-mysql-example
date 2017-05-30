@@ -1,11 +1,5 @@
 <?php
 
-function debug($op,$query,$sth)  {
-	$result = $sth ? 'ok' : 'error';
-	$stamp = date("Y-m-d H:i:s");
-	file_put_contents('pdo.log', "$stamp:$result:$query\n",FILE_APPEND);
-}
-
 class DBClass{
 	//private $pdh;
 	//private $db_type;
@@ -29,7 +23,6 @@ class DBClass{
 	}
 	
 	public function quote_identifier($field) {
-		//todo; add postgres support
 		$type = $this->db_type; 
 		if ($type == 'mysql') {
 			return "`".str_replace("`","``",$field)."`";
@@ -41,6 +34,19 @@ class DBClass{
 			die("Unrecognised type $type");
 		}
 	}
+	public function clean_arg($arg,$type) {
+		if ($type == 'value') {
+			return $this->dbh->quote(strip_tags($_POST[$arg]));
+		}
+		elseif ($type == 'field') {
+			return $this->quote_identifier(strip_tags($_POST[$arg]));
+		}
+		else {
+			die("Invalid args");
+		}
+	}
+
+	
 
 	public function query($query, $args=array()){
 		return $this->dbh->query($query, PDO::FETCH_ASSOC);
@@ -114,6 +120,7 @@ class DBClass{
 		return FALSE;
 	}
 	
+	
 	public function update(){
 		global $_POST;
 		$tablename = $this->quote_identifier(strip_tags($_POST['tablename']));
@@ -127,7 +134,7 @@ class DBClass{
 			else{
 				$date_info = date_parse_from_format('d/m/Y', $value);
 				$value = "{$date_info['year']}-{$date_info['month']}-{$date_info['day']}";
-                $value = $this->dbh->quote($value);
+				$value = $this->dbh->quote($value);
 			}
 		}
 		$query = sprintf("UPDATE %s SET %s=%s WHERE id = %s", $tablename, $field, $value, $id );
@@ -152,6 +159,8 @@ class DBClass{
 		$cols = $this->get_table_columns($tablename);
 		$fields = join(',',array_diff(array_keys($cols), ['id']));
 		$id = $this->dbh->quote(strip_tags($_POST['id']));
+		
+		
 		$query = sprintf("INSERT INTO %s (%s) SELECT %s FROM %s WHERE id=%s", $tablename, $fields, $fields, $tablename, $id );
 		$result = $this->dbh->query($query);
 		debug('duplicate',$query,$result);
@@ -171,10 +180,10 @@ class DBClass{
 		}
 		return $tableList;
 	}
-    public function errorInfo(){
-        $err = $this->dbh->errorInfo();
-        debug('errorInfo',$err[0],$err[1],$err[2]);
-        return $err[2];
-    }
+	public function errorInfo(){
+		$err = $this->dbh->errorInfo();
+		debug('errorInfo',$err[0],$err[1],$err[2]);
+		return $err[2];
+	}
 }
 

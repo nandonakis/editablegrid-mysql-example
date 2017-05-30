@@ -3,6 +3,11 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
+function debug($op,$query,$sth)  {
+	$result = $sth ? 'ok' : 'error';
+	$stamp = date("Y-m-d H:i:s");
+	file_put_contents('backend.log', "$stamp:$result:$query\n",FILE_APPEND);
+}
 
 function get_col_type($type,$name){
 	$type=strtolower($type);
@@ -18,16 +23,19 @@ function get_col_type($type,$name){
 	elseif(preg_match('/float|decimal|numeric/',$type)) {
 		return 'float';
 	}
-	elseif(preg_match('/date|time/',$type)) {
+	elseif($type == 'date') {
 		return 'date';
+	}
+	elseif(preg_match('/date|time/',$type)) {
+		return 'string';
 	}
 	elseif(preg_match('/tiny|bool/',$type)) {
 		return 'boolean';
 	}
 	else {
-		//die ("Unrecognised type $type");
-        debug('get_col_type', $type,'Unrecognised type',0);
-        return false;
+		die ("Unrecognised type $type");
+		debug('get_col_type', $type,'Unrecognised type');
+		return false;
 	}
 	return 'string';
 }
@@ -40,10 +48,10 @@ function add_columns_from_meta($result, $grid, $table){
 	foreach($meta as $name => $v){
 		$editable = true; $name === 'id' and $editable = false;
 		$type = get_col_type($v["native_type"],$name);
-        if($type === false)
-            continue;
-        
-        
+		if($type === false)
+		    continue;
+		
+		
 		$grid->addColumn($name,$name,$type,NULL,$editable);
 		//public function addColumn($name, $label, $type, $values = NULL, $editable = true, $field = NULL, $bar = true, $hidden = false)
 		//echo $v["native_type"] . "...$type\n";

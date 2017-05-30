@@ -32,3 +32,11 @@
 2017-05-29 17:42:01:ok:scenario1_enum
 2017-05-29 17:42:03:error:INSERT INTO scenario1 (name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default) SELECT name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default FROM scenario1 WHERE id='4'
 2017-05-29 17:42:03:ok:42601
+2017-05-30 02:59:50:error:INSERT INTO scenario1 (name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default) SELECT name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default FROM scenario1 WHERE id='5'
+2017-05-30 02:59:50:ok:42601
+2017-05-30 03:00:16:error:INSERT INTO scenario1 (name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default) SELECT name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default FROM scenario1 WHERE id='5'
+2017-05-30 03:00:16:ok:42601
+2017-05-30 03:00:46:ok:INSERT INTO scenario1  () VALUES ()
+2017-05-30 03:00:46:ok:42601
+2017-05-30 03:01:02:ok:DELETE FROM scenario1  WHERE id = '5'
+2017-05-30 03:07:19:ok:UPDATE "scenario1" SET "default"='asdfasd' WHERE id = '1'
