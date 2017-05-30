@@ -40,3 +40,22 @@
 2017-05-30 03:00:46:ok:42601
 2017-05-30 03:01:02:ok:DELETE FROM scenario1  WHERE id = '5'
 2017-05-30 03:07:19:ok:UPDATE "scenario1" SET "default"='asdfasd' WHERE id = '1'
+2017-05-30 03:25:01:ok:INSERT INTO scenario1  () VALUES ()
+2017-05-30 03:25:01:ok:42601
+2017-05-30 03:25:12:error:INSERT INTO scenario1 (name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default) SELECT name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default FROM scenario1 WHERE id='4'
+2017-05-30 03:25:12:ok:42601
+2017-05-30 03:29:10:ok:INSERT INTO scenario1  (id,name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default) VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-05-30 03:29:10:ok:42601
+2017-05-30 03:29:46:ok:INSERT INTO scenario1  (id,name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default) VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-05-30 03:29:46:ok:42601
+2017-05-30 03:30:31:ok:INSERT INTO scenario1  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-05-30 03:30:31:ok:23502
+2017-05-30 03:31:42:ok:INSERT INTO scenario1  ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-05-30 03:31:42:ok:23502
+2017-05-30 03:33:24:ok:INSERT INTO scenario1  ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-05-30 03:33:24:ok:23505
+2017-05-30 03:36:40:ok:INSERT INTO scenario1  ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-05-30 03:36:40:ok:23505
+2017-05-30 03:48:34:ok:INSERT INTO scenario1  ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-05-30 03:48:34:ok:23505
+2017-05-30 03:48:52:ok:INSERT INTO scenario1  ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)

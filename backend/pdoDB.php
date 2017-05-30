@@ -67,21 +67,21 @@ class DBClass{
 		return $rows;
 	}
 	
-	public function get_column_meta($tablename){
-		$rs = $this->dbh->query(sprintf("select * from %s limit 1", $tablename));
+	public function get_column_meta($table){
+		$rs = $this->dbh->query(sprintf("select * from %s limit 1", $table));
 		
 		$meta = array();
 		for($i=0; $i< $rs->columnCount(); $i++){
 			$meta[] = $rs->getColumnMeta($i);
 		}
 		// for compatible with all other 
-		//$rs  = $this->dbh->query("desc $tablename", PDO::FETCH_ASSOC);
+		//$rs  = $this->dbh->query("desc $table", PDO::FETCH_ASSOC);
 		//return $rs->fetchAll();
 		return $meta;
 		
 	}
-	public function get_table_columns($tablename){
-		$meta = $this->get_column_meta($tablename);
+	public function get_table_columns($table){
+		$meta = $this->get_column_meta($table);
 		$cols = array();
 		foreach($meta as $i => $v){
 			//$k = $v["Field"];
@@ -92,38 +92,52 @@ class DBClass{
 		return $cols;
 	}
 	
-	public function get($id, $tablename){
-		$rs = $this->dbh->query(sprintf("select * from %s where id=%s", $tablename, $id), PDO::FETCH_ASSOC);
+	public function get($id, $table){
+		$rs = $this->dbh->query(sprintf("select * from %s where id=%s", $table, $id), PDO::FETCH_ASSOC);
 		return $rs->fetch(PDO::FETCH_ASSOC);
 	}
 	
 	public function add(){
 		global $_POST;
-		$tablename = strip_tags($_POST['tablename']);
-		//$tablename = 'demo';
-		$cols = $this->get_table_columns($tablename);
+		$table = strip_tags($_POST['tablename']);
+		//$table = 'demo';
+		$cols = $this->get_table_columns($table);
 		$fields = array();
 		$values = array();
-		foreach($cols as $k => $v){
-			if(array_key_exists($k, $_POST)){
-			   $fields[] = $k;
-				$values[] = $this->dbh->quote(strip_tags($_POST[$k]));
-			}
+		foreach($cols as $k => $v) {
+			if ($k == 'id') continue;
+			$fields[] = $this->quote_identifier($k);
+			$values[] = 'NULL';
 		}
-		$query = sprintf("INSERT INTO %s  (%s) VALUES (%s)", $tablename, join(',', $fields), join(',',$values)); 
+		$query = sprintf("INSERT INTO %s  (%s) VALUES (%s)", $table, join(',', $fields), join(',',$values)); 
 		//file_put_contents('update.log', $query ."\n");
 		debug('add',$query,'todo');
 		if($this->dbh->query($query)){
 			$id = $this->dbh->lastInsertId();
-			return $this->get($id, $tablename);
+			return $this->get($id, $table);
 		}
 		return FALSE;
 	}
+
+	public function duplicate(){
+		global $_POST;
+		$table = strip_tags($_POST['table']);
+		$cols = $this->get_table_columns($table);
+		$fields = join(',',array_diff(array_keys($cols), ['id']));
+		$id = $this->dbh->quote(strip_tags($_POST['id']));
+		
+		
+		$query = sprintf("INSERT INTO %s (%s) SELECT %s FROM %s WHERE id=%s", $table, $fields, $fields, $table, $id );
+		$result = $this->dbh->query($query);
+		debug('duplicate',$query,$result);
+		return $result;
+	}
+
 	
 	
 	public function update(){
 		global $_POST;
-		$tablename = $this->quote_identifier(strip_tags($_POST['tablename']));
+		$table = $this->quote_identifier(strip_tags($_POST['tablename']));
 		$field = $this->quote_identifier(strip_tags($_POST['colname']));
 		$id = $this->dbh->quote(strip_tags($_POST['id']));
 		$value = $this->dbh->quote(strip_tags($_POST['newvalue']));
@@ -137,7 +151,7 @@ class DBClass{
 				$value = $this->dbh->quote($value);
 			}
 		}
-		$query = sprintf("UPDATE %s SET %s=%s WHERE id = %s", $tablename, $field, $value, $id );
+		$query = sprintf("UPDATE %s SET %s=%s WHERE id = %s", $table, $field, $value, $id );
 	  $result = $this->dbh->query($query);
 		debug('update',$query,$result);
 		return $result;
@@ -145,27 +159,14 @@ class DBClass{
 	
 	public function delete(){
 		global $_POST;
-		$tablename = strip_tags($_POST['tablename']);
+		$table = strip_tags($_POST['tablename']);
 		$id = $this->dbh->quote(strip_tags($_POST['id']));
-		$query = sprintf("DELETE FROM %s  WHERE id = %s", $tablename, $id );
+		$query = sprintf("DELETE FROM %s  WHERE id = %s", $table, $id );
 		$result = $this->dbh->query($query);
 		debug('delete',$query,$result);
 		return $result;
 	}
 	
-	public function duplicate(){
-		global $_POST;
-		$tablename = strip_tags($_POST['table']);
-		$cols = $this->get_table_columns($tablename);
-		$fields = join(',',array_diff(array_keys($cols), ['id']));
-		$id = $this->dbh->quote(strip_tags($_POST['id']));
-		
-		
-		$query = sprintf("INSERT INTO %s (%s) SELECT %s FROM %s WHERE id=%s", $tablename, $fields, $fields, $tablename, $id );
-		$result = $this->dbh->query($query);
-		debug('duplicate',$query,$result);
-		return $result;
-	}
 	
 	public function list_tables(){
 		try {   
