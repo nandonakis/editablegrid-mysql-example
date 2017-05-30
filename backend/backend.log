@@ -1,61 +1,41 @@
-2017-05-29 10:20:51:ok:scenario1_enum
-2017-05-29 10:20:51:ok:scenario2_enum
-2017-05-29 10:20:58:ok:UPDATE "scenario1" SET "currency"='5.5512' WHERE id = '2'
-2017-05-29 10:21:01:error:UPDATE "scenario1" SET "currency"='xxx' WHERE id = '4'
-2017-05-29 10:21:01:ok:22P02
-2017-05-29 10:21:09:ok:UPDATE "scenario1" SET "datetime"='2017-5-11' WHERE id = '2'
-2017-05-29 10:26:20:ok:scenario1_enum
-2017-05-29 10:26:20:ok:scenario2_enum
-2017-05-29 10:26:24:ok:UPDATE "scenario1" SET "date"='2017-5-3' WHERE id = '5'
-2017-05-29 10:26:44:ok:UPDATE "scenario1" SET "datetime"='2017-5-17' WHERE id = '2'
-2017-05-29 10:28:29:ok:UPDATE "scenario2" SET "date"='2017-5-25' WHERE id = '1'
-2017-05-29 10:28:58:ok:UPDATE "scenario2" SET "varchar_10"='xxx' WHERE id = '1'
-2017-05-29 10:29:04:ok:UPDATE "scenario2" SET "default"='xxx' WHERE id = '2'
-2017-05-29 10:29:11:ok:UPDATE "scenario2" SET "currency"='222' WHERE id = '3'
-2017-05-29 10:32:34:ok:scenario1_enum
-2017-05-29 10:32:34:ok:scenario2_enum
-2017-05-29 10:32:42:ok:scenario2_enum
-2017-05-29 10:32:42:ok:scenario1_enum
-2017-05-29 10:32:45:ok:UPDATE "scenario1" SET "date"='2017-3-5' WHERE id = '5'
-2017-05-29 17:38:15:ok:scenario2_enum
-2017-05-29 17:38:15:ok:scenario1_enum
-2017-05-29 17:38:38:ok:UPDATE "scenario1" SET "date"='2017-5-3' WHERE id = '5'
-2017-05-29 17:38:45:ok:INSERT INTO scenario1  () VALUES ()
-2017-05-29 17:38:45:ok:42601
-2017-05-29 17:40:22:ok:scenario1_enum
-2017-05-29 17:40:22:ok:scenario2_enum
-2017-05-29 17:40:30:ok:scenario2_enum
-2017-05-29 17:40:30:ok:scenario1_enum
-2017-05-29 17:40:32:error:INSERT INTO scenario1 (name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default) SELECT name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default FROM scenario1 WHERE id='4'
-2017-05-29 17:40:32:ok:42601
-2017-05-29 17:42:01:ok:scenario2_enum
-2017-05-29 17:42:01:ok:scenario1_enum
-2017-05-29 17:42:03:error:INSERT INTO scenario1 (name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default) SELECT name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default FROM scenario1 WHERE id='4'
-2017-05-29 17:42:03:ok:42601
-2017-05-30 02:59:50:error:INSERT INTO scenario1 (name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default) SELECT name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default FROM scenario1 WHERE id='5'
-2017-05-30 02:59:50:ok:42601
-2017-05-30 03:00:16:error:INSERT INTO scenario1 (name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default) SELECT name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default FROM scenario1 WHERE id='5'
-2017-05-30 03:00:16:ok:42601
-2017-05-30 03:00:46:ok:INSERT INTO scenario1  () VALUES ()
-2017-05-30 03:00:46:ok:42601
-2017-05-30 03:01:02:ok:DELETE FROM scenario1  WHERE id = '5'
-2017-05-30 03:07:19:ok:UPDATE "scenario1" SET "default"='asdfasd' WHERE id = '1'
-2017-05-30 03:25:01:ok:INSERT INTO scenario1  () VALUES ()
-2017-05-30 03:25:01:ok:42601
-2017-05-30 03:25:12:error:INSERT INTO scenario1 (name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default) SELECT name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default FROM scenario1 WHERE id='4'
-2017-05-30 03:25:12:ok:42601
-2017-05-30 03:29:10:ok:INSERT INTO scenario1  (id,name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default) VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
-2017-05-30 03:29:10:ok:42601
-2017-05-30 03:29:46:ok:INSERT INTO scenario1  (id,name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default) VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
-2017-05-30 03:29:46:ok:42601
-2017-05-30 03:30:31:ok:INSERT INTO scenario1  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
-2017-05-30 03:30:31:ok:23502
-2017-05-30 03:31:42:ok:INSERT INTO scenario1  ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
-2017-05-30 03:31:42:ok:23502
-2017-05-30 03:33:24:ok:INSERT INTO scenario1  ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
-2017-05-30 03:33:24:ok:23505
-2017-05-30 03:36:40:ok:INSERT INTO scenario1  ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
-2017-05-30 03:36:40:ok:23505
-2017-05-30 03:48:34:ok:INSERT INTO scenario1  ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
-2017-05-30 03:48:34:ok:23505
-2017-05-30 03:48:52:ok:INSERT INTO scenario1  ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-05-30 10:40:01:ok:SELECT * FROM scenario1 WHERE id='4'
+2017-05-30 10:40:01:ok:INSERT INTO scenario1  ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES ('Nicholas','18','1.92','2','0','','','','mollis@eutellus.co.uk','Troy','4','','FOOBAR')
+2017-05-30 10:40:01:ok:22007
+2017-05-30 10:40:03:ok:INSERT INTO scenario1  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-05-30 10:40:03:ok:23502
+2017-05-30 10:43:02:ok:INSERT INTO scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (,,,,,,,,,,,,,)
+2017-05-30 10:43:02:ok:42601
+2017-05-30 10:43:05:ok:INSERT INTO demo  ("id","name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website") VALUES (,,,,,,,,,,)
+2017-05-30 10:43:05:ok:42601
+2017-05-30 11:30:56:ok:INSERT INTO demo  ("id","name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website") VALUES (default,default,default,default,default,default,default,default,default,default,default)
+2017-05-30 11:30:56:ok:23502
+2017-05-30 11:31:01:ok:scenario2_enum
+2017-05-30 11:31:01:ok:scenario1_enum
+2017-05-30 11:31:02:ok:INSERT INTO demo  ("id","name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website") VALUES (default,default,default,default,default,default,default,default,default,default,default)
+2017-05-30 11:31:02:ok:23502
+2017-05-30 11:31:10:ok:scenario2_enum
+2017-05-30 11:31:10:ok:scenario1_enum
+2017-05-30 11:31:12:ok:INSERT INTO demo  ("id","name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website") VALUES (default,default,default,default,default,default,default,default,default,default,default)
+2017-05-30 11:31:12:ok:23502
+2017-05-30 11:31:15:ok:INSERT INTO scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (default,default,default,default,default,default,default,default,default,default,default,default,default,default)
+2017-05-30 11:31:15:ok:23502
+2017-05-30 11:31:17:ok:SELECT * FROM demo WHERE id='1'
+2017-05-30 11:31:17:ok:INSERT INTO demo  ("name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website") VALUES ('Hoffman','Tatyana','88','1.32','na','CA','Nam@quisdiamluctus.org','1','2012-04-17','www.qktogkjbsvz.rdh')
+2017-05-30 11:31:17:ok:23502
+2017-05-30 11:31:22:ok:SELECT * FROM demo WHERE id='1'
+2017-05-30 11:31:22:ok:INSERT INTO demo  ("name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website") VALUES ('Hoffman','Tatyana','88','1.32','na','CA','Nam@quisdiamluctus.org','1','2012-04-17','www.qktogkjbsvz.rdh')
+2017-05-30 11:31:22:ok:23502
+2017-05-30 11:31:26:ok:SELECT * FROM demo WHERE id='1'
+2017-05-30 11:31:26:ok:INSERT INTO demo  ("name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website") VALUES ('Hoffman','Tatyana','88','1.32','na','CA','Nam@quisdiamluctus.org','1','2012-04-17','www.qktogkjbsvz.rdh')
+2017-05-30 11:31:26:ok:23502
+2017-05-30 12:08:33:ok:SELECT * FROM scenario1 WHERE id='4'
+2017-05-30 12:08:33:ok:INSERT INTO scenario1  ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES ('Nicholas','18','1.92','2','0','','','','mollis@eutellus.co.uk','Troy','4','','FOOBAR')
+2017-05-30 12:08:33:ok:22007
+2017-05-30 12:08:36:ok:INSERT INTO scenario1  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (default,default,default,default,default,default,default,default,default,default,default,default,default,default)
+2017-05-30 12:08:36:ok:23502
+2017-05-30 12:08:40:ok:SELECT * FROM scenario1 WHERE id='4'
+2017-05-30 12:08:40:ok:INSERT INTO scenario1  ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES ('Nicholas','18','1.92','2','0','','','','mollis@eutellus.co.uk','Troy','4','','FOOBAR')
+2017-05-30 12:08:40:ok:22007
+2017-05-30 12:09:08:ok:SELECT * FROM scenario1 WHERE id='4'
+2017-05-30 12:09:08:ok:INSERT INTO scenario1  ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES ('Nicholas','18','1.92','2','0','','','','mollis@eutellus.co.uk','Troy','4','','FOOBAR')
+2017-05-30 12:09:08:ok:22007

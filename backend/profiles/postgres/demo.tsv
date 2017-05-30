@@ -1,0 +1,12 @@
+schema	table	field	label	order	type	character_maximum_length	column_key	extra	display	editable
+public	demo	id	id	1	integer		PRIMARY KEY	:me	1	1
+public	demo	name	name	2	string	100		:me	1	1
+public	demo	firstname	firstname	3	string	100		:me	1	1
+public	demo	age	age	4	integer			:me	1	1
+public	demo	height	height	5	float			:me	1	1
+public	demo	id_continent	id_continent	6	string	2		:me	1	1
+public	demo	id_country	id_country	7	string	2		:me	1	1
+public	demo	email	email	8	email	100		:me	1	1
+public	demo	freelance	freelance	9	integer			:me	1	1
+public	demo	lastvisit	lastvisit	10	date			:me	1	1
+public	demo	website	website	11	string	100		:me	1	1

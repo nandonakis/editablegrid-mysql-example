@@ -18,6 +18,7 @@ Date: 2017-05-30 11:42:20
 -- ----------------------------
 -- Table structure for scenario1
 -- ----------------------------
+create sequence "demo"."scenario1_id_seq";
 DROP TABLE IF EXISTS "demo"."scenario1";
 CREATE TABLE "demo"."scenario1" (
 "id" int4 DEFAULT nextval('"demo".scenario1_id_seq'::regclass) NOT NULL,
