@@ -28,7 +28,7 @@
 
 <?php 
 	//,'demo','continent'
-	$tables = array('scenario1','scenario2');
+	$tables = array('scenario1','scenario2','demo');
 	foreach($tables as $table){
 		echo <<<HERE
 	
