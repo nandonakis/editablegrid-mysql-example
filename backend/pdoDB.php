@@ -9,6 +9,8 @@ class DBClass{
 	//private $db_user;
 	//private $db_table;
 	
+	private $schema;
+	
 	function __construct($config) {
 		$params = array('db_type','db_host','db_name','db_user','db_password');
 		//TODO: Add these back into the object
@@ -19,37 +21,59 @@ class DBClass{
 		if(isset($config['db_schema']) and $config['db_type'] == 'pgsql') {
 			$schema = $config['db_schema'];
 			$this->dbh->exec("SET search_path TO $schema");
-		}
+			$this->schema = $schema;
+			
+		}else
+			$this->schema = $config['db_name'];
 	}
 	
 	public function get_meta($table, $forced=FALSE){
-		$dir = sprintf("%s/profiles/%s", dirname(__FILE__), $this->db_type == 'mysql'?$this->db_type:'postgres');
-		
-		$file = sprintf("%s/%s.spec.tsv", $dir, $table);
-		
-		if(!file_exists($file) || $forced){
-			$file = sprintf("%s/%s.tsv", $dir, $table);
-			if(!file_exists($file)|| $forced){
-				### create it here
-				$query=file_get_contents("$dir/meta.sql");
-				
-				if(!$query){
-					debug('get_meta', "$dir/meta.sql not found", "OK");
-					die;
+			$dir = sprintf("%s/profiles/%s", dirname(__FILE__), $this->db_type == 'mysql'?$this->db_type:'postgres');
+			
+			$file = sprintf("%s/%s.spec.tsv", $dir, $table);
+			
+			if(!file_exists($file) || $forced){
+				$file = sprintf("%s/%s.tsv", $dir, $table);
+				if(!file_exists($file)|| $forced){
+					### create it here
+					$query=file_get_contents("$dir/meta.sql");
 					
-				}
-				
-				$query = sprintf($query, $table);
-				
-				debug('get_meta', $query, "OK");
+					if(!$query){
+						debug('get_meta', "$dir/meta.sql not found", "OK");
+						die;
+						
+					}
+					
+					/*
+					
+					$query = <<<EOF
+					select  tab_columns.table_schema as "schema",tab_columns.table_name as "table", tab_columns.column_name as field, tab_columns.column_name as label, tab_columns.ordinal_position as "order", tab_columns.data_type as type, tab_columns.character_maximum_length, tab_constraints.constraint_type as column_key, tab_columns.column_default as extra,  1 as display, 1 as editable from information_schema.columns AS tab_columns 
+	LEFT OUTER JOIN 
+	information_schema.constraint_column_usage AS col_constraints 
+	ON tab_columns.table_name = col_constraints.table_name AND 
+	tab_columns.column_name = col_constraints.column_name 
+	LEFT OUTER JOIN 
+	information_schema.table_constraints AS tab_constraints 
+	ON tab_constraints.constraint_name = col_constraints.constraint_name
+	where tab_columns.table_name = 'demo' order by ordinal_position
+	EOF;
+
+	*/
+
+				$query = sprintf($query, $table, $this->schema);
+
+					
+				debug('get_meta', $query, $query);
 				
 				$result = $this->dbh->query($query);
+				$rows= array();
 				
 				$rows = $result->fetchAll(PDO::FETCH_ASSOC);
 				
 				## dump to file
 				#$rows
-				debug('get_meta', print_r($rows, TRUE), "OK");
+				
+				debug('get_meta', print_r($rows, TRUE), $rows);
 				
 				$data = array();
 				$i = 0;
@@ -215,7 +239,9 @@ class DBClass{
 	public function insert($tablename, $values, $cols=FALSE, $excl_cols=array()){
 		
 		if($cols === FALSE)			
-			$cols = $this->get_table_columns($tablename);
+				$cols = $this->get_meta($tablename);
+			
+		//$cols = $this->get_table_columns($tablename);
 		
 		//debug('insert cols',print_r($cols,TRUE),'ok');
 		
@@ -223,7 +249,8 @@ class DBClass{
 		$new_values = array();
 		foreach($cols as $k => $v){
 			// just simple ignore 'id', if it is primray key
-			if(array_key_exists($k,$excl_cols))
+			//if(array_key_exists($k,$excl_cols))
+			if($cols[$k]['column_key'] == 'PRIMARY KEY')
 				continue;
 			
 			
@@ -299,8 +326,8 @@ class DBClass{
 	public function duplicate(){
 		global $_POST;
 		$tablename = strip_tags($_POST['table']);
-		$cols = $this->get_table_columns($tablename);
-		$fields = join(',',array_diff(array_keys($cols), ['id']));
+		$cols = $this->get_meta($tablename);
+		//$fields = join(',',array_diff(array_keys($cols), ['id']));
 		$id = $this->dbh->quote(strip_tags($_POST['id']));
 		
 		

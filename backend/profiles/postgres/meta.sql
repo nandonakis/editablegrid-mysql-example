@@ -6,4 +6,4 @@ tab_columns.column_name = col_constraints.column_name
 LEFT OUTER JOIN 
 information_schema.table_constraints AS tab_constraints 
 ON tab_constraints.constraint_name = col_constraints.constraint_name
-where tab_columns.table_name = '%s' order by ordinal_position;
+where tab_columns.table_name = '%s' and tab_columns.table_schema = '%s' order by ordinal_position;
