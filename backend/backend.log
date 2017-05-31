@@ -1,49 +1,237 @@
-2017-05-30 17:33:05:ok:scenario1_enum
-2017-05-30 17:33:05:ok:scenario2_enum
-2017-05-30 17:33:59:ok:SELECT * FROM scenario2 WHERE id='0'
-2017-05-30 17:33:59:ok:INSERT INTO scenario2  ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES ('','','','','','','','','','','','','FOOBAR')
-2017-05-30 17:33:59:ok:22P02
-2017-05-30 17:34:07:ok:SELECT * FROM demo WHERE id='1'
-2017-05-30 17:34:07:ok:INSERT INTO demo  ("name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website") VALUES ('Hoffman','Tatyana','88','1.32','na','CA','Nam@quisdiamluctus.org','1','2012-04-17','www.qktogkjbsvz.rdh')
-2017-05-30 17:34:07:ok:23502
-2017-05-30 17:41:36:ok:scenario2_enum
-2017-05-30 17:41:36:ok:scenario1_enum
-2017-05-30 17:41:38:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-30 17:41:38:ok:INSERT INTO scenario1  ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (default,default,default,default,default,default,default,default,default,default,default,default,default)
-2017-05-30 17:41:38:ok:23502
-2017-05-30 17:41:44:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
-2017-05-30 17:41:44:ok:INSERT INTO demo  ("name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website") VALUES (default,default,default,default,default,default,default,default,default,default)
-2017-05-30 17:41:45:ok:23502
-2017-05-30 17:41:52:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
-2017-05-30 17:41:52:ok:SELECT * FROM demo WHERE id='1'
-2017-05-30 17:41:52:ok:INSERT INTO demo  ("name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website") VALUES ('Hoffman','Tatyana','88','1.32','na','CA','Nam@quisdiamluctus.org','1','2012-04-17','www.qktogkjbsvz.rdh')
-2017-05-30 17:41:52:ok:23502
-2017-05-30 17:41:58:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
-2017-05-30 17:41:58:ok:SELECT * FROM scenario2 WHERE id='0'
-2017-05-30 17:41:58:ok:INSERT INTO scenario2  ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES ('','','','','','','','','','','','','FOOBAR')
-2017-05-30 17:41:58:ok:22P02
-2017-05-30 17:42:08:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
-2017-05-30 17:42:08:ok:SELECT * FROM scenario2 WHERE id='0'
-2017-05-30 17:42:08:ok:INSERT INTO scenario2  ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES ('','','','','','','','','','','','','FOOBAR')
-2017-05-30 17:42:08:ok:22P02
-2017-05-30 17:42:12:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
-2017-05-30 17:42:12:ok:SELECT * FROM scenario2 WHERE id='0'
-2017-05-30 17:42:12:ok:INSERT INTO scenario2  ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES ('','','','','','','','','','','','','FOOBAR')
-2017-05-30 17:42:12:ok:22P02
-2017-05-30 17:42:17:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
-2017-05-30 17:42:17:ok:SELECT * FROM scenario2 WHERE id='3'
-2017-05-30 17:42:17:ok:INSERT INTO scenario2  ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES ('Hamilton','10','222.00','1','1','','','','dui@duiCras.edu','Mohammad','3','ok','FOOBAR')
-2017-05-30 17:42:17:ok:22007
-2017-05-30 17:42:18:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
-2017-05-30 17:42:18:ok:INSERT INTO scenario2  ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (default,default,default,default,default,default,default,default,default,default,default,default,default)
-2017-05-30 17:42:18:ok:23502
-2017-05-30 17:42:21:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
-2017-05-30 17:42:21:ok:INSERT INTO scenario2  ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (default,default,default,default,default,default,default,default,default,default,default,default,default)
-2017-05-30 17:42:21:ok:23502
-2017-05-30 17:42:29:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
-2017-05-30 17:42:29:ok:INSERT INTO demo  ("name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website") VALUES (default,default,default,default,default,default,default,default,default,default)
-2017-05-30 17:42:29:ok:23502
-2017-05-30 17:42:34:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
-2017-05-30 17:42:34:ok:SELECT * FROM demo WHERE id='1'
-2017-05-30 17:42:34:ok:INSERT INTO demo  ("name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website") VALUES ('Hoffman','Tatyana','88','1.32','na','CA','Nam@quisdiamluctus.org','1','2012-04-17','www.qktogkjbsvz.rdh')
-2017-05-30 17:42:34:ok:23502
+2017-05-31 08:54:51:ok:demo
+2017-05-31 08:54:51:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 08:54:51:ok:
+2017-05-31 08:54:51:error:00000
+2017-05-31 09:01:09:ok:demo
+2017-05-31 09:01:09:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:01:09:ok:demo
+2017-05-31 09:01:09:ok:demo
+2017-05-31 09:01:09:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-05-31 09:01:09:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-05-31 09:01:18:ok:demo
+2017-05-31 09:01:18:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-05-31 09:01:18:ok:
+2017-05-31 09:01:18:error:00000
+2017-05-31 09:04:35:ok:demo
+2017-05-31 09:04:35:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:04:35:ok:demo
+2017-05-31 09:04:35:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-05-31 09:04:35:ok:demo
+2017-05-31 09:04:35:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-05-31 09:04:39:ok:demo
+2017-05-31 09:04:39:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:04:39:error:00000
+2017-05-31 09:05:15:ok:demo
+2017-05-31 09:05:15:ok:demo
+2017-05-31 09:05:15:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-05-31 09:05:15:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:05:15:ok:demo
+2017-05-31 09:05:15:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-05-31 09:05:19:ok:demo
+2017-05-31 09:05:19:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:05:19:ok:Array
+(
+    [schema] => demo
+    [table] => scenario1
+    [field] => varchar_10
+    [label] => varchar_10
+    [order] => 11
+    [type] => string
+    [character_maximum_length] => 10
+    [column_key] => 
+    [extra] => 
+    [display] => 1
+    [editable] => 1
+    [db_type] => varchar
+)
+
+2017-05-31 09:05:19:error:00000
+2017-05-31 09:07:41:ok:demo
+2017-05-31 09:07:41:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-05-31 09:07:41:ok:demo
+2017-05-31 09:07:41:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:07:41:ok:demo
+2017-05-31 09:07:41:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-05-31 09:07:47:ok:demo
+2017-05-31 09:07:47:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:07:47:ok:Array
+(
+    [schema] => demo
+    [table] => scenario1
+    [field] => varchar_10
+    [label] => varchar_10
+    [order] => 11
+    [type] => string
+    [character_maximum_length] => 10
+    [column_key] => 
+    [extra] => 
+    [display] => 1
+    [editable] => 1
+    [db_type] => varchar
+)
+
+2017-05-31 09:07:47:error:00000
+2017-05-31 09:08:26:ok:demo
+2017-05-31 09:08:26:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:08:26:ok:demo
+2017-05-31 09:08:26:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-05-31 09:08:26:ok:demo
+2017-05-31 09:08:26:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-05-31 09:08:30:ok:demo
+2017-05-31 09:08:30:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:08:30:ok:Array
+(
+    [schema] => demo
+    [table] => scenario1
+    [field] => varchar_10
+    [label] => varchar_10
+    [order] => 11
+    [type] => string
+    [character_maximum_length] => 10
+    [column_key] => 
+    [extra] => 
+    [display] => 1
+    [editable] => 1
+    [db_type] => varchar
+)
+
+2017-05-31 09:08:30:error:00000
+2017-05-31 09:09:05:__construct:ok:demo
+2017-05-31 09:09:05:__construct:ok:demo
+2017-05-31 09:09:05:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:09:05:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-05-31 09:09:05:__construct:ok:demo
+2017-05-31 09:09:05:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-05-31 09:09:10:__construct:ok:demo
+2017-05-31 09:09:10:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:09:10:update db_cols:ok:Array
+(
+    [schema] => demo
+    [table] => scenario1
+    [field] => varchar_10
+    [label] => varchar_10
+    [order] => 11
+    [type] => string
+    [character_maximum_length] => 10
+    [column_key] => 
+    [extra] => 
+    [display] => 1
+    [editable] => 1
+    [db_type] => varchar
+)
+
+2017-05-31 09:09:10:errorInfo:error:00000
+2017-05-31 09:10:25:__construct:ok:demo
+2017-05-31 09:10:25:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-05-31 09:10:25:__construct:ok:demo
+2017-05-31 09:10:25:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:10:25:__construct:ok:demo
+2017-05-31 09:10:25:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-05-31 09:10:28:__construct:ok:demo
+2017-05-31 09:10:28:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:10:28:errorInfo:error:00000
+2017-05-31 09:13:29:__construct:ok:demo
+2017-05-31 09:13:29:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:13:29:update db_cols:ok:varchar_10
+2017-05-31 09:13:29:errorInfo:error:00000
+2017-05-31 09:16:54:__construct:ok:demo
+2017-05-31 09:16:54:__construct:ok:demo
+2017-05-31 09:16:54:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:16:54:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-05-31 09:16:54:__construct:ok:demo
+2017-05-31 09:16:54:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-05-31 09:16:57:__construct:ok:demo
+2017-05-31 09:16:57:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:16:57:update db_cols:ok:varchar_10
+2017-05-31 09:16:57:after update:ok:Value is too long!
+2017-05-31 09:17:07:__construct:ok:demo
+2017-05-31 09:17:07:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:17:07:update db_cols:ok:varchar_10
+2017-05-31 09:17:07:after update:ok:Value is too long!
+2017-05-31 09:18:33:__construct:ok:demo
+2017-05-31 09:18:33:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:18:33:update db_cols:ok:varchar_10
+2017-05-31 09:18:33:after update:ok:Value is too long!
+2017-05-31 09:18:38:__construct:ok:demo
+2017-05-31 09:18:38:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:18:38:__construct:ok:demo
+2017-05-31 09:18:38:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-05-31 09:18:38:__construct:ok:demo
+2017-05-31 09:18:38:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-05-31 09:18:39:__construct:ok:demo
+2017-05-31 09:18:39:__construct:ok:demo
+2017-05-31 09:18:39:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-05-31 09:18:39:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:18:39:__construct:ok:demo
+2017-05-31 09:18:39:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-05-31 09:18:39:__construct:ok:demo
+2017-05-31 09:18:39:__construct:ok:demo
+2017-05-31 09:18:39:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-05-31 09:18:39:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:18:39:__construct:ok:demo
+2017-05-31 09:18:39:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-05-31 09:18:40:__construct:ok:demo
+2017-05-31 09:18:40:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:18:40:__construct:ok:demo
+2017-05-31 09:18:40:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-05-31 09:18:40:__construct:ok:demo
+2017-05-31 09:18:40:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-05-31 09:18:42:__construct:ok:demo
+2017-05-31 09:18:42:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:18:42:update db_cols:ok:varchar_10
+2017-05-31 09:18:42:after update:ok:Value is too long!
+2017-05-31 09:19:00:__construct:ok:demo
+2017-05-31 09:19:00:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:19:00:__construct:ok:demo
+2017-05-31 09:19:00:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-05-31 09:19:00:__construct:ok:demo
+2017-05-31 09:19:00:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-05-31 09:19:03:__construct:ok:demo
+2017-05-31 09:19:03:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:19:03:update db_cols:ok:varchar_10
+2017-05-31 09:19:03:after update:ok:Value is too long!
+2017-05-31 09:22:08:__construct:ok:demo
+2017-05-31 09:22:08:__construct:ok:demo
+2017-05-31 09:22:08:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:22:08:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-05-31 09:22:08:__construct:ok:demo
+2017-05-31 09:22:08:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-05-31 09:22:11:__construct:ok:demo
+2017-05-31 09:22:11:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:22:11:update db_cols:ok:varchar_10
+2017-05-31 09:22:11:after update:ok:Value is too long!
+2017-05-31 09:22:47:__construct:ok:demo
+2017-05-31 09:22:47:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:22:47:__construct:ok:demo
+2017-05-31 09:22:47:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-05-31 09:22:47:__construct:ok:demo
+2017-05-31 09:22:47:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-05-31 09:22:52:__construct:ok:demo
+2017-05-31 09:22:52:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-05-31 09:22:52:__construct:ok:demo
+2017-05-31 09:22:52:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:22:52:__construct:ok:demo
+2017-05-31 09:22:52:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-05-31 09:22:56:__construct:ok:demo
+2017-05-31 09:22:56:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:22:56:update db_cols:ok:varchar_10
+2017-05-31 09:22:56:after update:ok:Value is too long!
+2017-05-31 09:24:34:__construct:ok:demo
+2017-05-31 09:24:34:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-05-31 09:24:34:__construct:ok:demo
+2017-05-31 09:24:34:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:24:34:__construct:ok:demo
+2017-05-31 09:24:34:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-05-31 09:24:38:__construct:ok:demo
+2017-05-31 09:24:38:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:24:38:update db_cols:ok:varchar_10
+2017-05-31 09:24:38:after update:ok:Value is too long!
+2017-05-31 09:24:49:__construct:ok:demo
+2017-05-31 09:24:49:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:24:49:update db_cols:ok:varchar_10
+2017-05-31 09:24:49:update:ok:UPDATE scenario1 SET "varchar_10"=' wqe4q' WHERE id = '20'
+2017-05-31 09:24:49:after update:error:
+2017-05-31 09:24:53:__construct:ok:demo
+2017-05-31 09:24:53:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 09:24:53:update db_cols:ok:varchar_10
+2017-05-31 09:24:53:after update:ok:Value is too long!

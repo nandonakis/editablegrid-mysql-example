@@ -1,4 +1,4 @@
-select  tab_columns.table_schema as "schema",tab_columns.table_name as "table", tab_columns.column_name as field, tab_columns.column_name as label, tab_columns.ordinal_position as "order", tab_columns.data_type as type, tab_columns.character_maximum_length, tab_constraints.constraint_type as column_key, tab_columns.column_default as extra,  1 as display, 1 as editable from information_schema.columns AS tab_columns 
+select  tab_columns.table_schema as "schema",tab_columns.table_name as "table", tab_columns.column_name as field, tab_columns.column_name as label, tab_columns.ordinal_position as "order", tab_columns.data_type as type, tab_columns.character_maximum_length, tab_constraints.constraint_type as column_key, tab_columns.column_default as extra,  1 as display, 1 as editable, tab_columns.udt_name as db_type from information_schema.columns AS tab_columns 
 LEFT OUTER JOIN 
 information_schema.constraint_column_usage AS col_constraints 
 ON tab_columns.table_name = col_constraints.table_name AND 

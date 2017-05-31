@@ -62,10 +62,18 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 			coltype: editableGrid.getColumnType(columnIndex)
 		},
 		success: function(response) {
+			//console.log('response:',response);
 			// reset old value if failed then highlight row
 			var success = onResponse ? onResponse(response) : ((response.indexOf("error")<0) || !isNaN(parseInt(response))); // by default, a sucessfull reponse can be "ok" or a database id 
-			if (!success) editableGrid.setValueAt(rowIndex, columnIndex, oldValue);
+			
 			highlight(row.id, success ? "ok" : "error");
+			if (!success){
+				editableGrid.setValueAt(rowIndex, columnIndex, oldValue);
+				var res = jQuery.parseJSON(response);
+				log('update','error', res.error, editableGrid.name);
+				return;
+			} 
+			
       log('update','ok','updated' + row.id + 'set value x to y');
       //show_message(editableGrid.name, response);
 		},

@@ -3,7 +3,7 @@
 function debug($op,$query,$sth)  {
 	$result = $sth ? 'ok' : 'error';
 	$stamp = date("Y-m-d H:i:s");
-	file_put_contents('backend.log', "$stamp:$result:$query\n",FILE_APPEND);
+	file_put_contents('backend.log', "$stamp:$op:$result:$query\n",FILE_APPEND);
 }
 
 function get_col_type($type,$name=''){

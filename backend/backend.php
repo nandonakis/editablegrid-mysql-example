@@ -9,17 +9,20 @@ require_once('db_utils.php');
 
 function add_columns_from_meta($result, $grid, $table){
 	global $db;
-	$meta = $db->get_table_columns($table);
+	//$meta = $db->get_table_columns($table);
+	$meta = $db->get_meta($table);
 	// var_dump($meta);die;
 	//$grid->addColumn('id', 'ID', 'integer', NULL, false); 
 	foreach($meta as $name => $v){
-		$editable = true; $name === 'id' and $editable = false;
-		$type = get_col_type($v["native_type"],$name);
+		$editable = $v['editable']; $name === 'id' and $editable = false;
+		//$type = get_col_type($v["native_type"],$name);
+		$type = $v['type'];
+		
 		if($type === false)
 		    continue;
 		
 		
-		$grid->addColumn($name,$name,$type,NULL,$editable);
+		$grid->addColumn($name,$v['label'],$type,NULL,$editable);
 		//public function addColumn($name, $label, $type, $values = NULL, $editable = true, $field = NULL, $bar = true, $hidden = false)
 		//echo $v["native_type"] . "...$type\n";
 		//if($v['name'] == 'id') continue;
@@ -46,26 +49,22 @@ require_once('pdoDB.php');
 $db = new DBClass($config);
 isset($db) or die("No DB");
 
+$error="";
 // create a new EditableGrid object
 if($action == 'add'){
-	$return = $db->add($table);
+	$return = $db->add($table,$error);
 	//var_dump($return);
 	// why doesn't this return json
-	if($return){
-		$json = json_encode($return);
-		//file_put_contents('update.log', $json ."\n");
-		echo $json;
-	}
-  else{
-		echo json_encode(array('error' => $db->errorInfo()));
-	}
-	//echo $return ? $data . $return : "error";  
+	echo ($error === "" && $return) ? "ok" : json_encode(array('error' => isset($error)?$error:$db->errorInfo()));
+	
 	die;
 }
 
 if ($action == 'update'){
-	$return = $db->update($table);
-	echo $return ? "ok" : json_encode(array('error' => $db->errorInfo()));
+	$return = $db->update($table, $error);
+	debug("after update", $error, $error);
+	
+	echo ($error === "" && $return) ? "ok" : json_encode(array('error' => isset($error)?$error:$db->errorInfo()));
 	die;
 }
 
@@ -76,14 +75,13 @@ if ($action == 'delete'){
 }
 
 if ($action == 'duplicate'){
-	$return = $db->duplicate($table);
-	echo $return ? "ok" : json_encode(array('error' => $db->errorInfo()));
+	$return = $db->duplicate($table, $error);
+	echo ($error === "" && $return) ? "ok" : json_encode(array('error' => isset($error)?$error:$db->errorInfo()));
 	die;
 }
 
 $grid = new EditableGrid();
-$sql = "SELECT * FROM $table";
-$result = $db->query($sql);
+$result = $db->list($table);
 add_columns_from_meta($result, $grid, $table);
 
 //var_dump($meta);die;

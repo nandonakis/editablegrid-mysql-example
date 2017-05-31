@@ -1,0 +1,12 @@
+schema	table	field	label	order	type	character_maximum_length	column_key	extra	display	editable	db_type
+demo	demo	id	id	1	integer		PRIMARY KEY	nextval('walkboard.demo_seq'::regclass)	1	1	int4
+demo	demo	name	name	2	string	100			1	1	varchar
+demo	demo	firstname	firstname	3	string	100			1	1	varchar
+demo	demo	age	age	4	integer				1	1	int4
+demo	demo	height	height	5	float				1	1	numeric
+demo	demo	id_continent	id_continent	6	string	2			1	1	bpchar
+demo	demo	id_country	id_country	7	string	2			1	1	bpchar
+demo	demo	email	email	8	email	100			1	1	varchar
+demo	demo	freelance	freelance	9	integer				1	1	int2
+demo	demo	lastvisit	lastvisit	10	date				1	1	date
+demo	demo	website	website	11	string	100			1	1	varchar

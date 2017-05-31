@@ -9,7 +9,7 @@ class DBClass{
 	//private $db_user;
 	//private $db_table;
 	
-	private $schema;
+	private $config = array();
 	
 	function __construct($config) {
 		$params = array('db_type','db_host','db_name','db_user','db_password');
@@ -21,14 +21,20 @@ class DBClass{
 		if(isset($config['db_schema']) and $config['db_type'] == 'pgsql') {
 			$schema = $config['db_schema'];
 			$this->dbh->exec("SET search_path TO $schema");
-			$this->schema = $schema;
 			
-		}else
-			$this->schema = $config['db_name'];
+			
+		}else{
+			
+			$config['db_schema'] = $config['db_name'];
+		}
+		
+		$this->config = $config;
+		
+		debug('__construct', $this->config['db_schema'], $this->config);
 	}
 	
 	public function get_meta($table, $forced=FALSE){
-			$dir = sprintf("%s/profiles/%s", dirname(__FILE__), $this->db_type == 'mysql'?$this->db_type:'postgres');
+			$dir = sprintf("%s/profiles/%s", dirname(__FILE__), $this->config['db_type'] == 'mysql'?$this->config['db_type']:'postgres');
 			
 			$file = sprintf("%s/%s.spec.tsv", $dir, $table);
 			
@@ -59,8 +65,9 @@ class DBClass{
 	EOF;
 
 	*/
-
-				$query = sprintf($query, $table, $this->schema);
+				//var_dump($this->config);
+				
+				$query = sprintf($query, $table, $this->config['db_schema']);
 
 					
 				debug('get_meta', $query, $query);
@@ -152,7 +159,7 @@ class DBClass{
 	}
 	
 	public function quote_identifier($field) {
-		$type = $this->db_type; 
+		$type = $this->config['db_type']; 
 		if ($type == 'mysql') {
 			return "`".str_replace("`","``",$field)."`";
 		}
@@ -222,26 +229,98 @@ class DBClass{
 	}
 	
 	public function get($id, $table){
-		$rs = $this->dbh->query(sprintf("select * from %s where id=%s", $table, $id), PDO::FETCH_ASSOC);
+		$query = sprintf("select * from %s where id=%s", $table, $id);
+		$rs = $this->dbh->query($query, PDO::FETCH_ASSOC);
+		debug('get', $query, $rs);
 		return $rs->fetch(PDO::FETCH_ASSOC);
 	}
 	
-	public function add(){
+	//auto_increment
+	public function get_primary($cols){
+		
+		$primary = array_filter($cols, function($a){return ($a['column_key'] && strpos($a['column_key'],"PRI")>=0);});
+		return $primary;
+	}
+	
+	public function is_auto_primary($row){
+		//$primary[$k]['extra'] === "" || 
+		return isset($row['extra']) && preg_match('/(nextval|auto_increment)/',$row['extra']);
+		
+		
+	}
+	public function add($table, &$info=""){
 		global $_POST;
 
-		$tablename = strip_tags($_POST['tablename']);
+		//$tablename = strip_tags($_POST['tablename']);
 		//$tablename = 'demo';
+		$cols = $this->get_meta($table);
 		
-		return $this->insert($tablename, $_POST);
+		$primary = $this->get_primary($cols);
+		
+		if(count($primary)>1){
+			$info = "Multi-primary keys";
+			return FALSE;
+		}
+		$values = array();
+		$k = array_keys($primary)[0];
+		if(isset($_POST[$k])){
+			$valuesvalues[$k] = $_POST[$k];
+		}else{
+			if($this->is_auto_primary($primary[$k]) === false){
+				if($primary[$k]['type'] === 'integer')
+					$values[$k] = $this->get_next_id($table, $k);
+				else{
+					
+					$info = "Primary not integer and it is null";
+					return FALSE;
+				}
+				
+				
+			}elseif($this->config['db_type'] !== 'mysql'){
+				$values[$k] = 'DEFAULT';
+			}
+		}
+		debug('add', $k . ' vs ' . $values[$k] . 'v:' . $primary[$k]['extra'], $k);
+		// get default
+		foreach($cols as $k2 => $c){
+			if($k2 == $k)
+				continue;
+				
+				
+			if(isset($_POST[$k2])){
+				$values[$k2] = $this->dbh->quote(strip_tags($_POST[$k2]));;
+			}else{
+				
+				$values[$k2] = 'NULL';
+				
+			}
+			
+		}
+		
+		debug('add', print_r($values, TRUE), $values);
+		
+		
+		
+		return $this->insert($table, $values, $cols, $info, $values[$k]);
 		
 	}
 	
-	public function insert($tablename, $values, $cols=FALSE, $excl_cols=array()){
+	public function get_next_id($table, $k){
+		$query = sprintf("select max(%s)+1 from %s", $k, $table);
+		$result = $this->dbh->query($query);
+		debug('get_next_id',$query, $result);
 		
-		if($cols === FALSE)			
-				$cols = $this->get_meta($tablename);
+		return $result->fetchColumn();
+	}
+	
+	public function insert($tablename, $values, $cols=FALSE, &$info="", $id=""){
+		
+			
+		
 			
 		//$cols = $this->get_table_columns($tablename);
+		
+		
 		
 		//debug('insert cols',print_r($cols,TRUE),'ok');
 		
@@ -250,51 +329,43 @@ class DBClass{
 		foreach($cols as $k => $v){
 			// just simple ignore 'id', if it is primray key
 			//if(array_key_exists($k,$excl_cols))
-			if($cols[$k]['column_key'] == 'PRIMARY KEY')
-				continue;
+			//if($cols[$k]['column_key'] == 'PRIMARY KEY')
+			//	continue;
 			
 			
 			$fields[] = $this->quote_identifier($k);
 			
 			if(array_key_exists($k, $values)){
 			   
-				$new_values[] = $this->dbh->quote(strip_tags($values[$k]));
+				$new_values[] = $values[$k];//$this->dbh->quote(strip_tags($values[$k]));
 			}else{
-				$new_values[] = 'default';
+				$new_values[] = 'NULL';
 			}
 		}
-		$query = sprintf("INSERT INTO %s  (%s) VALUES (%s)", $tablename, join(',', $fields), join(',',$new_values)); 
+		$query = sprintf("INSERT INTO %s.%s  (%s) VALUES (%s)", $this->config['db_schema'],$tablename, join(',', $fields), join(',',$new_values)); 
 
 		//file_put_contents('update.log', $query ."\n");
 		debug('insert',$query, 'ok');
 		if($this->dbh->query($query)){
-			$id = $this->dbh->lastInsertId();
-			return $this->get($id, $table);
+			if($id === "")
+				$id = $this->dbh->lastInsertId();
+			
+			return $this->get($id, $tablename);
 		}
 		return FALSE;
 	}
 
-	public function duplicatex(){
-		global $_POST;
-		$table = strip_tags($_POST['table']);
-		$cols = $this->get_table_columns($table);
-		$fields = join(',',array_diff(array_keys($cols), ['id']));
-		$id = $this->dbh->quote(strip_tags($_POST['id']));
-		
-		
-		$query = sprintf("INSERT INTO %s (%s) SELECT %s FROM %s WHERE id=%s", $table, $fields, $fields, $table, $id );
-		$result = $this->dbh->query($query);
-		debug('duplicate',$query,$result);
-		return $result;
-	}
-
 	
 	
-	public function update(){
+	
+	public function update($table, &$info=''){
 		global $_POST;
-		$table = $this->quote_identifier(strip_tags($_POST['tablename']));
-		$field = $this->quote_identifier(strip_tags($_POST['colname']));
+		//$table = $this->quote_identifier(strip_tags($_POST['tablename']));
+		
+		$colname = $_POST['colname'];
+		$field = $this->quote_identifier(strip_tags($colname));
 		$id = $this->dbh->quote(strip_tags($_POST['id']));
+		$val_len = strlen($_POST['newvalue']);
 		$value = $this->dbh->quote(strip_tags($_POST['newvalue']));
 		$coltype = strip_tags($_POST['coltype']);
 		if($coltype == 'date'){
@@ -305,6 +376,21 @@ class DBClass{
 				$value = "{$date_info['year']}-{$date_info['month']}-{$date_info['day']}";
 				$value = $this->dbh->quote($value);
 			}
+		}elseif($coltype == 'string' && $this->config['db_type'] === 'pgsql'){
+			$cols = $this->get_meta($table);
+			if(array_key_exists($colname, $cols)){
+				debug('update db_cols', $colname, $cols);
+			
+				$db_len = $cols[$colname]['character_maximum_length'];
+				if($val_len > $db_len){
+					$info = "Value is too long!";
+					return FALSE;
+				}
+			}else{
+				$info = "Field does not exist!";
+				return FALSE;
+			}
+			
 		}
 		$query = sprintf("UPDATE %s SET %s=%s WHERE id = %s", $table, $field, $value, $id );
 	  $result = $this->dbh->query($query);
@@ -312,9 +398,9 @@ class DBClass{
 		return $result;
 	}
 	
-	public function delete(){
+	public function delete($table){
 		global $_POST;
-		$table = strip_tags($_POST['tablename']);
+		//$table = strip_tags($_POST['tablename']);
 		$id = $this->dbh->quote(strip_tags($_POST['id']));
 		$query = sprintf("DELETE FROM %s  WHERE id = %s", $table, $id );
 		$result = $this->dbh->query($query);
@@ -323,24 +409,59 @@ class DBClass{
 	}
 	
 
-	public function duplicate(){
+	public function duplicate($table, &$info=""){
 		global $_POST;
-		$tablename = strip_tags($_POST['table']);
-		$cols = $this->get_meta($tablename);
+		//$tablename = strip_tags($_POST['table']);
+		$cols = $this->get_meta($table);
 		//$fields = join(',',array_diff(array_keys($cols), ['id']));
 		$id = $this->dbh->quote(strip_tags($_POST['id']));
 		
 		
-		$query = sprintf("SELECT * FROM %s WHERE id=%s", $tablename,  $id );
-		$result = $this->dbh->query($query, PDO::FETCH_ASSOC);
-		if($result === FALSE)
+		$query = sprintf("SELECT * FROM %s WHERE id=%s", $table,  $id );
+		$result = $this->dbh->query($query);
+		if($result === FALSE){
+			$info = "$id could not be found";
 			return $result;
+		}
+			
 		
-		$row = $result->fetch();
+		$row = $result->fetch(PDO::FETCH_ASSOC);
 		debug('duplicate',$query,print_r($row, TRUE));
-		return $this->insert($tablename, $row, $cols, array('id' => 1));
+		
+		
+		// update default field
+		foreach($row as $k => $v){
+			if(!isset($row[$k])){
+					if($cols[$k]['db_type'] ==='date' || $cols[$k]['db_type'] === 'timestamp')
+						$row[$k]='NULL';
+					else
+						$row[$k]=$this->dbh->quote($k . ':' . $cols[$k]['db_type']);
+			}
+			else
+				$row[$k]= $this->dbh->quote($row[$k]);
+			
+			
+		}
+		
+		// do a bit more check/amending before let it go
+		$primary = $this->get_primary($cols);
+		foreach($primary as $k => $v){
+			if($this->is_auto_primary($v))
+				$row[$k] = 'DEFAULT';
+			else if ($v['type'] === 'integer')
+				$row[$k] = $this->get_next_id($table, $k);
+				
+			
+		}
+		
+		
+		return $this->insert($table, $row, $cols, $info);
 	}
 
+	public function list($table){
+		$sql = "SELECT * FROM $table";
+		return $this->dbh->query($sql);
+	}
 	
 	public function list_tables(){
 		try {   
