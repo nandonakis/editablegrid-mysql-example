@@ -62,6 +62,7 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 			coltype: editableGrid.getColumnType(columnIndex)
 		},
 		success: function(response) {
+
 			//console.log('response:',response);
 			// reset old value if failed then highlight row
 			var success = onResponse ? onResponse(response) : ((response.indexOf("error")<0) || !isNaN(parseInt(response))); // by default, a sucessfull reponse can be "ok" or a database id 
@@ -74,6 +75,7 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 				return;
 			} 
 			
+
       log('update','ok','updated' + row.id + 'set value x to y');
       //show_message(editableGrid.name, response);
 		},
@@ -91,6 +93,7 @@ function DatabaseGrid(table,config) {
 // 	isset(table) or die;
 //	isset(config) or die;
 	var that = this;
+	this.profile = config;
 	this.editableGrid = new EditableGrid(table, {
 		enableSort: true,
 		pageSize: 10,
@@ -109,7 +112,7 @@ function DatabaseGrid(table,config) {
         getActionUrl: function(action){
     
             var self = this;
-            var url= backend + '?action='+action+'&profile='+self.dbconfig+'&table='+self.name;
+            var url= backend + '?action='+action+'&profile='+(self.dbconfig?self.dbconfig:config)+'&table='+self.name;
             return url;
         },
         

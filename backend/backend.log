@@ -1,237 +1,893 @@
-2017-05-31 08:54:51:ok:demo
-2017-05-31 08:54:51:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 08:54:51:ok:
-2017-05-31 08:54:51:error:00000
-2017-05-31 09:01:09:ok:demo
-2017-05-31 09:01:09:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:01:09:ok:demo
-2017-05-31 09:01:09:ok:demo
-2017-05-31 09:01:09:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
-2017-05-31 09:01:09:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
-2017-05-31 09:01:18:ok:demo
-2017-05-31 09:01:18:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
-2017-05-31 09:01:18:ok:
-2017-05-31 09:01:18:error:00000
-2017-05-31 09:04:35:ok:demo
-2017-05-31 09:04:35:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:04:35:ok:demo
-2017-05-31 09:04:35:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
-2017-05-31 09:04:35:ok:demo
-2017-05-31 09:04:35:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
-2017-05-31 09:04:39:ok:demo
-2017-05-31 09:04:39:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:04:39:error:00000
-2017-05-31 09:05:15:ok:demo
-2017-05-31 09:05:15:ok:demo
-2017-05-31 09:05:15:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
-2017-05-31 09:05:15:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:05:15:ok:demo
-2017-05-31 09:05:15:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
-2017-05-31 09:05:19:ok:demo
-2017-05-31 09:05:19:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:05:19:ok:Array
+2017-05-31 23:47:28:__construct:demo
+2017-05-31 23:47:28:__construct:demo
+2017-05-31 23:47:28:get_meta:here
+2017-05-31 23:47:28:get_meta:here
+2017-05-31 23:47:28:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 23:47:28:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-05-31 23:47:28:__construct:demo
+2017-05-31 23:47:28:get_meta:here
+2017-05-31 23:47:28:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-05-31 23:47:35:__construct:demo
+2017-05-31 23:47:35:get_meta:here
+2017-05-31 23:47:35:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-05-31 23:47:35:get:select * from scenario2 where id='7'
+2017-05-31 23:47:35:duplicate:
+2017-05-31 23:47:35:get_next_id:select max(id)+1 from scenario2
+2017-05-31 23:47:35:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (10,'name:varchar','int:int4','currency:numeric','float:float4','bool:int2',NULL,NULL,'text:text','email:varchar','varchar_10:varchar','id_detail:int4','enum:varchar','default:varchar')
+2017-05-31 23:59:53:__construct:demo
+2017-05-31 23:59:53:__construct:demo
+2017-05-31 23:59:53:get_meta:here
+2017-05-31 23:59:53:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-05-31 23:59:53:__construct:demo
+2017-05-31 23:59:53:get_meta:here
+2017-05-31 23:59:53:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-05-31 23:59:53:get_meta:here
+2017-05-31 23:59:53:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-05-31 23:59:57:__construct:demo
+2017-05-31 23:59:57:get_meta:here
+2017-05-31 23:59:57:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-05-31 23:59:57:get:select * from scenario2 where id='5'
+2017-05-31 23:59:57:duplicate:
+2017-05-31 23:59:57:get_next_id:select max(id)+1 from scenario2
+2017-05-31 23:59:57:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (10,'Schwartz','79','1.50','1','0','2012-03-16','','','ante@adipiscing.org','Carla','1','','there')
+2017-06-01 00:00:29:__construct:demo
+2017-06-01 00:00:29:get_meta:here
+2017-06-01 00:00:29:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:00:29:get:select * from scenario1 where id='20'
+2017-06-01 00:00:29:insert:INSERT INTO demo.scenario1  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (DEFAULT,'Andon','88','1.32','1','1','2017-05-05','2017-05-04 00:00:00','asdfasdfasdfadfl;djasfa','Nam@quisdiamluctus.org',' wqe4q','1','ok','FOOBAR')
+2017-06-01 00:00:29:get:select * from scenario1 where id=23
+2017-06-01 00:00:38:__construct:demo
+2017-06-01 00:00:38:get_meta:here
+2017-06-01 00:00:38:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:00:38:get:select * from scenario2 where id='5'
+2017-06-01 00:00:38:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:00:38:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (10,'Schwartz','79','1.50','1','0','2012-03-16','','','ante@adipiscing.org','Carla','1','','there')
+2017-06-01 00:01:54:__construct:demo
+2017-06-01 00:01:54:get_meta:here
+2017-06-01 00:01:54:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:01:54:get:select * from scenario2 where id='4'
+2017-06-01 00:01:54:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:01:54:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (10,'Nicholas','18','1.92','2','0','2012-03-16','','','mollis@eutellus.co.uk','Troy','4','','FOOBAR')
+2017-06-01 00:05:22:__construct:demo
+2017-06-01 00:05:22:get_meta:here
+2017-06-01 00:05:22:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:05:22:add:id vs DEFAULTv:nextval('scenario1_id_seq'::regclass)
+2017-06-01 00:05:22:add:Array
 (
-    [schema] => demo
-    [table] => scenario1
-    [field] => varchar_10
-    [label] => varchar_10
-    [order] => 11
-    [type] => string
-    [character_maximum_length] => 10
-    [column_key] => 
-    [extra] => 
-    [display] => 1
-    [editable] => 1
-    [db_type] => varchar
+    [id] => DEFAULT
+    [name] => NULL
+    [int] => NULL
+    [currency] => NULL
+    [float] => NULL
+    [bool] => NULL
+    [date] => NULL
+    [datetime] => NULL
+    [text] => NULL
+    [email] => NULL
+    [varchar_10] => NULL
+    [id_detail] => NULL
+    [enum] => NULL
+    [default] => NULL
 )
 
-2017-05-31 09:05:19:error:00000
-2017-05-31 09:07:41:ok:demo
-2017-05-31 09:07:41:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
-2017-05-31 09:07:41:ok:demo
-2017-05-31 09:07:41:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:07:41:ok:demo
-2017-05-31 09:07:41:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
-2017-05-31 09:07:47:ok:demo
-2017-05-31 09:07:47:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:07:47:ok:Array
+2017-06-01 00:05:22:insert:INSERT INTO demo.scenario1  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (DEFAULT,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-06-01 00:05:22:get:select * from scenario1 where id=24
+2017-06-01 00:05:27:__construct:demo
+2017-06-01 00:05:27:get_meta:here
+2017-06-01 00:05:27:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:05:27:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:05:27:add:id vs 10v:
+2017-06-01 00:05:27:add:Array
 (
-    [schema] => demo
-    [table] => scenario1
-    [field] => varchar_10
-    [label] => varchar_10
-    [order] => 11
-    [type] => string
-    [character_maximum_length] => 10
-    [column_key] => 
-    [extra] => 
-    [display] => 1
-    [editable] => 1
-    [db_type] => varchar
+    [id] => 10
+    [name] => NULL
+    [int] => NULL
+    [currency] => NULL
+    [float] => NULL
+    [bool] => NULL
+    [date] => NULL
+    [datetime] => NULL
+    [text] => NULL
+    [email] => NULL
+    [varchar_10] => NULL
+    [id_detail] => NULL
+    [enum] => NULL
+    [default] => NULL
 )
 
-2017-05-31 09:07:47:error:00000
-2017-05-31 09:08:26:ok:demo
-2017-05-31 09:08:26:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:08:26:ok:demo
-2017-05-31 09:08:26:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
-2017-05-31 09:08:26:ok:demo
-2017-05-31 09:08:26:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
-2017-05-31 09:08:30:ok:demo
-2017-05-31 09:08:30:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:08:30:ok:Array
+2017-06-01 00:05:27:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-06-01 00:05:27:get:select * from scenario2 where id=10
+2017-06-01 00:07:58:__construct:demo
+2017-06-01 00:07:58:get_meta:here
+2017-06-01 00:07:58:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:07:58:get:select * from scenario1 where id='20'
+2017-06-01 00:07:58:insert:INSERT INTO demo.scenario1  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (DEFAULT,'Andon','88','1.32','1','1','2017-05-05','2017-05-04 00:00:00','asdfasdfasdfadfl;djasfa','Nam@quisdiamluctus.org',' wqe4q','1','ok','FOOBAR')
+2017-06-01 00:07:58:get:select * from scenario1 where id=25
+2017-06-01 00:08:03:__construct:demo
+2017-06-01 00:08:03:get_meta:here
+2017-06-01 00:08:03:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:08:03:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:08:03:add:id vs 11v:
+2017-06-01 00:08:03:add:Array
 (
-    [schema] => demo
-    [table] => scenario1
-    [field] => varchar_10
-    [label] => varchar_10
-    [order] => 11
-    [type] => string
-    [character_maximum_length] => 10
-    [column_key] => 
-    [extra] => 
-    [display] => 1
-    [editable] => 1
-    [db_type] => varchar
+    [id] => 11
+    [name] => NULL
+    [int] => NULL
+    [currency] => NULL
+    [float] => NULL
+    [bool] => NULL
+    [date] => NULL
+    [datetime] => NULL
+    [text] => NULL
+    [email] => NULL
+    [varchar_10] => NULL
+    [id_detail] => NULL
+    [enum] => NULL
+    [default] => NULL
 )
 
-2017-05-31 09:08:30:error:00000
-2017-05-31 09:09:05:__construct:ok:demo
-2017-05-31 09:09:05:__construct:ok:demo
-2017-05-31 09:09:05:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:09:05:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
-2017-05-31 09:09:05:__construct:ok:demo
-2017-05-31 09:09:05:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
-2017-05-31 09:09:10:__construct:ok:demo
-2017-05-31 09:09:10:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:09:10:update db_cols:ok:Array
+2017-06-01 00:08:03:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (11,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-06-01 00:08:03:get:select * from scenario2 where id=11
+2017-06-01 00:08:09:__construct:demo
+2017-06-01 00:08:09:get_meta:here
+2017-06-01 00:08:09:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:08:09:get:select * from scenario2 where id='7'
+2017-06-01 00:08:09:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:08:09:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (12,'','','','','','','','','','','','','')
+2017-06-01 00:08:18:__construct:demo
+2017-06-01 00:08:18:get_meta:here
+2017-06-01 00:08:18:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:08:18:get:select * from scenario2 where id='5'
+2017-06-01 00:08:18:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:08:18:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (12,'Schwartz','79','1.50','1','0','2012-03-16','','','ante@adipiscing.org','Carla','1','','there')
+2017-06-01 00:08:28:__construct:demo
+2017-06-01 00:08:28:get_meta:here
+2017-06-01 00:08:28:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:08:28:get:select * from scenario2 where id='3'
+2017-06-01 00:08:28:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:08:28:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (12,'Hamilton','10','10.50','1','1','2012-03-16','','','dui@duiCras.edu','Mohammad','3','ok','FOOBAR')
+2017-06-01 00:11:12:__construct:demo
+2017-06-01 00:11:12:__construct:demo
+2017-06-01 00:11:12:get_meta:here
+2017-06-01 00:11:12:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:11:12:get_meta:here
+2017-06-01 00:11:12:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:11:12:__construct:demo
+2017-06-01 00:11:12:get_meta:here
+2017-06-01 00:11:12:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:11:16:__construct:demo
+2017-06-01 00:11:16:get_meta:here
+2017-06-01 00:11:16:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:11:16:get:select * from scenario2 where id='3'
+2017-06-01 00:11:16:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:11:16:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (id,'Hamilton','10','10.50','1','1','2012-03-16','','','dui@duiCras.edu','Mohammad','3','ok','FOOBAR')
+2017-06-01 00:11:35:__construct:demo
+2017-06-01 00:11:35:get_meta:here
+2017-06-01 00:11:35:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:11:35:get:select * from scenario1 where id='23'
+2017-06-01 00:11:35:insert:INSERT INTO demo.scenario1  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (DEFAULT,'Andon','88','1.32','1','1','2017-05-05','2017-05-04 00:00:00','asdfasdfasdfadfl;djasfa','Nam@quisdiamluctus.org',' wqe4q','1','ok','FOOBAR')
+2017-06-01 00:11:35:get:select * from scenario1 where id=26
+2017-06-01 00:11:58:__construct:demo
+2017-06-01 00:11:58:get_meta:here
+2017-06-01 00:11:58:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:11:58:__construct:demo
+2017-06-01 00:11:58:get_meta:here
+2017-06-01 00:11:58:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:11:58:__construct:demo
+2017-06-01 00:11:58:get_meta:here
+2017-06-01 00:11:58:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:12:04:__construct:demo
+2017-06-01 00:12:04:get_meta:here
+2017-06-01 00:12:04:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:12:04:get:select * from scenario2 where id='4'
+2017-06-01 00:12:04:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:12:04:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (12,'Nicholas','18','1.92','2','0','2012-03-16','','','mollis@eutellus.co.uk','Troy','4','','FOOBAR')
+2017-06-01 00:12:13:__construct:demo
+2017-06-01 00:12:13:get_meta:here
+2017-06-01 00:12:13:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:12:13:get:select * from scenario2 where id='2'
+2017-06-01 00:12:13:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:12:13:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (12,'Atkins','44','5.55','1.5','1','2012-03-16','2017-05-05 12:30:00','','arcu.et.pede@musProin.cam','Ishmael','2','not_ok','foobar')
+2017-06-01 00:12:13:get:select * from scenario2 where id=12
+2017-06-01 00:12:46:__construct:demo
+2017-06-01 00:12:46:get_meta:here
+2017-06-01 00:12:46:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:12:46:add:id vs DEFAULTv:nextval('scenario1_id_seq'::regclass)
+2017-06-01 00:12:46:add:Array
 (
-    [schema] => demo
-    [table] => scenario1
-    [field] => varchar_10
-    [label] => varchar_10
-    [order] => 11
-    [type] => string
-    [character_maximum_length] => 10
-    [column_key] => 
-    [extra] => 
-    [display] => 1
-    [editable] => 1
-    [db_type] => varchar
+    [id] => DEFAULT
+    [name] => NULL
+    [int] => NULL
+    [currency] => NULL
+    [float] => NULL
+    [bool] => NULL
+    [date] => NULL
+    [datetime] => NULL
+    [text] => NULL
+    [email] => NULL
+    [varchar_10] => NULL
+    [id_detail] => NULL
+    [enum] => NULL
+    [default] => NULL
 )
 
-2017-05-31 09:09:10:errorInfo:error:00000
-2017-05-31 09:10:25:__construct:ok:demo
-2017-05-31 09:10:25:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
-2017-05-31 09:10:25:__construct:ok:demo
-2017-05-31 09:10:25:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:10:25:__construct:ok:demo
-2017-05-31 09:10:25:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
-2017-05-31 09:10:28:__construct:ok:demo
-2017-05-31 09:10:28:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:10:28:errorInfo:error:00000
-2017-05-31 09:13:29:__construct:ok:demo
-2017-05-31 09:13:29:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:13:29:update db_cols:ok:varchar_10
-2017-05-31 09:13:29:errorInfo:error:00000
-2017-05-31 09:16:54:__construct:ok:demo
-2017-05-31 09:16:54:__construct:ok:demo
-2017-05-31 09:16:54:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:16:54:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
-2017-05-31 09:16:54:__construct:ok:demo
-2017-05-31 09:16:54:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
-2017-05-31 09:16:57:__construct:ok:demo
-2017-05-31 09:16:57:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:16:57:update db_cols:ok:varchar_10
-2017-05-31 09:16:57:after update:ok:Value is too long!
-2017-05-31 09:17:07:__construct:ok:demo
-2017-05-31 09:17:07:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:17:07:update db_cols:ok:varchar_10
-2017-05-31 09:17:07:after update:ok:Value is too long!
-2017-05-31 09:18:33:__construct:ok:demo
-2017-05-31 09:18:33:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:18:33:update db_cols:ok:varchar_10
-2017-05-31 09:18:33:after update:ok:Value is too long!
-2017-05-31 09:18:38:__construct:ok:demo
-2017-05-31 09:18:38:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:18:38:__construct:ok:demo
-2017-05-31 09:18:38:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
-2017-05-31 09:18:38:__construct:ok:demo
-2017-05-31 09:18:38:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
-2017-05-31 09:18:39:__construct:ok:demo
-2017-05-31 09:18:39:__construct:ok:demo
-2017-05-31 09:18:39:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
-2017-05-31 09:18:39:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:18:39:__construct:ok:demo
-2017-05-31 09:18:39:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
-2017-05-31 09:18:39:__construct:ok:demo
-2017-05-31 09:18:39:__construct:ok:demo
-2017-05-31 09:18:39:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
-2017-05-31 09:18:39:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:18:39:__construct:ok:demo
-2017-05-31 09:18:39:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
-2017-05-31 09:18:40:__construct:ok:demo
-2017-05-31 09:18:40:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:18:40:__construct:ok:demo
-2017-05-31 09:18:40:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
-2017-05-31 09:18:40:__construct:ok:demo
-2017-05-31 09:18:40:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
-2017-05-31 09:18:42:__construct:ok:demo
-2017-05-31 09:18:42:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:18:42:update db_cols:ok:varchar_10
-2017-05-31 09:18:42:after update:ok:Value is too long!
-2017-05-31 09:19:00:__construct:ok:demo
-2017-05-31 09:19:00:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:19:00:__construct:ok:demo
-2017-05-31 09:19:00:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
-2017-05-31 09:19:00:__construct:ok:demo
-2017-05-31 09:19:00:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
-2017-05-31 09:19:03:__construct:ok:demo
-2017-05-31 09:19:03:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:19:03:update db_cols:ok:varchar_10
-2017-05-31 09:19:03:after update:ok:Value is too long!
-2017-05-31 09:22:08:__construct:ok:demo
-2017-05-31 09:22:08:__construct:ok:demo
-2017-05-31 09:22:08:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:22:08:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
-2017-05-31 09:22:08:__construct:ok:demo
-2017-05-31 09:22:08:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
-2017-05-31 09:22:11:__construct:ok:demo
-2017-05-31 09:22:11:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:22:11:update db_cols:ok:varchar_10
-2017-05-31 09:22:11:after update:ok:Value is too long!
-2017-05-31 09:22:47:__construct:ok:demo
-2017-05-31 09:22:47:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:22:47:__construct:ok:demo
-2017-05-31 09:22:47:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
-2017-05-31 09:22:47:__construct:ok:demo
-2017-05-31 09:22:47:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
-2017-05-31 09:22:52:__construct:ok:demo
-2017-05-31 09:22:52:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
-2017-05-31 09:22:52:__construct:ok:demo
-2017-05-31 09:22:52:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:22:52:__construct:ok:demo
-2017-05-31 09:22:52:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
-2017-05-31 09:22:56:__construct:ok:demo
-2017-05-31 09:22:56:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:22:56:update db_cols:ok:varchar_10
-2017-05-31 09:22:56:after update:ok:Value is too long!
-2017-05-31 09:24:34:__construct:ok:demo
-2017-05-31 09:24:34:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
-2017-05-31 09:24:34:__construct:ok:demo
-2017-05-31 09:24:34:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:24:34:__construct:ok:demo
-2017-05-31 09:24:34:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
-2017-05-31 09:24:38:__construct:ok:demo
-2017-05-31 09:24:38:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:24:38:update db_cols:ok:varchar_10
-2017-05-31 09:24:38:after update:ok:Value is too long!
-2017-05-31 09:24:49:__construct:ok:demo
-2017-05-31 09:24:49:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:24:49:update db_cols:ok:varchar_10
-2017-05-31 09:24:49:update:ok:UPDATE scenario1 SET "varchar_10"=' wqe4q' WHERE id = '20'
-2017-05-31 09:24:49:after update:error:
-2017-05-31 09:24:53:__construct:ok:demo
-2017-05-31 09:24:53:parse_meta_file:ok:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
-2017-05-31 09:24:53:update db_cols:ok:varchar_10
-2017-05-31 09:24:53:after update:ok:Value is too long!
+2017-06-01 00:12:46:insert:INSERT INTO demo.scenario1  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (DEFAULT,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-06-01 00:12:46:get:select * from scenario1 where id=27
+2017-06-01 00:12:51:__construct:demo
+2017-06-01 00:12:51:get_meta:here
+2017-06-01 00:12:51:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:12:51:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:12:51:add:id vs 13v:
+2017-06-01 00:12:51:add:Array
+(
+    [id] => 13
+    [name] => NULL
+    [int] => NULL
+    [currency] => NULL
+    [float] => NULL
+    [bool] => NULL
+    [date] => NULL
+    [datetime] => NULL
+    [text] => NULL
+    [email] => NULL
+    [varchar_10] => NULL
+    [id_detail] => NULL
+    [enum] => NULL
+    [default] => NULL
+)
+
+2017-06-01 00:12:51:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (13,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-06-01 00:12:51:get:select * from scenario2 where id=13
+2017-06-01 00:13:04:__construct:demo
+2017-06-01 00:13:04:get_meta:here
+2017-06-01 00:13:04:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:13:04:update db_cols:varchar_10
+2017-06-01 00:13:04:after update:Value is too long!
+2017-06-01 00:13:14:__construct:demo
+2017-06-01 00:13:14:get_meta:here
+2017-06-01 00:13:14:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:13:14:update db_cols:varchar_10
+2017-06-01 00:13:14:after update:Value is too long!
+2017-06-01 00:13:30:__construct:demo
+2017-06-01 00:13:30:get_meta:here
+2017-06-01 00:13:30:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:13:30:add:id vs DEFAULTv:nextval('scenario1_id_seq'::regclass)
+2017-06-01 00:13:30:add:Array
+(
+    [id] => DEFAULT
+    [name] => NULL
+    [int] => NULL
+    [currency] => NULL
+    [float] => NULL
+    [bool] => NULL
+    [date] => NULL
+    [datetime] => NULL
+    [text] => NULL
+    [email] => NULL
+    [varchar_10] => NULL
+    [id_detail] => NULL
+    [enum] => NULL
+    [default] => NULL
+)
+
+2017-06-01 00:13:30:insert:INSERT INTO demo.scenario1  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (DEFAULT,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-06-01 00:13:30:get:select * from scenario1 where id=28
+2017-06-01 00:13:34:__construct:demo
+2017-06-01 00:13:34:get_meta:here
+2017-06-01 00:13:34:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:13:34:add:id vs DEFAULTv:nextval('scenario1_id_seq'::regclass)
+2017-06-01 00:13:34:add:Array
+(
+    [id] => DEFAULT
+    [name] => NULL
+    [int] => NULL
+    [currency] => NULL
+    [float] => NULL
+    [bool] => NULL
+    [date] => NULL
+    [datetime] => NULL
+    [text] => NULL
+    [email] => NULL
+    [varchar_10] => NULL
+    [id_detail] => NULL
+    [enum] => NULL
+    [default] => NULL
+)
+
+2017-06-01 00:13:34:insert:INSERT INTO demo.scenario1  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (DEFAULT,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-06-01 00:13:34:get:select * from scenario1 where id=29
+2017-06-01 00:13:41:__construct:demo
+2017-06-01 00:13:41:get_meta:here
+2017-06-01 00:13:41:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:13:41:get:select * from scenario1 where id='19'
+2017-06-01 00:13:41:insert:INSERT INTO demo.scenario1  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (DEFAULT,'Nicholas','18','1.92','2','0','2012-03-16','','text:text','mollis@eutellus.co.uk','Troy','4','enum:varchar','FOOBAR')
+2017-06-01 00:13:47:__construct:demo
+2017-06-01 00:13:47:get_meta:here
+2017-06-01 00:13:47:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:13:47:get:select * from scenario1 where id='21'
+2017-06-01 00:13:47:insert:INSERT INTO demo.scenario1  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (DEFAULT,'Atkins','44','5.55','1.5','1','2012-03-16','2017-05-05 12:30:00','text:text','arcu.et.pede@musProin.cam','Ishmael','2','not_ok','foobar')
+2017-06-01 00:13:47:get:select * from scenario1 where id=30
+2017-06-01 00:17:59:__construct:demo
+2017-06-01 00:17:59:get_meta:here
+2017-06-01 00:17:59:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:17:59:__construct:demo
+2017-06-01 00:17:59:get_meta:here
+2017-06-01 00:17:59:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:17:59:__construct:demo
+2017-06-01 00:17:59:get_meta:here
+2017-06-01 00:17:59:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:18:11:__construct:demo
+2017-06-01 00:18:11:get_meta:here
+2017-06-01 00:18:11:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:18:11:get:select * from scenario1 where id='23'
+2017-06-01 00:18:11:insert:INSERT INTO demo.scenario1  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (DEFAULT,'Andon','88','1.32','1','1','2017-05-05','2017-05-04 00:00:00','asdfasdfasdfadfl;djasfa','Nam@quisdiamluctus.org',' wqe4q','1','ok','FOOBAR')
+2017-06-01 00:18:11:get:select * from scenario1 where id=31
+2017-06-01 00:20:59:__construct:demo
+2017-06-01 00:20:59:__construct:demo
+2017-06-01 00:20:59:get_meta:here
+2017-06-01 00:20:59:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:20:59:get_meta:here
+2017-06-01 00:20:59:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:20:59:__construct:demo
+2017-06-01 00:20:59:get_meta:here
+2017-06-01 00:20:59:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:21:05:__construct:demo
+2017-06-01 00:21:05:__construct:demo
+2017-06-01 00:21:05:get_meta:here
+2017-06-01 00:21:05:get_meta:here
+2017-06-01 00:21:05:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:21:05:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:21:05:__construct:demo
+2017-06-01 00:21:05:get_meta:here
+2017-06-01 00:21:05:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:21:08:__construct:demo
+2017-06-01 00:21:08:get_meta:here
+2017-06-01 00:21:08:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:21:08:get:select * from scenario1 where id='23'
+2017-06-01 00:21:08:insert:INSERT INTO demo.scenario1  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (DEFAULT,'Andon','88','1.32','1','1','2017-05-05','2017-05-04 00:00:00','asdfasdfasdfadfl;djasfa','Nam@quisdiamluctus.org',' wqe4q','1','ok','FOOBAR')
+2017-06-01 00:21:08:get:select * from scenario1 where id=32
+2017-06-01 00:21:14:__construct:demo
+2017-06-01 00:21:14:get_meta:here
+2017-06-01 00:21:14:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:21:14:get:select * from scenario1 where id='26'
+2017-06-01 00:21:14:insert:INSERT INTO demo.scenario1  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (DEFAULT,'Andon','88','1.32','1','1','2017-05-05','2017-05-04 00:00:00','asdfasdfasdfadfl;djasfa','Nam@quisdiamluctus.org',' wqe4q','1','ok','FOOBAR')
+2017-06-01 00:21:14:get:select * from scenario1 where id=33
+2017-06-01 00:21:17:__construct:demo
+2017-06-01 00:21:17:get_meta:here
+2017-06-01 00:21:17:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:21:17:add:id vs DEFAULTv:nextval('scenario1_id_seq'::regclass)
+2017-06-01 00:21:17:add:Array
+(
+    [id] => DEFAULT
+    [name] => NULL
+    [int] => NULL
+    [currency] => NULL
+    [float] => NULL
+    [bool] => NULL
+    [date] => NULL
+    [datetime] => NULL
+    [text] => NULL
+    [email] => NULL
+    [varchar_10] => NULL
+    [id_detail] => NULL
+    [enum] => NULL
+    [default] => NULL
+)
+
+2017-06-01 00:21:17:insert:INSERT INTO demo.scenario1  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (DEFAULT,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-06-01 00:21:17:get:select * from scenario1 where id=34
+2017-06-01 00:21:21:__construct:demo
+2017-06-01 00:21:21:get_meta:here
+2017-06-01 00:21:21:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:21:21:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:21:21:add:id vs 14v:
+2017-06-01 00:21:21:add:Array
+(
+    [id] => 14
+    [name] => NULL
+    [int] => NULL
+    [currency] => NULL
+    [float] => NULL
+    [bool] => NULL
+    [date] => NULL
+    [datetime] => NULL
+    [text] => NULL
+    [email] => NULL
+    [varchar_10] => NULL
+    [id_detail] => NULL
+    [enum] => NULL
+    [default] => NULL
+)
+
+2017-06-01 00:21:21:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (14,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-06-01 00:21:21:get:select * from scenario2 where id=14
+2017-06-01 00:24:42:__construct:demo
+2017-06-01 00:24:42:get_meta:here
+2017-06-01 00:24:42:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:24:42:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:24:42:add:id vs 15v:
+2017-06-01 00:24:42:add:Array
+(
+    [id] => 15
+    [name] => NULL
+    [int] => NULL
+    [currency] => NULL
+    [float] => NULL
+    [bool] => NULL
+    [date] => NULL
+    [datetime] => NULL
+    [text] => NULL
+    [email] => NULL
+    [varchar_10] => NULL
+    [id_detail] => NULL
+    [enum] => NULL
+    [default] => NULL
+)
+
+2017-06-01 00:24:42:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (15,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-06-01 00:24:42:get:select * from scenario2 where id=15
+2017-06-01 00:24:46:__construct:demo
+2017-06-01 00:24:46:get_meta:here
+2017-06-01 00:24:46:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:24:46:get:select * from scenario2 where id='6'
+2017-06-01 00:24:46:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:24:46:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (16,'','','','','','','','','','','','','')
+2017-06-01 00:24:52:__construct:demo
+2017-06-01 00:24:52:get_meta:here
+2017-06-01 00:24:52:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:24:52:get:select * from scenario1 where id='21'
+2017-06-01 00:24:52:insert:INSERT INTO demo.scenario1  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (DEFAULT,'Atkins','44','5.55','1.5','1','2012-03-16','2017-05-05 12:30:00','text:text','arcu.et.pede@musProin.cam','Ishmael','2','not_ok','foobar')
+2017-06-01 00:24:52:get:select * from scenario1 where id=35
+2017-06-01 00:24:58:__construct:demo
+2017-06-01 00:24:58:get_meta:here
+2017-06-01 00:24:58:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:24:58:get:select * from scenario1 where id='21'
+2017-06-01 00:24:58:insert:INSERT INTO demo.scenario1  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (DEFAULT,'Atkins','44','5.55','1.5','1','2012-03-16','2017-05-05 12:30:00','text:text','arcu.et.pede@musProin.cam','Ishmael','2','not_ok','foobar')
+2017-06-01 00:24:58:get:select * from scenario1 where id=36
+2017-06-01 00:25:26:__construct:demo
+2017-06-01 00:25:26:get_meta:here
+2017-06-01 00:25:26:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:25:26:__construct:demo
+2017-06-01 00:25:26:get_meta:here
+2017-06-01 00:25:26:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:25:26:__construct:demo
+2017-06-01 00:25:26:get_meta:here
+2017-06-01 00:25:26:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:25:31:__construct:demo
+2017-06-01 00:25:31:get_meta:here
+2017-06-01 00:25:31:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:25:31:__construct:demo
+2017-06-01 00:25:31:get_meta:here
+2017-06-01 00:25:31:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:25:31:__construct:demo
+2017-06-01 00:25:31:get_meta:here
+2017-06-01 00:25:31:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:27:44:__construct:demo
+2017-06-01 00:27:44:get_meta:here
+2017-06-01 00:27:44:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:27:44:__construct:demo
+2017-06-01 00:27:44:get_meta:here
+2017-06-01 00:27:44:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:27:44:__construct:demo
+2017-06-01 00:27:44:get_meta:here
+2017-06-01 00:27:44:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:28:07:__construct:demo
+2017-06-01 00:28:07:get_meta:here
+2017-06-01 00:28:07:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:28:07:__construct:demo
+2017-06-01 00:28:07:get_meta:here
+2017-06-01 00:28:07:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:28:07:__construct:demo
+2017-06-01 00:28:07:get_meta:here
+2017-06-01 00:28:07:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:28:11:__construct:demo
+2017-06-01 00:28:11:get_meta:here
+2017-06-01 00:28:11:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:28:11:__construct:demo
+2017-06-01 00:28:11:get_meta:here
+2017-06-01 00:28:11:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:28:11:__construct:demo
+2017-06-01 00:28:11:get_meta:here
+2017-06-01 00:28:11:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:28:17:__construct:demo
+2017-06-01 00:28:17:delete:DELETE FROM scenario1  WHERE id = 
+2017-06-01 00:28:21:__construct:demo
+2017-06-01 00:28:21:delete:DELETE FROM scenario1  WHERE id = 
+2017-06-01 00:28:24:__construct:demo
+2017-06-01 00:28:24:get_meta:here
+2017-06-01 00:28:24:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:28:24:get:select * from scenario1 where id='28'
+2017-06-01 00:28:24:insert:INSERT INTO demo.scenario1  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (DEFAULT,'','','','','','','','','','','','','')
+2017-06-01 00:28:36:__construct:demo
+2017-06-01 00:28:36:get_meta:here
+2017-06-01 00:28:36:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:28:36:get:select * from scenario1 where id='26'
+2017-06-01 00:28:36:insert:INSERT INTO demo.scenario1  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (DEFAULT,'Andon','88','1.32','1','1','2017-05-05','2017-05-04 00:00:00','asdfasdfasdfadfl;djasfa','Nam@quisdiamluctus.org',' wqe4q','1','ok','FOOBAR')
+2017-06-01 00:28:36:get:select * from scenario1 where id=37
+2017-06-01 00:28:42:__construct:demo
+2017-06-01 00:28:42:get_meta:here
+2017-06-01 00:28:42:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:28:42:get:select * from scenario2 where id='5'
+2017-06-01 00:28:42:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:28:42:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (16,'Schwartz','79','1.50','1','0','2012-03-16','','','ante@adipiscing.org','Carla','1','','there')
+2017-06-01 00:31:51:__construct:demo
+2017-06-01 00:31:51:get_meta:here
+2017-06-01 00:31:51:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:31:51:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:31:51:add:id vs 16v:
+2017-06-01 00:31:51:add:Array
+(
+    [id] => 16
+    [name] => NULL
+    [int] => NULL
+    [currency] => NULL
+    [float] => NULL
+    [bool] => NULL
+    [date] => NULL
+    [datetime] => NULL
+    [text] => NULL
+    [email] => NULL
+    [varchar_10] => NULL
+    [id_detail] => NULL
+    [enum] => NULL
+    [default] => NULL
+)
+
+2017-06-01 00:31:51:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (16,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-06-01 00:31:51:get:select * from scenario2 where id=16
+2017-06-01 00:35:34:__construct:demo
+2017-06-01 00:35:34:get_meta:here
+2017-06-01 00:35:34:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:35:34:get:select * from scenario2 where id='5'
+2017-06-01 00:35:34:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:35:34:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (17,'Schwartzset','79set','1.50set','1set','0set','2012-03-16set','','','ante@adipiscing.orgset','Carlaset','1set','','thereset')
+2017-06-01 00:37:45:__construct:demo
+2017-06-01 00:37:45:get_meta:here
+2017-06-01 00:37:45:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:37:45:get:select * from scenario2 where id='4'
+2017-06-01 00:37:45:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:37:45:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (17,'Nicholasset','18set','1.92set','2set','0set','2012-03-16set','','','mollis@eutellus.co.ukset','Troyset','4set','','FOOBARset')
+2017-06-01 00:38:00:__construct:demo
+2017-06-01 00:38:00:get_meta:here
+2017-06-01 00:38:00:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:38:00:__construct:demo
+2017-06-01 00:38:00:get_meta:here
+2017-06-01 00:38:00:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:38:00:__construct:demo
+2017-06-01 00:38:00:get_meta:here
+2017-06-01 00:38:00:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:38:00:__construct:demo
+2017-06-01 00:38:00:get_meta:here
+2017-06-01 00:38:00:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:38:00:__construct:demo
+2017-06-01 00:38:00:get_meta:here
+2017-06-01 00:38:00:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:38:00:__construct:demo
+2017-06-01 00:38:00:get_meta:here
+2017-06-01 00:38:00:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:38:01:__construct:demo
+2017-06-01 00:38:01:__construct:demo
+2017-06-01 00:38:01:get_meta:here
+2017-06-01 00:38:01:get_meta:here
+2017-06-01 00:38:01:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:38:01:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:38:01:__construct:demo
+2017-06-01 00:38:01:get_meta:here
+2017-06-01 00:38:01:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:38:05:__construct:demo
+2017-06-01 00:38:05:get_meta:here
+2017-06-01 00:38:05:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:38:05:get:select * from demo where id='3'
+2017-06-01 00:38:05:insert:INSERT INTO demo.demo  ("id","name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website") VALUES (DEFAULT,'Hamiltonset','Mohammadset','73set','1.22set','euset','FRset','dui@duiCras.eduset','0set','2012-01-30set','www.xkeyshkmstset')
+2017-06-01 00:38:35:__construct:demo
+2017-06-01 00:38:35:get_meta:here
+2017-06-01 00:38:35:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:38:35:get:select * from scenario2 where id='4'
+2017-06-01 00:38:35:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:38:35:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (17,'Nicholasset','18set','1.92set','2set','0set','2012-03-16set','','','mollis@eutellus.co.ukset','Troyset','4set','','FOOBARset')
+2017-06-01 00:38:40:__construct:demo
+2017-06-01 00:38:40:get_meta:here
+2017-06-01 00:38:40:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:38:40:get:select * from scenario2 where id='4'
+2017-06-01 00:38:40:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:38:40:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (17,'Nicholas','18','1.92','2','0','2012-03-16','','','mollis@eutellus.co.uk','Troy','4','','FOOBAR')
+2017-06-01 00:39:04:__construct:demo
+2017-06-01 00:39:04:get_meta:here
+2017-06-01 00:39:04:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:39:04:__construct:demo
+2017-06-01 00:39:04:get_meta:here
+2017-06-01 00:39:04:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:39:05:__construct:demo
+2017-06-01 00:39:05:get_meta:here
+2017-06-01 00:39:05:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:39:14:__construct:demo
+2017-06-01 00:39:14:get_meta:here
+2017-06-01 00:39:14:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:39:14:get:select * from scenario2 where id='3'
+2017-06-01 00:39:14:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:39:14:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (17,'Hamilton','10','10.50','1','1','2012-03-16','','','dui@duiCras.edu','Mohammad','3','ok','FOOBAR')
+2017-06-01 00:40:14:__construct:demo
+2017-06-01 00:40:14:get_meta:here
+2017-06-01 00:40:14:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:40:14:__construct:demo
+2017-06-01 00:40:14:get_meta:here
+2017-06-01 00:40:14:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:40:14:__construct:demo
+2017-06-01 00:40:14:get_meta:here
+2017-06-01 00:40:14:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:40:16:__construct:demo
+2017-06-01 00:40:16:get_meta:here
+2017-06-01 00:40:16:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:40:16:get:select * from scenario1 where id='25'
+2017-06-01 00:40:16:insert:INSERT INTO demo.scenario1  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (DEFAULT,'Andon','88','1.32','1','1','2017-05-05','2017-05-04 00:00:00','asdfasdfasdfadfl;djasfa','Nam@quisdiamluctus.org',' wqe4q','1','ok','FOOBAR')
+2017-06-01 00:40:16:get:select * from scenario1 where id=38
+2017-06-01 00:40:18:__construct:demo
+2017-06-01 00:40:18:get_meta:here
+2017-06-01 00:40:18:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:40:18:get:select * from scenario2 where id='3'
+2017-06-01 00:40:18:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:40:18:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (17,'Hamilton','10','10.50','1','1','2012-03-16','','','dui@duiCras.edu','Mohammad','3','ok','FOOBAR')
+2017-06-01 00:41:19:__construct:demo
+2017-06-01 00:41:19:get_meta:here
+2017-06-01 00:41:19:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:41:19:__construct:demo
+2017-06-01 00:41:19:get_meta:here
+2017-06-01 00:41:19:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:41:19:__construct:demo
+2017-06-01 00:41:19:get_meta:here
+2017-06-01 00:41:19:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:41:22:__construct:demo
+2017-06-01 00:41:22:get_meta:here
+2017-06-01 00:41:22:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:41:22:get:select * from scenario2 where id='5'
+2017-06-01 00:41:22:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:41:22:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (17,'Schwartz','79','1.50','1','0','2012-03-16',metoo,metoo,'ante@adipiscing.org','Carla','1',metoo,'there')
+2017-06-01 00:42:34:__construct:demo
+2017-06-01 00:42:34:__construct:demo
+2017-06-01 00:42:34:get_meta:here
+2017-06-01 00:42:34:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:42:34:get_meta:here
+2017-06-01 00:42:34:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:42:34:__construct:demo
+2017-06-01 00:42:34:get_meta:here
+2017-06-01 00:42:34:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:42:36:__construct:demo
+2017-06-01 00:42:36:get_meta:here
+2017-06-01 00:42:36:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:42:36:get:select * from scenario2 where id='3'
+2017-06-01 00:42:36:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:42:36:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (17,'Hamilton','10','10.50','1','1','2012-03-16','','','dui@duiCras.edu','Mohammad','3','ok','FOOBAR')
+2017-06-01 00:43:24:__construct:demo
+2017-06-01 00:43:24:get_meta:here
+2017-06-01 00:43:24:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:43:24:__construct:demo
+2017-06-01 00:43:24:get_meta:here
+2017-06-01 00:43:24:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:43:24:__construct:demo
+2017-06-01 00:43:24:get_meta:here
+2017-06-01 00:43:24:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:43:26:__construct:demo
+2017-06-01 00:43:26:get_meta:here
+2017-06-01 00:43:26:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:43:26:get:select * from scenario2 where id='3'
+2017-06-01 00:43:26:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:43:26:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (17,'Hamilton','10','10.50','1','1','2012-03-16','extra','extra','dui@duiCras.edu','Mohammad','3','ok','FOOBAR')
+2017-06-01 00:44:09:__construct:demo
+2017-06-01 00:44:09:__construct:demo
+2017-06-01 00:44:09:get_meta:here
+2017-06-01 00:44:09:get_meta:here
+2017-06-01 00:44:09:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:44:09:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:44:09:__construct:demo
+2017-06-01 00:44:09:get_meta:here
+2017-06-01 00:44:09:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:44:12:__construct:demo
+2017-06-01 00:44:12:get_meta:here
+2017-06-01 00:44:12:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:44:12:get:select * from scenario2 where id='3'
+2017-06-01 00:44:12:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:44:12:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (17,'Hamilton','10','10.50','1','1','2012-03-16','NULL','x','dui@duiCras.edu','Mohammad','3','ok','FOOBAR')
+2017-06-01 00:44:40:__construct:demo
+2017-06-01 00:44:40:__construct:demo
+2017-06-01 00:44:40:get_meta:here
+2017-06-01 00:44:40:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:44:40:get_meta:here
+2017-06-01 00:44:40:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:44:40:__construct:demo
+2017-06-01 00:44:40:get_meta:here
+2017-06-01 00:44:40:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:44:43:__construct:demo
+2017-06-01 00:44:43:get_meta:here
+2017-06-01 00:44:43:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:44:43:get:select * from scenario2 where id='3'
+2017-06-01 00:44:43:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:44:43:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (17,'Hamilton','10','10.50','1','1','2012-03-16',NULL,'x','dui@duiCras.edu','Mohammad','3','ok','FOOBAR')
+2017-06-01 00:44:43:get:select * from scenario2 where id=17
+2017-06-01 00:44:47:__construct:demo
+2017-06-01 00:44:47:get_meta:here
+2017-06-01 00:44:47:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:44:47:get:select * from demo where id='6'
+2017-06-01 00:44:47:insert:INSERT INTO demo.demo  ("id","name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website") VALUES (DEFAULT,'Bond','Leno','33','1.55','na','US','semper.tellus.id@sem.co.uk','0','2012-03-21','www.hpscfutiyvc.ejq')
+2017-06-01 00:44:47:get:select * from demo where id=1001
+2017-06-01 00:44:55:__construct:demo
+2017-06-01 00:44:55:get_meta:here
+2017-06-01 00:44:55:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:44:55:add:id vs DEFAULTv:nextval('walkboard.demo_seq'::regclass)
+2017-06-01 00:44:55:add:Array
+(
+    [id] => DEFAULT
+    [name] => ''
+    [firstname] => ''
+    [age] => ''
+    [height] => ''
+    [id_continent] => ''
+    [id_country] => ''
+    [email] => ''
+    [freelance] => ''
+    [lastvisit] => ''
+    [website] => ''
+)
+
+2017-06-01 00:44:55:insert:INSERT INTO demo.demo  ("id","name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website") VALUES (DEFAULT,'','','','','','','','','','')
+2017-06-01 00:46:18:__construct:demo
+2017-06-01 00:46:18:get_meta:here
+2017-06-01 00:46:18:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:46:18:__construct:demo
+2017-06-01 00:46:18:get_meta:here
+2017-06-01 00:46:18:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:46:18:__construct:demo
+2017-06-01 00:46:18:get_meta:here
+2017-06-01 00:46:18:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:46:21:__construct:demo
+2017-06-01 00:46:21:get_meta:here
+2017-06-01 00:46:21:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:46:21:add:id vs DEFAULTv:nextval('walkboard.demo_seq'::regclass)
+2017-06-01 00:46:21:add:Array
+(
+    [id] => DEFAULT
+    [name] => NULL
+    [firstname] => NULL
+    [age] => NULL
+    [height] => NULL
+    [id_continent] => NULL
+    [id_country] => NULL
+    [email] => NULL
+    [freelance] => NULL
+    [lastvisit] => NULL
+    [website] => NULL
+)
+
+2017-06-01 00:46:21:insert:INSERT INTO demo.demo  ("id","name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website") VALUES (DEFAULT,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-06-01 00:46:40:__construct:demo
+2017-06-01 00:46:40:get_meta:here
+2017-06-01 00:46:40:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:46:40:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:46:40:add:id vs 18v:
+2017-06-01 00:46:40:add:Array
+(
+    [id] => 18
+    [name] => NULL
+    [int] => NULL
+    [currency] => NULL
+    [float] => NULL
+    [bool] => NULL
+    [date] => NULL
+    [datetime] => NULL
+    [text] => NULL
+    [email] => NULL
+    [varchar_10] => NULL
+    [id_detail] => NULL
+    [enum] => NULL
+    [default] => NULL
+)
+
+2017-06-01 00:46:40:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (18,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-06-01 00:46:40:get:select * from scenario2 where id=18
+2017-06-01 00:46:44:__construct:demo
+2017-06-01 00:46:44:get_meta:here
+2017-06-01 00:46:44:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:46:44:get_next_id:select max(id)+1 from scenario2
+2017-06-01 00:46:44:add:id vs 19v:
+2017-06-01 00:46:44:add:Array
+(
+    [id] => 19
+    [name] => NULL
+    [int] => NULL
+    [currency] => NULL
+    [float] => NULL
+    [bool] => NULL
+    [date] => NULL
+    [datetime] => NULL
+    [text] => NULL
+    [email] => NULL
+    [varchar_10] => NULL
+    [id_detail] => NULL
+    [enum] => NULL
+    [default] => NULL
+)
+
+2017-06-01 00:46:44:insert:INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (19,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-06-01 00:46:44:get:select * from scenario2 where id=19
+2017-06-01 00:46:49:__construct:demo
+2017-06-01 00:46:49:get_meta:here
+2017-06-01 00:46:49:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:46:49:add:id vs DEFAULTv:nextval('scenario1_id_seq'::regclass)
+2017-06-01 00:46:49:add:Array
+(
+    [id] => DEFAULT
+    [name] => NULL
+    [int] => NULL
+    [currency] => NULL
+    [float] => NULL
+    [bool] => NULL
+    [date] => NULL
+    [datetime] => NULL
+    [text] => NULL
+    [email] => NULL
+    [varchar_10] => NULL
+    [id_detail] => NULL
+    [enum] => NULL
+    [default] => NULL
+)
+
+2017-06-01 00:46:49:insert:INSERT INTO demo.scenario1  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (DEFAULT,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-06-01 00:46:49:get:select * from scenario1 where id=39
+2017-06-01 00:49:37:__construct:demo
+2017-06-01 00:49:37:__construct:demo
+2017-06-01 00:49:37:get_meta:here
+2017-06-01 00:49:37:get_meta:here
+2017-06-01 00:49:37:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:49:37:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:49:37:__construct:demo
+2017-06-01 00:49:37:get_meta:here
+2017-06-01 00:49:37:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:49:39:__construct:demo
+2017-06-01 00:49:39:get_meta:here
+2017-06-01 00:49:39:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:49:39:add:id vs DEFAULTv:nextval('walkboard.demo_seq'::regclass)
+2017-06-01 00:49:39:add:Array
+(
+    [id] => DEFAULT
+    [name] => NULL
+    [firstname] => NULL
+    [age] => NULL
+    [height] => NULL
+    [id_continent] => NULL
+    [id_country] => NULL
+    [email] => NULL
+    [freelance] => NULL
+    [lastvisit] => NULL
+    [website] => NULL
+)
+
+2017-06-01 00:49:39:insert:INSERT INTO demo.demo  ("id","name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website") VALUES (DEFAULT,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-06-01 00:50:02:__construct:demo
+2017-06-01 00:50:02:get_meta:here
+2017-06-01 00:50:02:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 00:50:02:__construct:demo
+2017-06-01 00:50:02:get_meta:here
+2017-06-01 00:50:02:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 00:50:02:__construct:demo
+2017-06-01 00:50:02:get_meta:here
+2017-06-01 00:50:02:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:50:04:__construct:demo
+2017-06-01 00:50:04:get_meta:here
+2017-06-01 00:50:04:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
+2017-06-01 00:50:04:add:id vs DEFAULTv:nextval('walkboard.demo_seq'::regclass)
+2017-06-01 00:50:04:add:Array
+(
+    [id] => DEFAULT
+    [name] => NULL
+    [firstname] => NULL
+    [age] => NULL
+    [height] => NULL
+    [id_continent] => NULL
+    [id_country] => NULL
+    [email] => NULL
+    [freelance] => NULL
+    [lastvisit] => NULL
+    [website] => NULL
+)
+
+2017-06-01 00:50:04:insert:INSERT INTO demo.demo  ("id","name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website") VALUES (DEFAULT,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+2017-06-01 00:50:04:errorInfo:23502

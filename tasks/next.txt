@@ -1,0 +1,37 @@
+I've merged pdo branch to master
+
+I rewrote debug. It gives an Notice: array to string conversion error message. Please fix first and push.
+Duplicate and insert don't work
+
+I don't understand why tablename vs table.
+Can we standardise on table?
+
+git rename pdodb.php to db.php
+i think db.php should be pure db operations
+backend.php should be clean like it is
+A lot of these new functions should be moved into db_utils.php, perhaps with another name.
+
+look at the way I implemented db.php::delete
+db.php should be a pure db.php library, not have access to POST.
+
+query:
+for an execute function:
+	 should return number of rows affected (including zero) and undef for error (e.g. invalid sql)
+for a select function:
+	should return a resultset (array of arrays) on success, and undefined for error.
+
+Rewrite the other CRUD operations simililarly.
+backend:add should go straight to db:insert
+
+If there is a PHP error in backend.php, it fails badly in the frontend.
+Can backend.js handle it properly if it doesn't receive pure json (or 'ok') back from backend.php
+
+when it doesn't have a value, insert was trying to insert '' i think, which is invalid for timestamp or whatever.
+the add function should probably create an insert with just the id with 'default'/next_id, the other fields should not be in the insert command.
+
+
+
+
+
+
+

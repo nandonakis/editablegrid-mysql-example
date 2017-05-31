@@ -3,7 +3,11 @@
 	error_reporting(E_ALL);
 	ini_set('display_errors', '1');
 	require_once("profiles/postgres/config.php");
+<<<<<<< HEAD
 	isset($config) or die("Invalid config");
+=======
+	isset($config) or fail("Invalid config");
+>>>>>>> 6bd766217c2a3e7f7991364693afa401b9b4a2d4
 	//require_once('EditableGrid.php');
 	require_once('pdoDB.php');
 	
@@ -11,7 +15,11 @@
 	
 	
 	$db = new DBClass($config);
+<<<<<<< HEAD
 	isset($db) or die("No DB");
+=======
+	isset($db) or fail("No DB");
+>>>>>>> 6bd766217c2a3e7f7991364693afa401b9b4a2d4
 	
 	//$csv = $db->get_meta('scenario1', TRUE);
 	//$query = sprintf($query, $table);
@@ -31,7 +39,11 @@
 HERE;
 				
 	if(!$query){
+<<<<<<< HEAD
 		die("FAIL");
+=======
+		fail("FAIL");
+>>>>>>> 6bd766217c2a3e7f7991364693afa401b9b4a2d4
 	}
 			
 	$result = $db->dbh->query($query);
