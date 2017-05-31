@@ -1,50 +1,20 @@
 <?php	 
-
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
-
 require_once('db_utils.php');
 
-
-
-function add_columns_from_meta($result, $grid, $table){
-	global $db;
-	$meta = $db->get_table_columns($table);
-	// var_dump($meta);die;
-	//$grid->addColumn('id', 'ID', 'integer', NULL, false); 
-	foreach($meta as $name => $v){
-		$editable = true; $name === 'id' and $editable = false;
-		$type = get_col_type($v["native_type"],$name);
-		if($type === false)
-		    continue;
-		
-		
-		$grid->addColumn($name,$name,$type,NULL,$editable);
-		//public function addColumn($name, $label, $type, $values = NULL, $editable = true, $field = NULL, $bar = true, $hidden = false)
-		//echo $v["native_type"] . "...$type\n";
-		//if($v['name'] == 'id') continue;
-		//$name = $v['name'];
-		//$pos = strpos($name, 'id_');
-		//if($pos !== false){
-		//	$instr = substr($name, 3);
-		//	$grid->addColumn($name, $instr, 'string', $db->fetch_pairs('SELECT id, name FROM ' . $instr),true );  
-		//}else{
-	}
-	$grid->addColumn('action', 'Action', 'html', NULL, false, 'id');
-	//die;
-}  
-
-$action = (isset($_GET['action'])) ? stripslashes($_GET['action']) : die ("no action");
-$table = (isset($_GET['table'])) ? stripslashes($_GET['table']) : die ("No table");
-$profile = (isset($_GET['profile'])) ? stripslashes($_GET['profile']) : die("No profile");
+$action = (isset($_GET['action'])) ? stripslashes($_GET['action']) : fail ("no action");
+$table = (isset($_GET['table'])) ? stripslashes($_GET['table']) : fail ("No table");
+$profile = (isset($_GET['profile'])) ? stripslashes($_GET['profile']) : fail("No profile");
 
 require_once("profiles/$profile/config.php");
-isset($config) or die("Invalid config");
+isset($config) or fail("Invalid config");
 require_once('EditableGrid.php');
 require_once('pdoDB.php');
 
 $db = new DBClass($config);
-isset($db) or die("No DB");
+isset($db) or fail("backend","No DB");
+
 
 // create a new EditableGrid object
 if($action == 'add'){
@@ -60,36 +30,33 @@ if($action == 'add'){
 		echo json_encode(array('error' => $db->errorInfo()));
 	}
 	//echo $return ? $data . $return : "error";  
-	die;
 }
 
 if ($action == 'update'){
 	$return = $db->update($table);
 	echo $return ? "ok" : json_encode(array('error' => $db->errorInfo()));
-	die;
 }
 
 if ($action == 'delete'){
 	$return = $db->delete($table);
 	echo $return ? "ok" : json_encode(array('error' => $db->errorInfo()));
-	die;
 }
 
 if ($action == 'duplicate'){
 	$return = $db->duplicate($table);
 	echo $return ? "ok" : json_encode(array('error' => $db->errorInfo()));
-	die;
+	
 }
-
-$grid = new EditableGrid();
-$sql = "SELECT * FROM $table";
-$result = $db->query($sql);
-add_columns_from_meta($result, $grid, $table);
-
-//var_dump($meta);die;
-//die;
-// send data to the browser
-$grid->renderJSON($result);
+if ($action == 'load') {
+	$grid = new EditableGrid();
+	$sql = "SELECT * FROM $table";
+	$result = $db->query($sql);
+	$result or fail('load','select failed'); //TODO: Show this properly
+	add_columns_from_meta($result,$grid,$table);
+	//var_dump($meta);fail;
+	// send data to the browser
+	$grid->renderJSON($result);
+}
 
 /* 
 *  Add columns. The first argument of addColumn is the name of the field in the databse. 

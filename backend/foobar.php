@@ -3,7 +3,7 @@
 	error_reporting(E_ALL);
 	ini_set('display_errors', '1');
 	require_once("profiles/postgres/config.php");
-	isset($config) or die("Invalid config");
+	isset($config) or fail("Invalid config");
 	//require_once('EditableGrid.php');
 	require_once('pdoDB.php');
 	
@@ -11,7 +11,7 @@
 	
 	
 	$db = new DBClass($config);
-	isset($db) or die("No DB");
+	isset($db) or fail("No DB");
 	
 	//$csv = $db->get_meta('scenario1', TRUE);
 	//$query = sprintf($query, $table);
@@ -31,7 +31,7 @@
 HERE;
 				
 	if(!$query){
-		die("FAIL");
+		fail("FAIL");
 	}
 			
 	$result = $db->dbh->query($query);
