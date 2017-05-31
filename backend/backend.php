@@ -7,47 +7,50 @@ $action = (isset($_GET['action'])) ? stripslashes($_GET['action']) : fail ("no a
 $table = (isset($_GET['table'])) ? stripslashes($_GET['table']) : fail ("No table");
 $profile = (isset($_GET['profile'])) ? stripslashes($_GET['profile']) : fail("No profile");
 
+isset($_POST['id']) and $id = stripslashes($_POST['id']);
+//$id = $db->dbh->quote(strip_tags($_POST['id']));
+
 require_once("profiles/$profile/config.php");
 isset($config) or fail("Invalid config");
 require_once('EditableGrid.php');
 require_once('pdoDB.php');
 
 $db = new DBClass($config);
-isset($db) or fail("backend","No DB");
+if(!isset($db)) {
+	debug("backend.php",'fail',"No DB");
+	echo json_encode(array('error' => "NO DB"));
+}
 
+if ($action == 'delete'){
+	isset($_POST['tablename']) and $table = stripslashes($_POST['tablename']);
+	$rows = $db->delete($table,$id);
+	debug('delete',$rows,$query);
+	echo $rows ? "ok" : json_encode(array('error' => $db->errorInfo()));
+}
 
-// create a new EditableGrid object
-if($action == 'add'){
+elseif($action == 'add'){
 	$return = $db->add($table);
-	//var_dump($return);
-	// why doesn't this return json
 	if($return){
 		$json = json_encode($return);
-		//file_put_contents('update.log', $json ."\n");
 		echo $json;
 	}
   else{
 		echo json_encode(array('error' => $db->errorInfo()));
 	}
-	//echo $return ? $data . $return : "error";  
 }
 
-if ($action == 'update'){
+elseif ($action == 'update'){
 	$return = $db->update($table);
 	echo $return ? "ok" : json_encode(array('error' => $db->errorInfo()));
 }
 
-if ($action == 'delete'){
-	$return = $db->delete($table);
-	echo $return ? "ok" : json_encode(array('error' => $db->errorInfo()));
-}
 
-if ($action == 'duplicate'){
+elseif ($action == 'duplicate'){
 	$return = $db->duplicate($table);
 	echo $return ? "ok" : json_encode(array('error' => $db->errorInfo()));
 	
 }
-if ($action == 'load') {
+elseif ($action == 'load') {
 	$grid = new EditableGrid();
 	$sql = "SELECT * FROM $table";
 	$result = $db->query($sql);
@@ -57,26 +60,6 @@ if ($action == 'load') {
 	// send data to the browser
 	$grid->renderJSON($result);
 }
-
-/* 
-*  Add columns. The first argument of addColumn is the name of the field in the databse. 
-*  The second argument is the label that will be displayed in the header
-*/
-/*
-$grid->addColumn('id', 'ID', 'integer', NULL, false); 
-$grid->addColumn('name', 'Name', 'string');  
-$grid->addColumn('firstname', 'Firstname', 'string');  
-$grid->addColumn('age', 'Age', 'integer');  
-$grid->addColumn('height', 'Height', 'float');  
-*/
-
-/* The column id_country and id_continent will show a list of all available countries and continents. So, we select all rows from the tables */
-/*
-$grid->addColumn('id_continent', 'Continent', 'string' , $db->fetch_pairs('SELECT id, name FROM continent'),true);  
-$grid->addColumn('id_country', 'Country', 'string', $db->fetch_pairs('SELECT id, name FROM country'),true );  
-$grid->addColumn('email', 'Email', 'email');											   
-$grid->addColumn('freelance', 'Freelance', 'boolean');  
-$grid->addColumn('lastvisit', 'Lastvisit', 'date');  
-$grid->addColumn('website', 'Website', 'string');  
-$grid->addColumn('action', 'Action', 'html', NULL, false, 'id');  
-*/
+else {
+	fail("Invalid action");
+}

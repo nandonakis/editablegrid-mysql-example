@@ -98,6 +98,7 @@ public function parse_meta_file($file, $sep="\t"){
 	return $rows;
 }
 
+
 public function quote_identifier($field) {
 	$type = $this->db_type; 
 	if ($type == 'mysql') {
@@ -175,17 +176,17 @@ public function get($id, $table){
 
 public function add(){
 	global $_POST;
-	$tablename = strip_tags($_POST['tablename']);
-	//$tablename = 'demo';
-	return $this->insert($tablename, $_POST);
+	$table = strip_tags($_POST['tablename']);
+	//$table = 'demo';
+	return $this->insert($table, $_POST);
 }
 
-public function insert($tablename, $values, $cols=FALSE, $excl_cols=array()) {
+public function insert($table, $values, $cols=FALSE, $excl_cols=array()) {
 	
 	if($cols === FALSE)	{
-			$cols = $this->get_meta($tablename);
+			$cols = $this->get_meta($table);
 	}
-	//$cols = $this->get_table_columns($tablename);
+	//$cols = $this->get_table_columns($table);
 	//debug('insert cols',print_r($cols,TRUE),'ok');
 	$fields = array();
 	$new_values = array();
@@ -196,13 +197,15 @@ public function insert($tablename, $values, $cols=FALSE, $excl_cols=array()) {
 			continue;
 		}
 		$fields[] = $this->quote_identifier($k);
-		if(array_key_exists($k, $values)){
+		
+		if(array_key_exists($k, $values) and isset($values[$k])){
 			$new_values[] = $this->dbh->quote(strip_tags($values[$k]));
-		}else{
+		}
+		else{
 			$new_values[] = 'default';
 		}
 	}
-	$query = sprintf("INSERT INTO %s  (%s) VALUES (%s)", $tablename, join(',', $fields), join(',',$new_values)); 
+	$query = sprintf("INSERT INTO %s  (%s) VALUES (%s)", $table, join(',', $fields), join(',',$new_values)); 
 
 	//file_put_contents('update.log', $query ."\n");
 	debug('insert',$query, 'ok');
@@ -238,7 +241,14 @@ public function update(){
 	return $result;
 }
 
-public function delete(){
+public function delete($table,$id){
+	$query = sprintf("DELETE FROM %s  WHERE id = %s",$table,$id);
+	$result = $this->dbh->query($query);
+	$rows = $this->rowCount(); // TODO: Make query return number of rows deleted, 0 or undef for error
+	return $rows;
+}
+
+public function zzdelete(){
 	global $_POST;
 	$table = strip_tags($_POST['tablename']);
 	$id = $this->dbh->quote(strip_tags($_POST['id']));
@@ -251,20 +261,20 @@ public function delete(){
 
 public function duplicate(){
 	global $_POST;
-	$tablename = strip_tags($_POST['table']);
-	$cols = $this->get_meta($tablename);
+	$table = strip_tags($_POST['table']);
+	$cols = $this->get_meta($table);
 	//$fields = join(',',array_diff(array_keys($cols), ['id']));
 	$id = $this->dbh->quote(strip_tags($_POST['id']));
 	
 	
-	$query = sprintf("SELECT * FROM %s WHERE id=%s", $tablename,  $id );
+	$query = sprintf("SELECT * FROM %s WHERE id=%s", $table,  $id );
 	$result = $this->dbh->query($query, PDO::FETCH_ASSOC);
 	if($result === FALSE)
 		return $result;
 	
 	$row = $result->fetch();
 	debug('duplicate',$query,print_r($row, TRUE));
-	return $this->insert($tablename, $row, $cols, array('id' => 1));
+	return $this->insert($table, $row, $cols, array('id' => 1));
 }
 
 //what is this?

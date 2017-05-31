@@ -4,10 +4,10 @@
 function debug()  {
 	//$result = $sth ? 'ok' : 'error';
 	$stamp = date("Y-m-d H:i:s");
+	//TODO: get this to work
 	$args = func_get_args(); 
 	$line = join(":",$args);
 	$line = "$stamp:$line\n";
-	//print $line;
 	file_put_contents('backend.log',$line,FILE_APPEND);
 }
 
@@ -73,4 +73,28 @@ function get_col_type($type,$name=''){
 	}
 	return 'string';
 }
+
+
+/* 
+*  Add columns. The first argument of addColumn is the name of the field in the databse. 
+*  The second argument is the label that will be displayed in the header
+*/
+/*
+$grid->addColumn('id', 'ID', 'integer', NULL, false); 
+$grid->addColumn('name', 'Name', 'string');  
+$grid->addColumn('firstname', 'Firstname', 'string');  
+$grid->addColumn('age', 'Age', 'integer');  
+$grid->addColumn('height', 'Height', 'float');  
+*/
+
+/* The column id_country and id_continent will show a list of all available countries and continents. So, we select all rows from the tables */
+/*
+$grid->addColumn('id_continent', 'Continent', 'string' , $db->fetch_pairs('SELECT id, name FROM continent'),true);  
+$grid->addColumn('id_country', 'Country', 'string', $db->fetch_pairs('SELECT id, name FROM country'),true );  
+$grid->addColumn('email', 'Email', 'email');											   
+$grid->addColumn('freelance', 'Freelance', 'boolean');  
+$grid->addColumn('lastvisit', 'Lastvisit', 'date');  
+$grid->addColumn('website', 'Website', 'string');  
+$grid->addColumn('action', 'Action', 'html', NULL, false, 'id');  
+*/
 
