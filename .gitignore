@@ -4,3 +4,4 @@
 /db/postgres/config.php
 /backend/profiles/mysql/config.php
 /backend/profiles/postgres/config.php
+*.log
