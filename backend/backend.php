@@ -52,7 +52,7 @@ if ($action == 'duplicate'){
 }elseif ($action == 'load') {
 	$grid = new EditableGrid();
 	
-	$result = $db->list($table);
+	$result = $db->load($table);
 	$result or fail('load','select failed'); //TODO: Show this properly
 	add_columns_from_meta($result,$grid,$table);
 	//var_dump($meta);fail;

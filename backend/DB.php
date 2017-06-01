@@ -1,7 +1,6 @@
 <?php
 
 class DB{
-
 	//private $pdh;
 	//private $db_type;
 	//private $db_name;
@@ -9,7 +8,6 @@ class DB{
 	//private $db_password;
 	//private $db_user;
 	//private $db_table;
-	
 	protected $config = array();
 	
 	function __construct($config) {
@@ -22,15 +20,10 @@ class DB{
 		if(isset($config['db_schema']) and $config['db_type'] == 'pgsql') {
 			$schema = $config['db_schema'];
 			$this->dbh->exec("SET search_path TO $schema");
-			
-			
 		}else{
-			
 			$config['db_schema'] = $config['db_name'];
 		}
-		
 		$this->config = $config;
-		
 		debug('__construct', $this->config['db_schema'], $this->config);
 	}
 	
@@ -45,7 +38,7 @@ class DB{
 		else {
 			fail("Unrecognised type $type");
 		}
-}
+	}
 	
 
 	public function query($query, $args=array()){
@@ -134,9 +127,7 @@ class DB{
 	}
 	
 
-	
-
-	public function list($table){
+	public function load ($table){
 		$sql = "SELECT * FROM $table";
 		return $this->dbh->query($sql);
 	}
@@ -148,5 +139,4 @@ class DB{
 		return $err[2];
 	}
 }
-
 

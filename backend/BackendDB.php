@@ -14,7 +14,7 @@ function __construct($config) {
 public function get_meta($table, $forced=FALSE){
 	$dir = sprintf("%s/profiles/%s", dirname(__FILE__), $this->config['db_type'] == 'mysql'?$this->config['db_type']:'postgres');
 	$file = sprintf("%s/%s.spec.tsv", $dir, $table);
-	debug('get_meta','here');
+	//debug('get_meta','here');
 	if(!file_exists($file) || $forced){
 		$file = sprintf("%s/%s.tsv", $dir, $table);
 		if(!file_exists($file)|| $forced) {
