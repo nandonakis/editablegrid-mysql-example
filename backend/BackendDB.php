@@ -44,6 +44,10 @@ public function get_meta($table, $forced=FALSE){
 public function print_meta_row($row, $count,$file){
 	$h=array();
 	$cols= array();
+	if($row['column_key'] && strpos('PRI',$row['column_key']) !== false){
+		$row['editable'] = 0;
+		debug('print_meta_row', $row['editable']);
+	}
 	foreach($row as $k => $v){
 		$h[] =$k;
 		// modify grid_type
@@ -52,6 +56,8 @@ public function print_meta_row($row, $count,$file){
 		}
 		$cols[]  = $v;
 	}
+	
+	
 	if($count <1)	{
 		file_put_contents($file, join("\t", $h) . "\n",FILE_APPEND);
 	}

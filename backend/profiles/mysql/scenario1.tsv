@@ -1,0 +1,15 @@
+schema	table	field	label	order	type	character_maximum_length	column_key	extra	display	editable	db_type
+demo	scenario1	id	id	1	integer		PRI	auto_increment	1	0	bigint
+demo	scenario1	name	name	2	string	100			1	1	varchar
+demo	scenario1	int	int	3	integer				1	1	int
+demo	scenario1	currency	currency	4	float				1	1	decimal
+demo	scenario1	float	float	5	float				1	1	float
+demo	scenario1	bool	bool	6	integer				1	1	tinyint
+demo	scenario1	date	date	7	date				1	1	date
+demo	scenario1	datetime	datetime	8	string				1	1	datetime
+demo	scenario1	text	text	9	string	65535			1	1	text
+demo	scenario1	email	email	10	email	100			1	1	varchar
+demo	scenario1	varchar_10	varchar_10	11	string	10			1	1	varchar
+demo	scenario1	id_detail	id_detail	12	integer				1	1	int
+demo	scenario1	enum	enum	13		6			1	1	enum
+demo	scenario1	default	default	14	string	255			1	1	varchar

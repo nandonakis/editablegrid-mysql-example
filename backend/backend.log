@@ -10,3 +10,9 @@
 2017-06-01 02:13:17:modify:
 2017-06-01 02:13:17:after update:
 2017-06-01 02:13:17:errorInfo:42601
+2017-06-01 14:36:36:__construct:demo
+2017-06-01 14:36:36:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario2.tsv
+2017-06-01 14:36:36:__construct:demo
+2017-06-01 14:36:36:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/scenario1.tsv
+2017-06-01 14:36:36:__construct:demo
+2017-06-01 14:36:36:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/postgres/demo.tsv
