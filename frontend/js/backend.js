@@ -59,7 +59,8 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 			id: editableGrid.getRowId(rowIndex),
 			newvalue: editableGrid.getColumnType(columnIndex) == "boolean" ? (newValue ? 1 : 0) : newValue,
 			colname: editableGrid.getColumnName(columnIndex),
-			coltype: editableGrid.getColumnType(columnIndex)
+			coltype: editableGrid.getColumnType(columnIndex),
+			row: editableGrid.getRowValues(rowIndex),
 		},
 		success: function(response) {
 
@@ -112,7 +113,9 @@ function DatabaseGrid(table,config) {
         getActionUrl: function(action){
     
             var self = this;
-            var url= backend + '?action='+action+'&profile='+(self.dbconfig?self.dbconfig:config)+'&table='+self.name;
+						var profile = (self.dbconfig?self.dbconfig:config);
+						console.log('profile:', profile);
+            var url= backend + '?action='+action+'&profile='+profile+'&table='+self.name;
             return url;
         },
         
@@ -199,6 +202,7 @@ DatabaseGrid.prototype.deleteRow = function(id) {
 			data: {
 				tablename: self.editableGrid.name,
 				id: id,
+				row: self.editableGrid.getRowValues(self.editableGrid.getRowIndex(id)),
 			},
 			success: function(response) {
 				if (response == "ok"){
@@ -227,13 +231,14 @@ DatabaseGrid.prototype.duplicateRow = function(id) {
 		data: {
 			table: self.editableGrid.name,
 			id: id,
+			row: self.editableGrid.getRowValues(self.editableGrid.getRowIndex(id)),
 		},
 		success: function(response) {
 			if (response && response.indexOf('error') <0) {
 				//alert("Row duplicated : reload model");
         show_message(self.editableGrid.name,"Row duplicated : reload model");
 				//console.log("Row duplicated");
-				self.fetchGrid(self.editableGrid.name);
+				self.fetchGrid(self.editableGrid.name, self.editableGrid.dbconfig);
 				log('duplicateRow','ok', "RowId:"+id +" has been duplicated!", self.editableGrid.name);
 			}else{
 				log('duplicateRow','error', response, self.editableGrid.name);
@@ -263,7 +268,10 @@ DatabaseGrid.prototype.addRow = function(id) {
 		},
 		success: function(response) {
 			if (response.indexOf("error") < 0) {
-				var row = jQuery.parseJSON(response);
+				log('addRow','ok', "Row:" + id + " has been added", self.editableGrid.name);
+				self.fetchGrid(self.editableGrid.name, self.editableGrid.dbconfig);
+				/*
+				//var row = jQuery.parseJSON(response);
 				// hide form
 				//showAddForm();   
 				//form.find("input[type=text]").val("");
@@ -278,7 +286,8 @@ DatabaseGrid.prototype.addRow = function(id) {
 				//row.id = id;
 				//console.log('rowCount:', rowIndex, ' id:', id);
 				self.editableGrid.insert(rowIndex - 1, id, row, null, true);
-				log('addRow','ok', "Row:" + id + " has been added", self.editableGrid.name);
+				*/
+				
 			} else{
 					//alert("error");
 					//show_message(self.editableGrid.name,response);

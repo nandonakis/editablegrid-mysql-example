@@ -90,7 +90,18 @@ public function parse_meta_file($file, $sep="\t"){
 
 
 
-
+public function get_primary_values($table, $values){
+		$cols  = $this->get_meta($table);
+		
+		$primary = $this->get_primary($cols);
+		$keys = array();
+		foreach($primary as $k => $v){
+			$keys[$k] = $values[$k];
+		}
+		
+		return $keys;
+		
+	}
 
 
 //auto_increment
@@ -176,10 +187,12 @@ public function parse_meta_file($file, $sep="\t"){
 
 
 
-public function update($table, $values, &$info){
+public function update($table, $values, $row, &$info){
 		$colname = $values['colname'];
 		$field = $this->quote_identifier(strip_tags($colname));
-		$id = $this->dbh->quote(strip_tags($_POST['id']));
+		//$id = $this->dbh->quote(strip_tags($_POST['id']));
+		$key_cols = $this->get_primary_values($table, $row);
+		
 		$val_len = strlen($values['newvalue']);
 		$value = $this->dbh->quote(strip_tags($values['newvalue']));
 		$coltype = strip_tags($values['coltype']);
@@ -194,10 +207,10 @@ public function update($table, $values, &$info){
 		}elseif($coltype == 'string' && $this->config['db_type'] === 'pgsql'){
 			$cols = $this->get_meta($table);
 			if(array_key_exists($colname, $cols)){
-				debug('update db_cols', $colname, $cols);
+				
 			
 				$db_len = $cols[$colname]['character_maximum_length'];
-				if($val_len > $db_len){
+				if($db_len && $val_len > $db_len){
 					$info = "Value is too long!";
 					return FALSE;
 				}
@@ -207,14 +220,15 @@ public function update($table, $values, &$info){
 			}
 			
 		}
-		
-	  $result = parent::modify($table, array($field => $value), $id);
-		debug('modify',$query,$result);
+		debug('update db_cols', $colname . ':' .  $value, $cols);
+	  $result = parent::modify($table, array($colname => $value), $key_cols);
+		debug('modify',$field,$result);
 		return $result;
 }
 
-public function  delete($table,$id){
-	$result = parent::delete($table, $id);
+public function  delete($table,$row){
+	$key_cols = $this->get_primary_values($table, $row);
+	$result = parent::delete($table, $key_cols);
 	$rows = $result->rowCount(); // TODO: Make query return number of rows deleted, 0 or undef for error
 	return $rows;
 }
@@ -222,18 +236,18 @@ public function  delete($table,$id){
 
 
 
-public function duplicate($table, $values, &$info){
+public function duplicate($table, $row, &$info){
+		
+		$key_cols = $this->get_primary_values($table, $row);
+		$row = $this->get($key_cols, $table);
 		
 		
-		//$tablename = strip_tags($values['table']);
-		$cols = $this->get_meta($table);
-		//$fields = join(',',array_diff(array_keys($cols), ['id']));
-		$id = $this->dbh->quote(strip_tags($values['id']));
-		$row = $this->get($id, $table);
+		
+		
 		if($row){
 			
 		
-		
+			$cols = $this->get_meta($table);
 			//debug('duplicate',$query,print_r($row, TRUE));
 			
 			$primary = $this->get_primary($cols);

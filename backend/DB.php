@@ -60,10 +60,25 @@ class DB{
 		return $rows;
 	}
 	
-	
+	public function build_cond($values){
+		if(is_array($values)===false)
+			$values = array('id' => $values);
+		
+		$conds = array();
+		foreach($values as $k=>$v){
+			$conds[]=sprintf("%s=%s", $k, $this->dbh->quote($v));
+			
+		}
+		return join(" and ", $conds);
+		
+	}
 	
 	public function get($id, $table){
-		$query = sprintf("select * from %s where id=%s", $table, $id);
+		
+		$cond = $this->build_cond($id);
+		
+		debug('get cond', $cond, $cond);
+		$query = sprintf("select * from %s where %s", $table, $cond);
 		$rs = $this->dbh->query($query, PDO::FETCH_ASSOC);
 		debug('get', $query, $rs);
 		return $rs->fetch(PDO::FETCH_ASSOC);
@@ -93,6 +108,10 @@ class DB{
 
 		//file_put_contents('update.log', $query ."\n");
 		debug('insert',$query, 'ok');
+		return $this->dbh->query($query);
+		/* to simpify this method, other action should be added in its subclass,
+		if the insert is ok
+		
 		if($this->dbh->query($query)){
 			if($id === "")
 				$id = $this->dbh->lastInsertId();
@@ -100,18 +119,25 @@ class DB{
 			return $this->get($id, $tablename);
 		}
 		return FALSE;
+		*/
+		
 	}
 
 	
 	
 	
 	public function modify($table, $values, $id){
+		
+		
+		
+		
+		$cond = $this->build_cond($id);
 		$fields = array();
 		foreach($values as $k => $v){
-			$fields = sprintf("%s=%s", $k, $v);
+			$fields[] = sprintf("%s=%s", $k, $v);
 		}
 		
-		$query = sprintf("UPDATE %s SET %s WHERE id = %s", $table, join(',',$fields), $id );
+		$query = sprintf("UPDATE %s SET %s WHERE %s", $table, join(',',$fields), $cond );
 	  $result = $this->dbh->query($query);
 		debug('update',$query,$result);
 		return $result;
@@ -119,8 +145,10 @@ class DB{
 	
 	public function delete($table, $id){
 		
-		$id = $this->dbh->quote($id);
-		$query = sprintf("DELETE FROM %s  WHERE id = %s", $table, $id );
+		$cond = $this->build_cond($id);
+		
+		//$id = $this->dbh->quote("".$id);
+		$query = sprintf("DELETE FROM %s  WHERE %s", $table, $cond );
 		$result = $this->dbh->query($query);
 		debug('delete',$query,$result);
 		return $result;

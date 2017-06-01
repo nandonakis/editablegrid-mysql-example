@@ -31,7 +31,7 @@ if($action == 'add'){
 }
 
 if ($action == 'update'){
-	$return = $db->update($table, $_POST, $error);
+	$return = $db->update($table, $_POST, isset($_POST['row'])?$_POST['row']:$_POST, $error);
 	debug("after update", $error, $error);
 	
 	show_result($return, $error);
@@ -39,13 +39,13 @@ if ($action == 'update'){
 }
 
 if ($action == 'delete'){
-	$return = $db->delete($table, $_POST);
+	$return = $db->delete($table, isset($_POST['row'])?$_POST['row']:$_POST);
 	echo $return ? "ok" : json_encode(array('error' => $db->errorInfo()));
 	die;
 }
 
 if ($action == 'duplicate'){
-	$return = $db->duplicate($table, $_POST, $error);
+	$return = $db->duplicate($table, isset($_POST['row'])?$_POST['row']:$_POST, $error);
 	show_result($return, $error);
 	
 	die;
