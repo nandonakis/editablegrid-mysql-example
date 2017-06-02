@@ -220,7 +220,7 @@ public function update($table, $values, $row, &$info){
 			}
 			
 		}
-		debug('update db_cols', $colname . ':' .  $value, $cols);
+		debug('update db_cols', $colname . ':' .  $value);
 	  $result = parent::modify($table, array($colname => $value), $key_cols);
 		debug('modify',$field,$result);
 		return $result;

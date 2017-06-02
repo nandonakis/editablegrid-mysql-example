@@ -165,6 +165,16 @@ DatabaseGrid.prototype.fetchGrid = function(table,config) {
 	var that = this;
 	this.editableGrid.loadJSON(url);
 };
+/**
+ * Overloading the default checkDate function in order to neuter it.
+ */
+EditableGrid.prototype.checkDate = function(strDate, strDatestyle) {
+    return { 
+        formattedDate: strDate,
+        sortDate: strDate,
+        dbDate: strDate 
+    };
+};
 
 DatabaseGrid.prototype.initializeGrid = function(grid, table) {
 	var self = this;
@@ -173,8 +183,8 @@ DatabaseGrid.prototype.initializeGrid = function(grid, table) {
 	// render for the action column
 	grid.setCellRenderer("action", new CellRenderer({
 		render: function(cell, id) {
-			cell.innerHTML += "<a href='#' class='delete-row' ><i  class='fa fa-trash-o red' ></i></a>";
-			cell.innerHTML += "  <a href='#' class='copy-row' ><i  class='fa fa-copy' ></i></a>";
+			cell.innerHTML = "<a href='#' class='delete-row'  ><i  class='fa fa-trash-o red' ></i></a>";
+			cell.innerHTML += "  <a href='#' class='copy-row' data-id='"+id+"'  ><i   class='fa fa-copy' ></i></a>";
 		}
 	}));
 
@@ -191,19 +201,38 @@ DatabaseGrid.prototype.initializeGrid = function(grid, table) {
 
 	$('body').on('click', '.delete-row', function(e) {
 		var xdata = get_table_id($(this));
-
+		e.stopImmediatePropagation();
 		//console.log('row id: ',  xdata);
 		if (xdata.table == self.editableGrid.name)
 			self.deleteRow(xdata.id);
 	});
+	
+			
 	$('body').on('click', '.copy-row', function(e) {
-		var xdata = get_table_id($(this));
+		//console.log(this, 'vs', e.target);
+		e.preventDefault();
+		e.stopImmediatePropagation();
+		
+		//if($(e.target).is(this)){
+			var xdata = get_table_id($(this));
 
-		//console.log('duplicateRow id: ',  xdata);
-		if (xdata.table == self.editableGrid.name)
-			self.duplicateRow(xdata.id);
+			//console.log('duplicateRow id: ', $(this).data('id'), xdata);
+			if (xdata.table == self.editableGrid.name){
+				self.duplicateRow(xdata.id);
+				
+			}
+				
+			
+				
+		//}
+	
+		return false;
+			
 	});
 
+	
+	
+	
 	//console.log('table is: ' + table);
 	//	grid.renderGrid('demo',"testgrid");
 	// add
