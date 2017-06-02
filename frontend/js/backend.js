@@ -109,23 +109,60 @@ function DatabaseGrid(table,config) {
 			updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
 
 		},
-        dbconfig: config,
-        getActionUrl: function(action){
-    
-            var self = this;
-						var profile = (self.dbconfig?self.dbconfig:config);
-						console.log('profile:', profile);
-            var url= backend + '?action='+action+'&profile='+profile+'&table='+self.name;
-            return url;
-        },
+		dbconfig: config,
+		getActionUrl: function(action){
+
+				var self = this;
+				var profile = (self.dbconfig?self.dbconfig:config);
+				console.log('profile:', profile);
+				var url= backend + '?action='+action+'&profile='+profile+'&table='+self.name;
+				return url;
+		},
+		loadJSON: function(url, callback, dataOnly){
+			this.lastURL = url; 
+			var self = this;
+
+			// should never happen
+			if (!window.XMLHttpRequest) {
+				alert("Cannot load a JSON url with this browser!"); 
+				return false;
+			}
+
+			var ajaxRequest = new XMLHttpRequest();
+			ajaxRequest.onreadystatechange = function () {
+				if (this.readyState == 4) {
+					if (!this.responseText) { 
+						var error = "Could not load JSON from url '" + url + "'";
+						
+						//console.error(error); 
+						log('loadJSON','error', error, self.name);
+						return false; 
+					}
+					if (!self.processJSON(this.responseText)) { 
+						var error = "Invalid JSON data obtained from url '" + url + "'";
+						log('loadJSON','error', error, self.name);
+							//console.error("Invalid JSON data obtained from url '" + url + "'"); 
+							return false; 
+						}
+					self._callback('json', callback);
+				}
+			};
+
+			ajaxRequest.open("GET", this._addUrlParameters(url, dataOnly), true);
+			ajaxRequest.send("");
+
+			return true;
+		},
         
 	});
 	this.fetchGrid(table,config);
 }
 
+
 DatabaseGrid.prototype.fetchGrid = function(table,config) {
 	// call a PHP script to get the data
 	url = backend + "?action=load&profile="+config+ "&table=" + table;
+	var that = this;
 	this.editableGrid.loadJSON(url);
 };
 

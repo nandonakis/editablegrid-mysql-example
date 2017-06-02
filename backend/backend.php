@@ -57,6 +57,7 @@ if ($action == 'duplicate'){
 	add_columns_from_meta($result,$grid,$table);
 	//var_dump($meta);fail;
 	// send data to the browser
+	
 	$grid->renderJSON($result);
 }
 else {
