@@ -2,7 +2,6 @@
 require_once "DB.php";
 class BackendDB extends DB{
 
-
 function __construct($config) {
 	$params = array('db_type','db_host','db_name','db_user','db_password');
 	//TODO: Add these back into the object
@@ -11,34 +10,35 @@ function __construct($config) {
 	
 }
 
-public function get_meta($table, $forced=FALSE){
-	$dir = sprintf("%s/profiles/%s", dirname(__FILE__), $this->config['db_type'] == 'mysql'?$this->config['db_type']:'postgres');
-	$file = sprintf("%s/%s.spec.tsv", $dir, $table);
+public function get_meta($table, $forced=FALSE) {
+	$sql_dir = sprintf("%s/sql/%s", dirname(__FILE__), $this->config['db_type'] == 'mysql'? $this->config['db_type']:'postgres');
+
+	$profile_dir = sprintf("%s/profiles/%s", dirname(__FILE__), $this->config['db_type'] == 'mysql'? $this->config['db_type']:'postgres');
+	$spec = sprintf("%s/%s.spec.tsv", $profile_dir, $table);
 	//debug('get_meta','here');
-	if(!file_exists($file) || $forced){
-		$file = sprintf("%s/%s.tsv", $dir, $table);
-		if(!file_exists($file)|| $forced) {
+	if(!file_exists($spec) || $forced){
+		$spec = sprintf("%s/%s.tsv", $profile_dir, $table);
+		if(!file_exists($spec)|| $forced) {
 			### create it here
-			$query=file_get_contents("$dir/meta.sql");
+			$query=file_get_contents("$sql_dir/meta.sql");
 			if(!$query){
-				fail('get_meta',"$dir/meta.sql not found");
+				fail('get_meta',"$sql_dir/meta.sql not found");
 			}
 			$query = sprintf($query, $table, $this->config['db_schema']);
 			debug('get_meta','debug',$query);
 			$result = $this->dbh->query($query);
-			//$rows= array();
 			$rows = $result->fetchAll(PDO::FETCH_ASSOC);
 			debug('get_meta',"result of rows:",print_r($rows,TRUE));
 			$data = array();
 			$i = 0;
-			file_put_contents($file, "");
+			file_put_contents($spec, "");
 			foreach($rows as $k => $v){
-				$this->print_meta_row($v,$i++, $file);
+				$this->print_meta_row($v,$i++, $spec);
 			}
 		}
 	}
 	## load and parse it, cache it??
-	return $this->parse_meta_file($file);
+	return $this->parse_meta_file($spec);
 }
 
 public function print_meta_row($row, $count,$file){
