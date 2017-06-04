@@ -44,7 +44,7 @@
 	</div>
 
 	<!-- Paginator control -->
-	<div class='paginator' id="${table}_paginator">
+	<div class='grid_paginator' id="${table}_paginator">
 	</div>
 
 	<script type="text/javascript">

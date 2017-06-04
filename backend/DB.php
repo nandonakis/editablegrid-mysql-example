@@ -1,30 +1,32 @@
 <?php
 
 class DB{
-	//private $pdh;
-	//private $db_type;
-	//private $db_name;
-	//private $db_host;
-	//private $db_password;
-	//private $db_user;
-	//private $db_table;
+
 	protected $config = array();
 	
 	function __construct($config) {
 		$params = array('db_type','db_host','db_name','db_user','db_password');
-		//TODO: Add these back into the object
-		//foreach isset check or die
-		
 		$this->db_type = $config['db_type'];
+	
 		$this->dbh = new PDO(sprintf('%s:host=%s;dbname=%s', $config['db_type'],$config['db_host'],$config['db_name']), $config['db_user'], $config['db_password']);
 		if(isset($config['db_schema']) and $config['db_type'] == 'pgsql') {
 			$schema = $config['db_schema'];
 			$this->dbh->exec("SET search_path TO $schema");
-		}else{
+		}
+		else{
 			$config['db_schema'] = $config['db_name'];
 		}
 		$this->config = $config;
 		debug('__construct', $this->config['db_schema'], $this->config);
+	}
+	
+	public function quote_value($value) {
+		if(preg_match('/^(DEFAULT|NULL)$/',$value)) {
+			return $value;
+		}
+		else {
+			return $this->dbh->quote($value);
+		}
 	}
 	
 	public function quote_identifier($field) {
@@ -40,13 +42,11 @@ class DB{
 		}
 	}
 	
-
-	public function query($query, $args=array()){
-		return $this->dbh->query($query, PDO::FETCH_ASSOC);
-	}
 	
-	public function fetch_pairs($query){
-		if (!($res = $this->dbh->query($query, PDO::FETCH_ASSOC))) return FALSE;
+	public function fetch_pairs($sql){
+		if (!($res = $this->dbh->query($sql, PDO::FETCH_ASSOC))) {
+			return FALSE;
+		}
 		$rows = array();
 		while ($row = $res->fetch()) {
 			$first = true;
@@ -61,110 +61,81 @@ class DB{
 	}
 	
 	public function build_cond($values){
-		if(is_array($values)===false)
+		if(is_array($values)===false){
 			$values = array('id' => $values);
-		
+		}
 		$conds = array();
 		foreach($values as $k=>$v){
-			$conds[]=sprintf("%s=%s", $k, $this->dbh->quote($v));
-			
+			$k = $this->quote_identifier($k);
+			$v = $this->quote_value($v); //TODO: don't do this for non-text fields
+			$conds[]=sprintf("%s=%s", $k, $v);
 		}
 		return join(" and ", $conds);
-		
 	}
 	
-	public function get($id, $table){
-		
+	public function query($sql, $args=array()){
+		return $this->dbh->query($sql, PDO::FETCH_ASSOC);
+	}
+	
+	public function get($id,$table){
 		$cond = $this->build_cond($id);
-		
 		debug('get cond', $cond, $cond);
-		$query = sprintf("select * from %s where %s", $table, $cond);
-		$rs = $this->dbh->query($query, PDO::FETCH_ASSOC);
-		debug('get', $query, $rs);
-		return $rs->fetch(PDO::FETCH_ASSOC);
+		$table =  $this->quote_identifier($table);
+		$sql = sprintf("select * from %s where %s", $table, $cond);
+		$result = $this->dbh->query($sql, PDO::FETCH_ASSOC);
+		debug('get',$result,$sql);
+		return $result->fetch(PDO::FETCH_ASSOC);
 	}
 	
-	
-	
-	
-	public function get_next_id($table, $k){
-		$query = sprintf("select max(%s)+1 from %s", $k, $table);
-		$result = $this->dbh->query($query);
-		debug('get_next_id',$query, $result);
-		
-		return $result->fetchColumn();
+	public function load ($table){
+		$table =  $this->quote_identifier($table);
+		$sql = "SELECT * FROM $table";
+		$result = $this->dbh->query($sql);
+		debug('db:load',$result,$sql);
+		return $result;
 	}
 	
-	public function insert($tablename, $values, $id=""){
-		
+	public function insert($table, $record, $id=""){
 		$fields = array();
-		$new_values = array();
-		foreach($values as $k => $v){
-			
-			$fields[] = $this->quote_identifier($k);
-			$new_values[] = $values[$k];
+		$values = array();
+		$table =  $this->quote_identifier($table);
+		foreach($record as $k => $v){
+			$v = $this->quote_value($v);
+			$k = $this->quote_identifier($k);
+			$fields[] = $k;
+			$values[] = $v;
 		}
-		$query = sprintf("INSERT INTO %s.%s  (%s) VALUES (%s)", $this->config['db_schema'],$tablename, join(',', $fields), join(',',$new_values)); 
-
-		//file_put_contents('update.log', $query ."\n");
-		debug('insert',$query, 'ok');
-		return $this->dbh->query($query);
-		/* to simpify this method, other action should be added in its subclass,
-		if the insert is ok
 		
-		if($this->dbh->query($query)){
-			if($id === "")
-				$id = $this->dbh->lastInsertId();
-			
-			return $this->get($id, $tablename);
-		}
-		return FALSE;
-		*/
-		
+		$sql = sprintf("INSERT INTO %s.%s  (%s) VALUES (%s)", $this->config['db_schema'],$table, join(',', $fields), join(',',$values)); 
+		$rows = $this->dbh->exec($sql);
+		$id = $this->dbh->lastInsertId();
+		debug('db:insert',$rows,"rows:$rows id:$id query:$sql");
+		return $rows;
 	}
-
-	
-	
 	
 	public function modify($table, $values, $id){
-		
-		
-		
-		
 		$cond = $this->build_cond($id);
 		$fields = array();
 		foreach($values as $k => $v){
+			$k = $this->quote_identifier($k);
+			$v = $this->quote_value($v); //TODO: don't do this for non-text fields
 			$fields[] = sprintf("%s=%s", $k, $v);
 		}
-		
-		$query = sprintf("UPDATE %s SET %s WHERE %s", $table, join(',',$fields), $cond );
-	  $result = $this->dbh->query($query);
-		debug('update',$query,$result);
-		return $result;
+		$table =  $this->quote_identifier($table);
+		$sql = sprintf("UPDATE %s SET %s WHERE %s", $table, join(',',$fields), $cond );
+		$rows = $this->dbh->exec($sql);
+		debug('db:modify',$rows,"rows:$rows query:$sql");
+		return $rows;
 	}
 	
 	public function delete($table, $id){
-		
 		$cond = $this->build_cond($id);
-		
-		//$id = $this->dbh->quote("".$id);
-		$query = sprintf("DELETE FROM %s  WHERE %s", $table, $cond );
-		$result = $this->dbh->query($query);
-		debug('delete',$query,$result);
-		return $result;
+		$table =  $this->quote_identifier($table);
+		$sql = sprintf("DELETE FROM %s  WHERE %s", $table, $cond);
+		$rows = $this->dbh->exec($sql);
+		debug('db:delete',$sql,$rows);
+		return $rows;
 	}
-	
 
-	public function load ($table){
-		$sql = "SELECT * FROM $table";
-		return $this->dbh->query($sql);
-	}
-	
-	
-	public function errorInfo(){
-		$err = $this->dbh->errorInfo();
-		debug('errorInfo',$err[0],$err[1],$err[2]);
-		return $err[2];
-	}
 }
 

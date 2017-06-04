@@ -1,34 +1,27 @@
-/**
- *  highlightRow and highlight are used to show a visual feedback. If the row has been successfully modified, it will be highlighted in green. Otherwise, in red
- */
- 
 var backend = '../backend/backend.php';
 
-function highlightRow(rowId, bgColor, after) {
-	var rowSelector = $("#" + rowId);
-	rowSelector.css("background-color", bgColor);
-	rowSelector.fadeTo("normal", 0.5, function() {
-		rowSelector.fadeTo("fast", 1, function() {
-			rowSelector.css("background-color", '');
-		});
-	});
-}
-
-function highlight(div_id, style) {
-	highlightRow(div_id, style == "error" ? "#e5afaf" : style == "warning" ? "#ffcc00" : "#8dc70a");
-}
-
-function log(op,type,message, table=null) {
+// ok error alert ajax_error
+function log(op,type,message,name=null) {
 	debug = 1;
 	line = op + ":" + type + ':' + message;
-	//if (debug && type === 'ok') {
+	if(!name) {
+		//name = editableGrid.name;
+		name = self.name;
+	}
 	console.log(line);
+	if(type == 'alert') {
+		window.alert('line');
+		type = 'error';
+	}
+	if(type == 'ajax_error') {
+		line = 'There was an error communicating with the system';
+		type='error';
+	}
 	if(type == 'error') {
-		if(!table)
-			table = editableGrid.name;
-		show_message(table, line);
+		show_message(name,line);
 	}
 }
+
 
 function show_message(table,msg){
 	var self = this;
@@ -44,9 +37,21 @@ function show_message(table,msg){
 };
 
 
-/**
-	 updateCellValue calls the PHP script that will update the database. 
- */
+// highlightRow and highlight are used to show a visual feedback. If the row has been successfully modified, it will be highlighted in green. Otherwise, in red
+function highlightRow(rowId, bgColor, after) {
+	var rowSelector = $("#" + rowId);
+	rowSelector.css("background-color", bgColor);
+	rowSelector.fadeTo("normal", 0.5, function() {
+		rowSelector.fadeTo("fast", 1, function() {
+			rowSelector.css("background-color", '');
+		});
+	});
+}
+
+function highlight(div_id, style) {
+	highlightRow(div_id, style == "error" ? "#e5afaf" : style == "warning" ? "#ffcc00" : "#8dc70a");
+}
+
 
 
 function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue, row, onResponse) {
@@ -63,11 +68,9 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 			row: editableGrid.getRowValues(rowIndex),
 		},
 		success: function(response) {
-
-			//console.log('response:',response);
+			//log('response:',response);
 			// reset old value if failed then highlight row
 			var success = onResponse ? onResponse(response) : ((response.indexOf("error")<0) || !isNaN(parseInt(response))); // by default, a sucessfull reponse can be "ok" or a database id 
-			
 			highlight(row.id, success ? "ok" : "error");
 			if (!success){
 				editableGrid.setValueAt(rowIndex, columnIndex, oldValue);
@@ -75,24 +78,20 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 				log('update','error', res.error, editableGrid.name);
 				return;
 			} 
-			
-
-      log('update','ok','updated' + row.id + 'set value x to y');
-      //show_message(editableGrid.name, response);
+			log('update','ok','updated' + row.id + response);
+			//show_message(editableGrid.name, response);
 		},
 		error: function(XMLHttpRequest, textStatus, exception) {
 			//alert("Ajax failure\n" + errortext);
-				log('update','error',exception);
-				//show_message(editableGrid.name, exception)
-				//console.log('error:', exception);
+			log('update','error',exception);
+			//show_message(editableGrid.name, exception)
+			//console.log('error:', exception);
 		},
 		async: true
 	});
 }
 
 function DatabaseGrid(table,config) {
-// 	isset(table) or die;
-//	isset(config) or die;
 	var that = this;
 	this.profile = config;
 	this.editableGrid = new EditableGrid(table, {
@@ -107,84 +106,77 @@ function DatabaseGrid(table,config) {
 		},
 		modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
 			updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
-
 		},
 		dbconfig: config,
 		getActionUrl: function(action){
-
-				var self = this;
-				var profile = (self.dbconfig?self.dbconfig:config);
-				console.log('profile:', profile);
-				var url= backend + '?action='+action+'&profile='+profile+'&table='+self.name;
-				return url;
+			var self = this;
+			var profile = (self.dbconfig ? self.dbconfig:config);
+			var url= backend + '?action='+action+'&profile='+profile+'&table='+self.name;
+			// log('DatabaseGrid','ok','Grid calling:' +url);
+			return url;
 		},
 		loadJSON: function(url, callback, dataOnly){
 			this.lastURL = url; 
 			var self = this;
-
 			// should never happen
 			if (!window.XMLHttpRequest) {
-				alert("Cannot load a JSON url with this browser!"); 
+				log('loadJSON','alert',"Cannot load a JSON url with this browser!"); 
 				return false;
 			}
-
 			var ajaxRequest = new XMLHttpRequest();
 			ajaxRequest.onreadystatechange = function () {
 				if (this.readyState == 4) {
 					if (!this.responseText) { 
 						var error = "Could not load JSON from url '" + url + "'";
-						
-						//console.error(error); 
 						log('loadJSON','error', error, self.name);
 						return false; 
 					}
-					if (!self.processJSON(this.responseText)) { 
-						var error = "Invalid JSON data obtained from url '" + url + "'";
-						log('loadJSON','error', error, self.name);
-							//console.error("Invalid JSON data obtained from url '" + url + "'"); 
-							return false; 
-						}
+					try {
+						self.processJSON(this.responseText);
+					}
+					catch (err) {
+						var error = "Invalid JSON data obtained from url '" + url + "':" + err;
+						//console.error("Invalid JSON data obtained from url '" + url + "'"); 
+						log('loadJSON','ajax_error', error, self.name);
+						return false; 
+					}
+					log('loadJSON','ok','Loaded '+self.name,self.name);
 					self._callback('json', callback);
 				}
 			};
-
 			ajaxRequest.open("GET", this._addUrlParameters(url, dataOnly), true);
 			ajaxRequest.send("");
-
 			return true;
 		},
-        
+		
 	});
 	this.fetchGrid(table,config);
 }
 
 
 DatabaseGrid.prototype.fetchGrid = function(table,config) {
-	// call a PHP script to get the data
 	url = backend + "?action=load&profile="+config+ "&table=" + table;
 	var that = this;
 	this.editableGrid.loadJSON(url);
 };
-/**
- * Overloading the default checkDate function in order to neuter it.
- */
+
+// Overloading the default checkDate function in order to neuter it.
 EditableGrid.prototype.checkDate = function(strDate, strDatestyle) {
-    return { 
-        formattedDate: strDate,
-        sortDate: strDate,
-        dbDate: strDate 
-    };
+	return { 
+		formattedDate: strDate,
+		sortDate: strDate,
+		dbDate: strDate 
+	};
 };
 
-DatabaseGrid.prototype.initializeGrid = function(grid, table) {
+DatabaseGrid.prototype.initializeGrid = function(grid,table) {
 	var self = this;
-    //self.config = config;
-
+	//self.config = config;
 	// render for the action column
 	grid.setCellRenderer("action", new CellRenderer({
 		render: function(cell, id) {
-			cell.innerHTML = "<a href='#' class='delete-row'  ><i  class='fa fa-trash-o red' ></i></a>";
-			cell.innerHTML += "  <a href='#' class='copy-row' data-id='"+id+"'  ><i   class='fa fa-copy' ></i></a>";
+			cell.innerHTML = "<a href='#' class='delete-row'><i class='fa fa-trash-o red' ></i></a>";
+			cell.innerHTML += "  <a href='#' class='copy-row' data-id='" + id + "'  ><i class='fa fa-copy' ></i></a>";
 		}
 	}));
 
@@ -202,43 +194,29 @@ DatabaseGrid.prototype.initializeGrid = function(grid, table) {
 	$('body').on('click', '.delete-row', function(e) {
 		var xdata = get_table_id($(this));
 		e.stopImmediatePropagation();
-		//console.log('row id: ',  xdata);
+		//console.log('delete row id: ',  xdata);
 		if (xdata.table == self.editableGrid.name)
 			self.deleteRow(xdata.id);
 	});
-	
 			
 	$('body').on('click', '.copy-row', function(e) {
-		//console.log(this, 'vs', e.target);
+		//console.log(this, 'copy row vs', e.target);
 		e.preventDefault();
 		e.stopImmediatePropagation();
-		
-		//if($(e.target).is(this)){
-			var xdata = get_table_id($(this));
-
-			//console.log('duplicateRow id: ', $(this).data('id'), xdata);
-			if (xdata.table == self.editableGrid.name){
-				self.duplicateRow(xdata.id);
-				
-			}
-				
-			
-				
-		//}
-	
+		var xdata = get_table_id($(this));
+		//console.log('duplicateRow id: ', $(this).data('id'), xdata);
+		if (xdata.table == self.editableGrid.name){
+			self.duplicateRow(xdata.id);
+		}
 		return false;
-			
 	});
 
-	
-	
-	
 	//console.log('table is: ' + table);
 	//	grid.renderGrid('demo',"testgrid");
 	// add
 	$(".grid_addbutton").click(function(e) {
 		if ($(this).prop('id').indexOf(self.editableGrid.name) >= 0) {
-			//console.log('adding row');
+			//console.log('click on add');
 			self.addRow();
 		};
 	});
@@ -246,7 +224,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid, table) {
 	//filter
 	$(".grid_filter").keyup(function(e) {
 		if ($(e.target).prop('name').indexOf(self.editableGrid.name) >= 0) {
-			console.log('grid_filter:', e.target);
+			//console.log('grid_filter:', e.target);
 			self.editableGrid.filter($(this).val());
 		}
 		// To filter on some columns, you can set an array of column index 
@@ -255,14 +233,12 @@ DatabaseGrid.prototype.initializeGrid = function(grid, table) {
 	grid.renderGrid(table,'excel testgrid');
 };
 
+
 DatabaseGrid.prototype.deleteRow = function(id) {
 	var self = this;
-
-	if (confirm('Are you sure you want to delete the row id ' + id)) {
+	if (1 || confirm('Are you sure you want to delete the row id ' + id)) {
 		$.ajax({
-
 			url: self.editableGrid.getActionUrl('delete'),
-		type: 'POST',
 			type: 'POST',
 			dataType: "html",
 			data: {
@@ -273,13 +249,12 @@ DatabaseGrid.prototype.deleteRow = function(id) {
 			success: function(response) {
 				if (response == "ok"){
 					self.editableGrid.removeRow(id);
-					log('deleteRow','ok', "RowId:"+id +" has been removed!", self.editableGrid.name);
+					log('deleteRow','ok', "RowId:"+id +" has been deleted", self.editableGrid.name);
 				}
-					
 			},
 			error: function(XMLHttpRequest, textStatus, exception) {
 				//alert("Ajax failure\n" + errortext);
-        //show_message(self.editableGrid.name,errortext);
+				//show_message(self.editableGrid.name,errortext);
 				log('deleteRow','error', errortext, self.editableGrid.name);
 			},
 			async: true
@@ -290,7 +265,6 @@ DatabaseGrid.prototype.deleteRow = function(id) {
 DatabaseGrid.prototype.duplicateRow = function(id) {
 	var self = this;
 	$.ajax({
-
 		url: self.editableGrid.getActionUrl('duplicate'),
 		type: 'POST',
 		dataType: "html",
@@ -301,31 +275,26 @@ DatabaseGrid.prototype.duplicateRow = function(id) {
 		},
 		success: function(response) {
 			if (response && response.indexOf('error') <0) {
-				//alert("Row duplicated : reload model");
-        show_message(self.editableGrid.name,"Row duplicated : reload model");
-				//console.log("Row duplicated");
+				show_message(self.editableGrid.name,"Row duplicated"); //todo put in log
 				self.fetchGrid(self.editableGrid.name, self.editableGrid.dbconfig);
-				log('duplicateRow','ok', "RowId:"+id +" has been duplicated!", self.editableGrid.name);
-			}else{
+				log('duplicateRow','ok', "RowId:"+id +" has been duplicated", self.editableGrid.name);
+			}
+			else{
 				log('duplicateRow','error', response, self.editableGrid.name);
 			}
-
 		},
 		error: function(XMLHttpRequest, textStatus, exception) {
 			//alert("Ajax failure\n" + errortext);
-      //show_message(self.editableGrid.name,errortext);
+			//show_message(self.editableGrid.name,errortext);
 			log('duplicateRow','error', errortext, self.editableGrid.name);
 		},
 		async: true
 	});
 };
 
-
-
 DatabaseGrid.prototype.addRow = function(id) {
 	var self = this;
 	$.ajax({
-
 		url: self.editableGrid.getActionUrl('add'),
 		type: 'POST',
 		dataType: "html",
@@ -334,37 +303,17 @@ DatabaseGrid.prototype.addRow = function(id) {
 		},
 		success: function(response) {
 			if (response.indexOf("error") < 0) {
-				log('addRow','ok', "Row:" + id + " has been added", self.editableGrid.name);
+				log('addRow','ok', "Row:" + id + " has been added");
 				self.fetchGrid(self.editableGrid.name, self.editableGrid.dbconfig);
-				/*
-				//var row = jQuery.parseJSON(response);
-				// hide form
-				//showAddForm();   
-				//form.find("input[type=text]").val("");
-				var id = row.id;
-				//alert("Row added : reload model:" + id);
-                show_message(self.editableGrid.name,"Row added : reload model:" + id);
-				//self.fetchGrid(self.editableGrid.name);
-				var rowIndex = self.editableGrid.pageSize < 0 ? 0 : self.editableGrid.pageSize;
-				var rowNum = self.editableGrid.getRowCount();
-				rowIndex = Math.min(rowIndex, rowNum);
-				//var row = self.editableGrid.getRowValues(rowIndex);
-				//row.id = id;
-				//console.log('rowCount:', rowIndex, ' id:', id);
-				self.editableGrid.insert(rowIndex - 1, id, row, null, true);
-				*/
-				
-			} else{
-					//alert("error");
-					//show_message(self.editableGrid.name,response);
-					log('addRow','error', response, self.editableGrid.name);
-      }
-				
+			}
+			else{
+				log('addRow','error', response);
+		  }
 		},
 		error: function(XMLHttpRequest, textStatus, exception) {
 			//alert("Ajax failure\n" + errortext);
-            //show_message(self.editableGrid.name,errortext);
-						log('addRow','error', exception, self.editableGrid.name);
+			//show_message(self.editableGrid.name,errortext);
+			log('addRow','ajax_error', exception, self.editableGrid.name);
 		},
 		async: true
 	});
@@ -434,7 +383,6 @@ function updatePaginator(grid, divId) {
 		});
 	paginator.append(link);
 };
-
 
 function showAddForm() {
 	if ($("#addform").is(':visible'))
