@@ -116,10 +116,16 @@ class DB{
 	public function modify($table, $values, $id){
 		$cond = $this->build_cond($id);
 		$fields = array();
+		
 		foreach($values as $k => $v){
-			$k = $this->quote_identifier($k);
+			
+			
 			$v = $this->quote_value($v); //TODO: don't do this for non-text fields
+			
+			$k = $this->quote_identifier($k);
+			
 			$fields[] = sprintf("%s=%s", $k, $v);
+
 		}
 		$table =  $this->quote_identifier($table);
 		$sql = sprintf("UPDATE %s SET %s WHERE %s", $table, join(',',$fields), $cond );

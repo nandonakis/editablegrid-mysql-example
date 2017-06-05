@@ -41,10 +41,18 @@ class BackendDB extends DB {
 		return $this->parse_meta_file($spec);
 	}
 	
+	public function is_primary_key($key){
+		//if($row['column_key'] && strpos('PRI',$row['column_key']) !== false){
+		if (isset($key) && strpos($key, 'PRI') !== false)
+			return TRUE;
+		return FALSE;
+	}
+	
 	public function print_meta_row($row,$count,$file){
 		$h=array();
 		$cols= array();
-		if($row['column_key'] && strpos('PRI',$row['column_key']) !== false){
+		//if($row['column_key'] && strpos('PRI',$row['column_key']) !== false){
+		if($this->is_primary_key($row['column_key'])){
 			$row['editable'] = 0;
 			debug('print_meta_row', $row['editable']);
 		}
@@ -148,7 +156,7 @@ class BackendDB extends DB {
 	
 	//auto_increment
 	public function get_primary($cols){
-		$primary = array_filter($cols, function($a){return ($a['column_key'] && strpos($a['column_key'],"PRI")>=0);});
+		$primary = array_filter($cols, function($a){return $this->is_primary_key($a['column_key']);});
 		return $primary;
 	}
 	
@@ -225,6 +233,9 @@ class BackendDB extends DB {
 		$length = strlen($values['newvalue']);
 		$value = strip_tags($values['newvalue']);
 		$coltype = strip_tags($values['coltype']);
+		
+		$cols = $this->get_meta($table);
+		
 		if($coltype == 'date'){
 			if ($value === "")
 				$value = NULL;
@@ -236,7 +247,8 @@ class BackendDB extends DB {
 			}
 		}
 		elseif($coltype == 'string' && $this->config['db_type'] === 'pgsql'){
-			$cols = $this->get_meta($table);
+			// move on top so that it can be passed into modify
+			//$cols = $this->get_meta($table);
 			if(array_key_exists($colname, $cols)){
 				$max_length = $cols[$colname]['character_maximum_length'];
 				if($max_length && $length > $max_length){

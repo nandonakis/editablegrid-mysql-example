@@ -91,6 +91,8 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 	});
 }
 
+
+
 function DatabaseGrid(table,config) {
 	var that = this;
 	this.profile = config;
@@ -148,7 +150,33 @@ function DatabaseGrid(table,config) {
 			ajaxRequest.send("");
 			return true;
 		},
+
+		dateFormat: 'EU', // date must be always dd/mm/yyyy
 		
+		checkDate: function(strDate, strDatestyle) {
+			//console.log('strDate:', strDate, 'strDatestyle:', strDatestyle);
+			strDatestyle = strDate;
+			if(strDate && strDate !== ""){
+				var arr = strDate.split('/');
+				if(arr && arr.length ==3){
+					
+					var date = new Date(arr[2],arr[1]-1,arr[0],12,0,0);
+					var date2 = new Date(strDate);
+					//console.log('date:', arr, date2===date);
+					if(date && date.getFullYear() > 1970)
+						strDatestyle = date.toISOString().substr(0,10);
+					
+				}
+				
+			}
+			return { 
+					formattedDate: strDatestyle,
+					sortDate: strDate,
+					dbDate: strDatestyle 
+			};
+	}
+        
+
 	});
 	this.fetchGrid(table,config);
 }
@@ -160,27 +188,31 @@ DatabaseGrid.prototype.fetchGrid = function(table,config) {
 	this.editableGrid.loadJSON(url);
 };
 
-// Overloading the default checkDate function in order to neuter it.
-EditableGrid.prototype.checkDate = function(strDate, strDatestyle) {
-	return { 
-		formattedDate: strDate,
-		sortDate: strDate,
-		dbDate: strDate 
-	};
-};
+
 
 DatabaseGrid.prototype.initializeGrid = function(grid,table) {
+	
 	var self = this;
+	console.log('grid:', grid, ' vs this:', self);
+	
 	//self.config = config;
 	// render for the action column
 	grid.setCellRenderer("action", new CellRenderer({
 		render: function(cell, id) {
-			cell.innerHTML = "<a href='#' class='delete-row'><i class='fa fa-trash-o red' ></i></a>";
-			cell.innerHTML += "  <a href='#' class='copy-row' data-id='" + id + "'  ><i class='fa fa-copy' ></i></a>";
+			// this action will remove the row, so first find the ID of the row containing this cell 
+			var rowId = self.editableGrid.getRowId(cell.rowIndex);
+			//console.log('table:', table, 'rowId:',rowId, 'cellId:', cell.rowIndex);
+			
+			
+			
+			cell.innerHTML = "<a href='#' class='delete-row' data-table='"+table+"' data-id='"+id+"'><i class='fa fa-trash-o red' ></i></a>";
+			cell.innerHTML += "  <a href='#' class='copy-row' data-table='"+table+"' data-id='"+id+"'  ><i class='fa fa-copy' ></i></a>";
+
 		}
 	}));
 
-	function get_table_id(ele) {
+	
+function get_table_id(ele) {
 		var id = ele.closest('tr').prop('id');
 		var x = id.split('_');
 		id = x.pop();
@@ -190,26 +222,48 @@ DatabaseGrid.prototype.initializeGrid = function(grid,table) {
 			table: table
 		};
 	}
-
+	/*
 	$('body').on('click', '.delete-row', function(e) {
+		console.log('delete row id: ');
 		var xdata = get_table_id($(this));
 		e.stopImmediatePropagation();
-		//console.log('delete row id: ',  xdata);
+		console.log('delete row id: ',  xdata, self.editableGrid.name);
 		if (xdata.table == self.editableGrid.name)
 			self.deleteRow(xdata.id);
 	});
 			
+
 	$('body').on('click', '.copy-row', function(e) {
 		//console.log(this, 'copy row vs', e.target);
+		console.log('copy row id: ');
 		e.preventDefault();
 		e.stopImmediatePropagation();
 		var xdata = get_table_id($(this));
-		//console.log('duplicateRow id: ', $(this).data('id'), xdata);
+		console.log('duplicateRow id: ', $(this).data('id'), xdata, self.editableGrid.name);
 		if (xdata.table == self.editableGrid.name){
 			self.duplicateRow(xdata.id);
 		}
 		return false;
 	});
+	*/
+	var actionEle = '#'+table +' .editablegrid-action a';
+	$('body').off('click', actionEle).on('click', actionEle, function(e) {
+	//$('body').one('click', actionEle, function(e){
+		var $this = $(this);
+		e.preventDefault();
+		e.stopPropagation();
+		if($this.data('table') == self.editableGrid.name){
+			var id = $this.data('id');
+			//console.log('copy row editablegrid-action: ', id, self.editableGrid.name, this, e.target);
+			if($this.hasClass('delete-row')){
+				self.deleteRow(id);
+			}else{
+				self.duplicateRow(id);
+			}
+		}
+		
+	});
+
 
 	//console.log('table is: ' + table);
 	//	grid.renderGrid('demo',"testgrid");
@@ -234,9 +288,11 @@ DatabaseGrid.prototype.initializeGrid = function(grid,table) {
 };
 
 
+
+
 DatabaseGrid.prototype.deleteRow = function(id) {
 	var self = this;
-	if (1 || confirm('Are you sure you want to delete the row id ' + id)) {
+	if ( confirm('Are you sure you want to delete the row id ' + id)) {
 		$.ajax({
 			url: self.editableGrid.getActionUrl('delete'),
 			type: 'POST',
@@ -277,9 +333,12 @@ DatabaseGrid.prototype.duplicateRow = function(id) {
 			if (response && response.indexOf('error') <0) {
 				show_message(self.editableGrid.name,"Row duplicated"); //todo put in log
 				self.fetchGrid(self.editableGrid.name, self.editableGrid.dbconfig);
-				log('duplicateRow','ok', "RowId:"+id +" has been duplicated", self.editableGrid.name);
-			}
-			else{
+
+				// goto last page
+				self.editableGrid.lastPage();
+				log('duplicateRow','ok', "RowId:"+id +" has been duplicated!", self.editableGrid.name);
+			}else{
+
 				log('duplicateRow','error', response, self.editableGrid.name);
 			}
 		},
