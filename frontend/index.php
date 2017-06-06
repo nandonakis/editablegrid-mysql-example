@@ -48,7 +48,9 @@
 	</div>
 
 	<script type="text/javascript">
-		var ${table}_grid = new DatabaseGrid('$table','postgres');
+		var ${table}_grid = new DatabaseGrid('$table','3_redshift');
+		//var ${table}_grid = new DatabaseGrid('$table','2_postgres');
+		//var ${table}_grid = new DatabaseGrid('$table','1_mysql');
 	</script>
 	<HR>
 

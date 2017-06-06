@@ -1,2 +1,3 @@
-backend/backend.log
-/backend/profiles/postgres/config.php
+/backend/profiles/2_postgres/config.php
+/backend/profiles/3_redshift/config.php
+/backend/profiles/1_mysql/config.php

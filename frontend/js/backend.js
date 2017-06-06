@@ -93,9 +93,9 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 
 
 
-function DatabaseGrid(table,config) {
+function DatabaseGrid(table,profile) {
 	var that = this;
-	this.profile = config;
+	this.profile = profile;
 	this.editableGrid = new EditableGrid(table, {
 		enableSort: true,
 		pageSize: 10,
@@ -109,10 +109,9 @@ function DatabaseGrid(table,config) {
 		modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
 			updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
 		},
-		dbconfig: config,
 		getActionUrl: function(action){
 			var self = this;
-			var profile = (self.dbconfig ? self.dbconfig:config);
+			var profile = this.profile;
 			var url= backend + '?action='+action+'&profile='+profile+'&table='+self.name;
 			// log('DatabaseGrid','ok','Grid calling:' +url);
 			return url;
@@ -178,7 +177,7 @@ function DatabaseGrid(table,config) {
         
 
 	});
-	this.fetchGrid(table,config);
+	this.fetchGrid(table,profile);
 }
 
 
@@ -292,7 +291,7 @@ function get_table_id(ele) {
 
 DatabaseGrid.prototype.deleteRow = function(id) {
 	var self = this;
-	if ( confirm('Are you sure you want to delete the row id ' + id)) {
+	if (1 || confirm('Are you sure you want to delete the row id ' + id)) {
 		$.ajax({
 			url: self.editableGrid.getActionUrl('delete'),
 			type: 'POST',
@@ -332,7 +331,7 @@ DatabaseGrid.prototype.duplicateRow = function(id) {
 		success: function(response) {
 			if (response && response.indexOf('error') <0) {
 				show_message(self.editableGrid.name,"Row duplicated"); //todo put in log
-				self.fetchGrid(self.editableGrid.name, self.editableGrid.dbconfig);
+				self.fetchGrid(self.editableGrid.name, self.editableGrid.profile);
 
 				// goto last page
 				self.editableGrid.lastPage();
@@ -363,7 +362,7 @@ DatabaseGrid.prototype.addRow = function(id) {
 		success: function(response) {
 			if (response.indexOf("error") < 0) {
 				log('addRow','ok', "Row:" + id + " has been added");
-				self.fetchGrid(self.editableGrid.name, self.editableGrid.dbconfig);
+				self.fetchGrid(self.editableGrid.name, self.editableGrid.profile);
 			}
 			else{
 				log('addRow','error', response);
