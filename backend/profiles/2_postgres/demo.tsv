@@ -1,5 +1,5 @@
 schema	table	field	label	order	type	character_maximum_length	column_key	extra	display	editable	db_type
-demo	demo	id	id	1	integer		PRIMARY KEY		1	1	int4
+demo	demo	id	id	1	integer		PRIMARY KEY		1	0	int4
 demo	demo	name	name	2	string	100			1	1	varchar
 demo	demo	firstname	firstname	3	string	100			1	1	varchar
 demo	demo	age	age	4	integer				1	1	int4

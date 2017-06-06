@@ -2372,3 +2372,898 @@ where tab_columns.table_name = 'scenario1' and tab_columns.table_schema = 'demo'
 2017-06-06 15:25:24:print_meta_row:0
 2017-06-06 15:25:24:get_col_type:real:Unrecognised type
 2017-06-06 15:25:24:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-06 14:01:22:__construct:demo
+2017-06-06 14:01:22:db:load:SELECT * FROM "scenario1"
+2017-06-06 14:01:22:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/scenario1.tsv
+2017-06-06 14:01:26:__construct:demo
+2017-06-06 14:01:26:db:load:SELECT * FROM "scenario2"
+2017-06-06 14:01:26:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/scenario2.tsv
+2017-06-06 14:01:26:__construct:demo
+2017-06-06 14:01:26:__construct:demo
+2017-06-06 14:01:26:db:load:SELECT * FROM "demo"
+2017-06-06 14:01:26:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/demo.tsv
+2017-06-06 14:01:26:db:load:SELECT * FROM "scenario1"
+2017-06-06 14:01:26:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/scenario1.tsv
+2017-06-06 14:01:32:__construct:demo
+2017-06-06 14:01:32:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/scenario1.tsv
+2017-06-06 14:01:32:add:id vs DEFAULTv:nextval('scenario1_id_seq'::regclass):id
+2017-06-06 14:01:32:add:Array
+(
+    [id] => DEFAULT
+    [name] => DEFAULT
+    [int] => DEFAULT
+    [currency] => DEFAULT
+    [float] => DEFAULT
+    [bool] => DEFAULT
+    [date] => DEFAULT
+    [datetime] => DEFAULT
+    [text] => DEFAULT
+    [email] => DEFAULT
+    [varchar_10] => DEFAULT
+    [id_detail] => DEFAULT
+    [enum] => DEFAULT
+    [default] => DEFAULT
+)
+
+2017-06-06 14:01:32:db:insert::rows: id: query:INSERT INTO demo."scenario1"  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT)
+2017-06-06 14:02:13:__construct:demo
+2017-06-06 14:02:13:__construct:demo
+2017-06-06 14:02:13:db:load:SELECT * FROM "scenario1"
+2017-06-06 14:02:13:get_meta:debug:select  tab_columns.table_schema as "schema",tab_columns.table_name as "table", tab_columns.column_name as field, tab_columns.column_name as label, tab_columns.ordinal_position as "order", tab_columns.data_type as type, tab_columns.character_maximum_length, tab_constraints.constraint_type as column_key, tab_columns.column_default as extra,  1 as display, 1 as editable, tab_columns.udt_name as db_type from information_schema.columns AS tab_columns 
+LEFT OUTER JOIN 
+information_schema.constraint_column_usage AS col_constraints 
+ON tab_columns.table_name = col_constraints.table_name AND 
+tab_columns.column_name = col_constraints.column_name 
+LEFT OUTER JOIN 
+information_schema.table_constraints AS tab_constraints 
+ON tab_constraints.constraint_name = col_constraints.constraint_name
+where tab_columns.table_name = 'scenario1' and tab_columns.table_schema = 'demo' order by ordinal_position;
+2017-06-06 14:02:13:db:load:SELECT * FROM "scenario2"
+2017-06-06 14:02:13:get_meta:debug:select  tab_columns.table_schema as "schema",tab_columns.table_name as "table", tab_columns.column_name as field, tab_columns.column_name as label, tab_columns.ordinal_position as "order", tab_columns.data_type as type, tab_columns.character_maximum_length, tab_constraints.constraint_type as column_key, tab_columns.column_default as extra,  1 as display, 1 as editable, tab_columns.udt_name as db_type from information_schema.columns AS tab_columns 
+LEFT OUTER JOIN 
+information_schema.constraint_column_usage AS col_constraints 
+ON tab_columns.table_name = col_constraints.table_name AND 
+tab_columns.column_name = col_constraints.column_name 
+LEFT OUTER JOIN 
+information_schema.table_constraints AS tab_constraints 
+ON tab_constraints.constraint_name = col_constraints.constraint_name
+where tab_columns.table_name = 'scenario2' and tab_columns.table_schema = 'demo' order by ordinal_position;
+2017-06-06 14:02:14:get_meta:result of rows::Array
+(
+    [0] => Array
+        (
+            [schema] => demo
+            [table] => scenario1
+            [field] => id
+            [label] => id
+            [order] => 1
+            [type] => integer
+            [character_maximum_length] => 
+            [column_key] => PRIMARY KEY
+            [extra] => nextval('scenario1_id_seq'::regclass)
+            [display] => 1
+            [editable] => 1
+            [db_type] => int4
+        )
+
+    [1] => Array
+        (
+            [schema] => demo
+            [table] => scenario1
+            [field] => name
+            [label] => name
+            [order] => 2
+            [type] => character varying
+            [character_maximum_length] => 32
+            [column_key] => 
+            [extra] => ''::character varying
+            [display] => 1
+            [editable] => 1
+            [db_type] => varchar
+        )
+
+    [2] => Array
+        (
+            [schema] => demo
+            [table] => scenario1
+            [field] => int
+            [label] => int
+            [order] => 3
+            [type] => integer
+            [character_maximum_length] => 
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => int4
+        )
+
+    [3] => Array
+        (
+            [schema] => demo
+            [table] => scenario1
+            [field] => currency
+            [label] => currency
+            [order] => 4
+            [type] => numeric
+            [character_maximum_length] => 
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => numeric
+        )
+
+    [4] => Array
+        (
+            [schema] => demo
+            [table] => scenario1
+            [field] => float
+            [label] => float
+            [order] => 5
+            [type] => real
+            [character_maximum_length] => 
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => float4
+        )
+
+    [5] => Array
+        (
+            [schema] => demo
+            [table] => scenario1
+            [field] => bool
+            [label] => bool
+            [order] => 6
+            [type] => boolean
+            [character_maximum_length] => 
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => bool
+        )
+
+    [6] => Array
+        (
+            [schema] => demo
+            [table] => scenario1
+            [field] => date
+            [label] => date
+            [order] => 7
+            [type] => date
+            [character_maximum_length] => 
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => date
+        )
+
+    [7] => Array
+        (
+            [schema] => demo
+            [table] => scenario1
+            [field] => datetime
+            [label] => datetime
+            [order] => 8
+            [type] => timestamp without time zone
+            [character_maximum_length] => 
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => timestamp
+        )
+
+    [8] => Array
+        (
+            [schema] => demo
+            [table] => scenario1
+            [field] => text
+            [label] => text
+            [order] => 9
+            [type] => text
+            [character_maximum_length] => 
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => text
+        )
+
+    [9] => Array
+        (
+            [schema] => demo
+            [table] => scenario1
+            [field] => email
+            [label] => email
+            [order] => 10
+            [type] => character varying
+            [character_maximum_length] => 100
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => varchar
+        )
+
+    [10] => Array
+        (
+            [schema] => demo
+            [table] => scenario1
+            [field] => varchar_10
+            [label] => varchar_10
+            [order] => 11
+            [type] => character varying
+            [character_maximum_length] => 10
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => varchar
+        )
+
+    [11] => Array
+        (
+            [schema] => demo
+            [table] => scenario1
+            [field] => int4
+            [label] => int4
+            [order] => 12
+            [type] => integer
+            [character_maximum_length] => 
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => int4
+        )
+
+    [12] => Array
+        (
+            [schema] => demo
+            [table] => scenario1
+            [field] => todo
+            [label] => todo
+            [order] => 13
+            [type] => character varying
+            [character_maximum_length] => 255
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => varchar
+        )
+
+    [13] => Array
+        (
+            [schema] => demo
+            [table] => scenario1
+            [field] => default
+            [label] => default
+            [order] => 14
+            [type] => character varying
+            [character_maximum_length] => 255
+            [column_key] => 
+            [extra] => 'Sydney'::character varying
+            [display] => 1
+            [editable] => 1
+            [db_type] => varchar
+        )
+
+)
+
+2017-06-06 14:02:14:print_meta_row:0
+2017-06-06 14:02:14:get_col_type:real:Unrecognised type
+2017-06-06 14:02:14:get_meta:result of rows::Array
+(
+    [0] => Array
+        (
+            [schema] => demo
+            [table] => scenario2
+            [field] => id
+            [label] => id
+            [order] => 1
+            [type] => integer
+            [character_maximum_length] => 
+            [column_key] => PRIMARY KEY
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => int4
+        )
+
+    [1] => Array
+        (
+            [schema] => demo
+            [table] => scenario2
+            [field] => name
+            [label] => name
+            [order] => 2
+            [type] => character varying
+            [character_maximum_length] => 100
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => varchar
+        )
+
+    [2] => Array
+        (
+            [schema] => demo
+            [table] => scenario2
+            [field] => int
+            [label] => int
+            [order] => 3
+            [type] => integer
+            [character_maximum_length] => 
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => int4
+        )
+
+    [3] => Array
+        (
+            [schema] => demo
+            [table] => scenario2
+            [field] => currency
+            [label] => currency
+            [order] => 4
+            [type] => numeric
+            [character_maximum_length] => 
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => numeric
+        )
+
+    [4] => Array
+        (
+            [schema] => demo
+            [table] => scenario2
+            [field] => float
+            [label] => float
+            [order] => 5
+            [type] => real
+            [character_maximum_length] => 
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => float4
+        )
+
+    [5] => Array
+        (
+            [schema] => demo
+            [table] => scenario2
+            [field] => bool
+            [label] => bool
+            [order] => 6
+            [type] => smallint
+            [character_maximum_length] => 
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => int2
+        )
+
+    [6] => Array
+        (
+            [schema] => demo
+            [table] => scenario2
+            [field] => date
+            [label] => date
+            [order] => 7
+            [type] => date
+            [character_maximum_length] => 
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => date
+        )
+
+    [7] => Array
+        (
+            [schema] => demo
+            [table] => scenario2
+            [field] => datetime
+            [label] => datetime
+            [order] => 8
+            [type] => timestamp without time zone
+            [character_maximum_length] => 
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => timestamp
+        )
+
+    [8] => Array
+        (
+            [schema] => demo
+            [table] => scenario2
+            [field] => text
+            [label] => text
+            [order] => 9
+            [type] => text
+            [character_maximum_length] => 
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => text
+        )
+
+    [9] => Array
+        (
+            [schema] => demo
+            [table] => scenario2
+            [field] => email
+            [label] => email
+            [order] => 10
+            [type] => character varying
+            [character_maximum_length] => 100
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => varchar
+        )
+
+    [10] => Array
+        (
+            [schema] => demo
+            [table] => scenario2
+            [field] => varchar_10
+            [label] => varchar_10
+            [order] => 11
+            [type] => character varying
+            [character_maximum_length] => 10
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => varchar
+        )
+
+    [11] => Array
+        (
+            [schema] => demo
+            [table] => scenario2
+            [field] => id_detail
+            [label] => id_detail
+            [order] => 12
+            [type] => integer
+            [character_maximum_length] => 
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => int4
+        )
+
+    [12] => Array
+        (
+            [schema] => demo
+            [table] => scenario2
+            [field] => enum
+            [label] => enum
+            [order] => 13
+            [type] => character varying
+            [character_maximum_length] => 255
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => varchar
+        )
+
+    [13] => Array
+        (
+            [schema] => demo
+            [table] => scenario2
+            [field] => default
+            [label] => default
+            [order] => 14
+            [type] => character varying
+            [character_maximum_length] => 255
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => varchar
+        )
+
+)
+
+2017-06-06 14:02:14:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/scenario1.tsv
+2017-06-06 14:02:14:print_meta_row:0
+2017-06-06 14:02:14:get_col_type:real:Unrecognised type
+2017-06-06 14:02:14:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/scenario2.tsv
+2017-06-06 14:02:14:__construct:demo
+2017-06-06 14:02:14:db:load:SELECT * FROM "demo"
+2017-06-06 14:02:14:get_meta:debug:select  tab_columns.table_schema as "schema",tab_columns.table_name as "table", tab_columns.column_name as field, tab_columns.column_name as label, tab_columns.ordinal_position as "order", tab_columns.data_type as type, tab_columns.character_maximum_length, tab_constraints.constraint_type as column_key, tab_columns.column_default as extra,  1 as display, 1 as editable, tab_columns.udt_name as db_type from information_schema.columns AS tab_columns 
+LEFT OUTER JOIN 
+information_schema.constraint_column_usage AS col_constraints 
+ON tab_columns.table_name = col_constraints.table_name AND 
+tab_columns.column_name = col_constraints.column_name 
+LEFT OUTER JOIN 
+information_schema.table_constraints AS tab_constraints 
+ON tab_constraints.constraint_name = col_constraints.constraint_name
+where tab_columns.table_name = 'demo' and tab_columns.table_schema = 'demo' order by ordinal_position;
+2017-06-06 14:02:14:get_meta:result of rows::Array
+(
+    [0] => Array
+        (
+            [schema] => demo
+            [table] => demo
+            [field] => id
+            [label] => id
+            [order] => 1
+            [type] => integer
+            [character_maximum_length] => 
+            [column_key] => PRIMARY KEY
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => int4
+        )
+
+    [1] => Array
+        (
+            [schema] => demo
+            [table] => demo
+            [field] => name
+            [label] => name
+            [order] => 2
+            [type] => character varying
+            [character_maximum_length] => 100
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => varchar
+        )
+
+    [2] => Array
+        (
+            [schema] => demo
+            [table] => demo
+            [field] => firstname
+            [label] => firstname
+            [order] => 3
+            [type] => character varying
+            [character_maximum_length] => 100
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => varchar
+        )
+
+    [3] => Array
+        (
+            [schema] => demo
+            [table] => demo
+            [field] => age
+            [label] => age
+            [order] => 4
+            [type] => integer
+            [character_maximum_length] => 
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => int4
+        )
+
+    [4] => Array
+        (
+            [schema] => demo
+            [table] => demo
+            [field] => height
+            [label] => height
+            [order] => 5
+            [type] => numeric
+            [character_maximum_length] => 
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => numeric
+        )
+
+    [5] => Array
+        (
+            [schema] => demo
+            [table] => demo
+            [field] => id_continent
+            [label] => id_continent
+            [order] => 6
+            [type] => character
+            [character_maximum_length] => 2
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => bpchar
+        )
+
+    [6] => Array
+        (
+            [schema] => demo
+            [table] => demo
+            [field] => id_country
+            [label] => id_country
+            [order] => 7
+            [type] => character
+            [character_maximum_length] => 2
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => bpchar
+        )
+
+    [7] => Array
+        (
+            [schema] => demo
+            [table] => demo
+            [field] => email
+            [label] => email
+            [order] => 8
+            [type] => character varying
+            [character_maximum_length] => 100
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => varchar
+        )
+
+    [8] => Array
+        (
+            [schema] => demo
+            [table] => demo
+            [field] => freelance
+            [label] => freelance
+            [order] => 9
+            [type] => smallint
+            [character_maximum_length] => 
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => int2
+        )
+
+    [9] => Array
+        (
+            [schema] => demo
+            [table] => demo
+            [field] => lastvisit
+            [label] => lastvisit
+            [order] => 10
+            [type] => date
+            [character_maximum_length] => 
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => date
+        )
+
+    [10] => Array
+        (
+            [schema] => demo
+            [table] => demo
+            [field] => website
+            [label] => website
+            [order] => 11
+            [type] => character varying
+            [character_maximum_length] => 100
+            [column_key] => 
+            [extra] => 
+            [display] => 1
+            [editable] => 1
+            [db_type] => varchar
+        )
+
+)
+
+2017-06-06 14:02:14:print_meta_row:0
+2017-06-06 14:02:14:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/demo.tsv
+2017-06-06 14:02:23:__construct:demo
+2017-06-06 14:02:23:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/scenario1.tsv
+2017-06-06 14:02:23:add:id vs DEFAULTv:nextval('scenario1_id_seq'::regclass):id
+2017-06-06 14:02:23:add:Array
+(
+    [id] => DEFAULT
+    [name] => ''::character varying
+    [int] => DEFAULT
+    [currency] => DEFAULT
+    [float] => DEFAULT
+    [bool] => DEFAULT
+    [date] => DEFAULT
+    [datetime] => DEFAULT
+    [text] => DEFAULT
+    [email] => DEFAULT
+    [varchar_10] => DEFAULT
+    [int4] => DEFAULT
+    [todo] => DEFAULT
+    [default] => 'Sydney'::character varying
+)
+
+2017-06-06 14:02:23:db:insert:1:rows:1 id: query:INSERT INTO demo."scenario1"  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","int4","todo","default") VALUES (DEFAULT,'''''::character varying',DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,'''Sydney''::character varying')
+2017-06-06 14:02:23:__construct:demo
+2017-06-06 14:02:23:db:load:SELECT * FROM "scenario1"
+2017-06-06 14:02:23:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/scenario1.tsv
+2017-06-06 14:02:45:__construct:demo
+2017-06-06 14:02:45:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/scenario1.tsv
+2017-06-06 14:02:45:add:id vs DEFAULTv:nextval('scenario1_id_seq'::regclass):id
+2017-06-06 14:02:45:add:Array
+(
+    [id] => DEFAULT
+    [name] => ''::character varying
+    [int] => DEFAULT
+    [currency] => DEFAULT
+    [float] => DEFAULT
+    [bool] => DEFAULT
+    [date] => DEFAULT
+    [datetime] => DEFAULT
+    [text] => DEFAULT
+    [email] => DEFAULT
+    [varchar_10] => DEFAULT
+    [int4] => DEFAULT
+    [todo] => DEFAULT
+    [default] => 'Sydney'::character varying
+)
+
+2017-06-06 14:02:45:__construct:demo
+2017-06-06 14:02:45:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/scenario1.tsv
+2017-06-06 14:02:45:add:id vs DEFAULTv:nextval('scenario1_id_seq'::regclass):id
+2017-06-06 14:02:45:add:Array
+(
+    [id] => DEFAULT
+    [name] => ''::character varying
+    [int] => DEFAULT
+    [currency] => DEFAULT
+    [float] => DEFAULT
+    [bool] => DEFAULT
+    [date] => DEFAULT
+    [datetime] => DEFAULT
+    [text] => DEFAULT
+    [email] => DEFAULT
+    [varchar_10] => DEFAULT
+    [int4] => DEFAULT
+    [todo] => DEFAULT
+    [default] => 'Sydney'::character varying
+)
+
+2017-06-06 14:02:45:db:insert:1:rows:1 id: query:INSERT INTO demo."scenario1"  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","int4","todo","default") VALUES (DEFAULT,'''''::character varying',DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,'''Sydney''::character varying')
+2017-06-06 14:02:45:db:insert:1:rows:1 id: query:INSERT INTO demo."scenario1"  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","int4","todo","default") VALUES (DEFAULT,'''''::character varying',DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,'''Sydney''::character varying')
+2017-06-06 14:02:45:__construct:demo
+2017-06-06 14:02:45:__construct:demo
+2017-06-06 14:02:45:db:load:SELECT * FROM "scenario1"
+2017-06-06 14:02:45:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/scenario1.tsv
+2017-06-06 14:02:45:db:load:SELECT * FROM "scenario1"
+2017-06-06 14:02:45:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/scenario1.tsv
+2017-06-06 14:02:51:__construct:demo
+2017-06-06 14:02:51:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/scenario1.tsv
+2017-06-06 14:02:51:add:id vs DEFAULTv:nextval('scenario1_id_seq'::regclass):id
+2017-06-06 14:02:51:add:Array
+(
+    [id] => DEFAULT
+    [name] => ''::character varying
+    [int] => DEFAULT
+    [currency] => DEFAULT
+    [float] => DEFAULT
+    [bool] => DEFAULT
+    [date] => DEFAULT
+    [datetime] => DEFAULT
+    [text] => DEFAULT
+    [email] => DEFAULT
+    [varchar_10] => DEFAULT
+    [int4] => DEFAULT
+    [todo] => DEFAULT
+    [default] => 'Sydney'::character varying
+)
+
+2017-06-06 14:02:51:db:insert:1:rows:1 id: query:INSERT INTO demo."scenario1"  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","int4","todo","default") VALUES (DEFAULT,'''''::character varying',DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,'''Sydney''::character varying')
+2017-06-06 14:02:51:__construct:demo
+2017-06-06 14:02:51:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/scenario1.tsv
+2017-06-06 14:02:51:add:id vs DEFAULTv:nextval('scenario1_id_seq'::regclass):id
+2017-06-06 14:02:51:add:Array
+(
+    [id] => DEFAULT
+    [name] => ''::character varying
+    [int] => DEFAULT
+    [currency] => DEFAULT
+    [float] => DEFAULT
+    [bool] => DEFAULT
+    [date] => DEFAULT
+    [datetime] => DEFAULT
+    [text] => DEFAULT
+    [email] => DEFAULT
+    [varchar_10] => DEFAULT
+    [int4] => DEFAULT
+    [todo] => DEFAULT
+    [default] => 'Sydney'::character varying
+)
+
+2017-06-06 14:02:51:db:insert:1:rows:1 id: query:INSERT INTO demo."scenario1"  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","int4","todo","default") VALUES (DEFAULT,'''''::character varying',DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,'''Sydney''::character varying')
+2017-06-06 14:02:51:__construct:demo
+2017-06-06 14:02:51:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/scenario1.tsv
+2017-06-06 14:02:51:add:id vs DEFAULTv:nextval('scenario1_id_seq'::regclass):id
+2017-06-06 14:02:51:add:Array
+(
+    [id] => DEFAULT
+    [name] => ''::character varying
+    [int] => DEFAULT
+    [currency] => DEFAULT
+    [float] => DEFAULT
+    [bool] => DEFAULT
+    [date] => DEFAULT
+    [datetime] => DEFAULT
+    [text] => DEFAULT
+    [email] => DEFAULT
+    [varchar_10] => DEFAULT
+    [int4] => DEFAULT
+    [todo] => DEFAULT
+    [default] => 'Sydney'::character varying
+)
+
+2017-06-06 14:02:51:db:insert:1:rows:1 id: query:INSERT INTO demo."scenario1"  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","int4","todo","default") VALUES (DEFAULT,'''''::character varying',DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,'''Sydney''::character varying')
+2017-06-06 14:02:51:__construct:demo
+2017-06-06 14:02:51:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/scenario1.tsv
+2017-06-06 14:02:51:add:id vs DEFAULTv:nextval('scenario1_id_seq'::regclass):id
+2017-06-06 14:02:51:add:Array
+(
+    [id] => DEFAULT
+    [name] => ''::character varying
+    [int] => DEFAULT
+    [currency] => DEFAULT
+    [float] => DEFAULT
+    [bool] => DEFAULT
+    [date] => DEFAULT
+    [datetime] => DEFAULT
+    [text] => DEFAULT
+    [email] => DEFAULT
+    [varchar_10] => DEFAULT
+    [int4] => DEFAULT
+    [todo] => DEFAULT
+    [default] => 'Sydney'::character varying
+)
+
+2017-06-06 14:02:51:db:insert:1:rows:1 id: query:INSERT INTO demo."scenario1"  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","int4","todo","default") VALUES (DEFAULT,'''''::character varying',DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,'''Sydney''::character varying')
+2017-06-06 14:02:51:__construct:demo
+2017-06-06 14:02:51:db:load:SELECT * FROM "scenario1"
+2017-06-06 14:02:51:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/scenario1.tsv
+2017-06-06 14:02:51:__construct:demo
+2017-06-06 14:02:51:db:load:SELECT * FROM "scenario1"
+2017-06-06 14:02:51:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/scenario1.tsv
+2017-06-06 14:02:52:__construct:demo
+2017-06-06 14:02:52:__construct:demo
+2017-06-06 14:02:52:db:load:SELECT * FROM "scenario1"
+2017-06-06 14:02:52:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/scenario1.tsv
+2017-06-06 14:02:52:db:load:SELECT * FROM "scenario1"
+2017-06-06 14:02:52:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/scenario1.tsv
+2017-06-06 14:03:00:__construct:demo
+2017-06-06 14:03:00:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/scenario1.tsv
+2017-06-06 14:03:00:get cond:"id"='4':"id"='4'
+2017-06-06 14:03:00:get:select * from "scenario1" where "id"='4'
+2017-06-06 14:03:00:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/scenario1.tsv
+2017-06-06 14:03:00:db:insert::rows: id: query:INSERT INTO demo."scenario1"  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","int4","todo","default") VALUES (DEFAULT,'Nicholas','18','1.92','2','','2012-03-16',NULL,'','mollis@eutellus.co.uk','Troy','4','','FOOBAR')
+2017-06-06 14:04:19:__construct:demo
+2017-06-06 14:04:19:parse_meta_file:C:\github\editable_grid\demo\backend/profiles/2_postgres/scenario1.tsv
+2017-06-06 14:04:19:db:delete:DELETE FROM "scenario1"  WHERE "id"='6':1

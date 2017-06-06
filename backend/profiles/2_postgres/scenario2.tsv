@@ -1,5 +1,5 @@
 schema	table	field	label	order	type	character_maximum_length	column_key	extra	display	editable	db_type
-demo	scenario2	id	id	1	integer		PRIMARY KEY		1	1	int4
+demo	scenario2	id	id	1	integer		PRIMARY KEY		1	0	int4
 demo	scenario2	name	name	2	string	100			1	1	varchar
 demo	scenario2	int	int	3	integer				1	1	int4
 demo	scenario2	currency	currency	4	float				1	1	numeric
