@@ -9,7 +9,7 @@ class DB{
 		$this->db_type = $config['db_type'];
 		$this->profile = $profile;
 		$string = sprintf('%s:host=%s;dbname=%s', $config['db_type'],$config['db_host'],$config['db_name']);
-		if ($config['db_port']) {
+		if (isset($config['db_port'])) {
 			$string .= ";port=".$config['db_port'];
 		}
 		$this->dbh = new PDO($string, $config['db_user'], $config['db_password']);
