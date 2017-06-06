@@ -1,0 +1,15 @@
+It was a mistake to make the profile samples named 'postgres' and 'mysql'. These are dbtypes, this solution can handle infinite profiles, where each profile has an associated dbtype.
+I've updated the solution to handle profiles in this way, please check.
+
+
+1) where there is no value, add row should add "DEFAULT' rather than null  (done)
+2) add new row should pull the default value from the meta and place that in the row inserted and the html table.
+
+3) add new row is doing that multiple thing again.
+i.e. click add new a couple of times, it goes exponential?
+
+4) can you make booleans default to rendering a checkbox?
+
+5) in addition to checking in the backend, can you use the max_length for text strings to set the maxsize of the text input field?
+
+
