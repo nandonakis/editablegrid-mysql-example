@@ -109,9 +109,10 @@ function DatabaseGrid(table,profile) {
 		modelChanged: function(rowIndex, columnIndex, oldValue, newValue, row) {
 			updateCellValue(this, rowIndex, columnIndex, oldValue, newValue, row);
 		},
+		profile: profile,
 		getActionUrl: function(action){
 			var self = this;
-			var profile = this.profile;
+			var profile = (self.profile ? self.profile:profile);
 			var url= backend + '?action='+action+'&profile='+profile+'&table='+self.name;
 			// log('DatabaseGrid','ok','Grid calling:' +url);
 			return url;
@@ -291,7 +292,7 @@ function get_table_id(ele) {
 
 DatabaseGrid.prototype.deleteRow = function(id) {
 	var self = this;
-	if (1 || confirm('Are you sure you want to delete the row id ' + id)) {
+	if (confirm('Are you sure you want to delete the row id ' + id)) {
 		$.ajax({
 			url: self.editableGrid.getActionUrl('delete'),
 			type: 'POST',
