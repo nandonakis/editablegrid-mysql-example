@@ -2,10 +2,12 @@
 
 $config = array(
 	"db_type" => "pgsql",
-	"db_host" => "localhost",
+	"db_host" => "redshift",
+	"db_port" => "5439",
 	"db_name" => "demo",
 	"db_schema" => "demo",
-	"db_user" => "reports",
+	"db_user" => "user",
 	"db_password" => ""
+
 );                
 ?>
