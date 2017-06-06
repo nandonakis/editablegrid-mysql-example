@@ -3,7 +3,7 @@ demo	scenario2	id	id	1	integer		PRIMARY KEY		1	0	int4
 demo	scenario2	name	name	2	string	100			1	1	varchar
 demo	scenario2	int	int	3	integer				1	1	int4
 demo	scenario2	currency	currency	4	float				1	1	numeric
-demo	scenario2	float	float	5					1	1	float4
+demo	scenario2	float	float	5	float				1	1	float4
 demo	scenario2	bool	bool	6	integer				1	1	int2
 demo	scenario2	date	date	7	date				1	1	date
 demo	scenario2	datetime	datetime	8	string				1	1	timestamp

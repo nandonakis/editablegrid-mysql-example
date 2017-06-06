@@ -193,7 +193,7 @@ DatabaseGrid.prototype.fetchGrid = function(table,config) {
 DatabaseGrid.prototype.initializeGrid = function(grid,table) {
 	
 	var self = this;
-	console.log('grid:', grid, ' vs this:', self);
+	//console.log('grid:', grid, ' vs this:', self);
 	
 	//self.config = config;
 	// render for the action column
@@ -268,11 +268,15 @@ function get_table_id(ele) {
 	//console.log('table is: ' + table);
 	//	grid.renderGrid('demo',"testgrid");
 	// add
-	$(".grid_addbutton").click(function(e) {
-		if ($(this).prop('id').indexOf(self.editableGrid.name) >= 0) {
+	//$(".grid_addbutton").click(function(e) {
+		var addButton = "#"+ table + "_addbutton";
+		$('body').off('click', addButton).on('click', addButton, function(e) {
+			e.preventDefault();
+		 e.stopPropagation();
+		
 			//console.log('click on add');
 			self.addRow();
-		};
+		
 	});
 
 	//filter

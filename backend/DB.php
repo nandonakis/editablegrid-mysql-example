@@ -112,7 +112,10 @@ class DB{
 		
 		$sql = sprintf("INSERT INTO %s.%s  (%s) VALUES (%s)", $this->config['db_schema'],$table, join(',', $fields), join(',',$values)); 
 		$rows = $this->dbh->exec($sql);
-		$id = $this->dbh->lastInsertId();
+		if($rows !== FALSE){
+				$id = $this->dbh->lastInsertId();
+		}
+		
 		debug('db:insert',$rows,"rows:$rows id:$id query:$sql");
 		return $rows;
 	}

@@ -1,0 +1,91 @@
+INSERT INTO scenario1 ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") SELECT name,int,currency,float,bool,date,datetime,text,email,varchar_10,id_detail,enum,default FROM scenario1 WHERE id='4'
+;
+INSERT INTO scenario1 ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") SELECT "name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default" FROM scenario1 WHERE id='4';
+\dt
+\dt scenario1;
+\dt scenario1
+\d scenario1
+INSERT INTO scenario1 ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") SELECT "NUL","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default" FROM scenario1 WHERE id='4';
+INSERT INTO scenario1 ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") SELECT "NUL","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default" FROM scenario1 WHERE id='4';
+\d scenario1
+INSERT INTO scenario1 ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") SELECT "name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default" FROM scenario1 WHERE id='4';
+INSERT INTO scenario1 ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") SELECT default,"name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default" FROM scenario1 WHERE id='4';
+?
+h
+;
+\i
+\l
+\q
+\i backend/profiles/postgres/demo.sql 
+\i backend/profiles/postgres/demo.sql 
+INSERT INTO demo  ("name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website") VALUES ('Noble','Georgia','88','1.90','af','ZA','mi.lacinia@nisiaodio.co.uk','0','2012-02-20','www.wrmunpywfqm.eqn');
+INSERT INTO demo  ("name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website",'id') VALUES ('Noble','Georgia','88','1.90','af','ZA','mi.lacinia@nisiaodio.co.uk','0','2012-02-20','www.wrmunpywfqm.eqn',NULL);
+INSERT INTO demo  ("name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website","id") VALUES ('Noble','Georgia','88','1.90','af','ZA','mi.lacinia@nisiaodio.co.uk','0','2012-02-20','www.wrmunpywfqm.eqn',NULL);
+INSERT INTO demo  ("name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website","id") VALUES ('Noble','Georgia','88','1.90','af','ZA','mi.lacinia@nisiaodio.co.uk','0','2012-02-20','www.wrmunpywfqm.eqn',default);
+INSERT INTO demo  ("name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website","id") VALUES ('Noble','Georgia','88','1.90','af','ZA','mi.lacinia@nisiaodio.co.uk','0','2012-02-20','www.wrmunpywfqm.eqn','NULL');
+INSERT INTO scenario1  ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES ('Nicholas','18','1.92','2','0','','','','mollis@eutellus.co.uk','Troy','4','','FOOBAR');
+INSERT INTO demo  ("name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website") VALUES ('Hoffman','Tatyana','88','1.32','na','CA','Nam@quisdiamluctus.org','1','2012-04-17','www.qktogkjbsvz.rdh');
+create table foo(id serial, var varchar(10));
+insert into foo(bar) values('bla');
+\dt foo;
+\d foo;
+insert into foo(var) values('bla');
+insert into foo(var) values();
+insert into foo(var) values(NULL);
+insert into foo() values();
+insert into foo values();
+insert into foo values(NULL);
+insert into foo(var) values(NULL);
+\d
+\d scenario1;
+\d foo;
+\q
+INSERT INTO demo.scenario2  ("id","name","int","currency","float","bool","date","datetime","text","email","varchar_10","id_detail","enum","default") VALUES (16,'Schwartz','79','1.50','1','0','2012-03-16','','','ante@adipiscing.org','Carla','1','','there');
+INTO demo.demo  ("id","name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website") VALUES (DEFAULT,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO demo.demo  ("id","name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website") VALUES (DEFAULT,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+\q
+select  tab_columns.table_schema as "schema",tab_columns.table_name as "table", tab_columns.column_name as field, tab_columns.column_name as label, tab_columns.ordinal_position as "order", tab_columns.data_type as type, tab_columns.character_maximum_length, tab_constraints.constraint_type as column_key, tab_columns.column_default as extra,  1 as display, 1 as editable, tab_columns.udt_name as db_type from information_schema.columns AS tab_columns 
+LEFT OUTER JOIN 
+information_schema.constraint_column_usage AS col_constraints 
+ON tab_columns.table_name = col_constraints.table_name AND 
+tab_columns.column_name = col_constraints.column_name 
+LEFT OUTER JOIN 
+information_schema.table_constraints AS tab_constraints 
+ON tab_constraints.constraint_name = col_constraints.constraint_name
+where tab_columns.table_name = '%s' and tab_columns.table_schema = '%s' order by ordinal_position;
+select  tab_columns.table_schema as "schema",tab_columns.table_name as "table", tab_columns.column_name as field, tab_columns.column_name as label, tab_columns.ordinal_position as "order", tab_columns.data_type as type, tab_columns.character_maximum_length, tab_constraints.constraint_type as column_key, tab_columns.column_default as extra,  1 as display, 1 as editable, tab_columns.udt_name as db_type from information_schema.columns AS tab_columns 
+LEFT OUTER JOIN 
+information_schema.constraint_column_usage AS col_constraints 
+ON tab_columns.table_name = col_constraints.table_name AND 
+tab_columns.column_name = col_constraints.column_name 
+LEFT OUTER JOIN 
+information_schema.table_constraints AS tab_constraints 
+ON tab_constraints.constraint_name = col_constraints.constraint_name
+where tab_columns.table_name = 'scenario1' and tab_columns.table_schema = 'demo' order by ordinal_position;
+select  tab_columns.table_schema as "schema",tab_columns.table_name as "table", tab_columns.column_name as field, tab_columns.column_name as label, tab_columns.ordinal_position as "order", tab_columns.data_type as type, tab_columns.character_maximum_length, tab_constraints.constraint_type as column_key, tab_columns.column_default as extra,  1 as display, 1 as editable, tab_columns.udt_name as db_type from information_schema.columns AS tab_columns 
+LEFT OUTER JOIN 
+information_schema.constraint_column_usage AS col_constraints 
+ON tab_columns.table_name = col_constraints.table_name AND 
+tab_columns.column_name = col_constraints.column_name 
+LEFT OUTER JOIN 
+information_schema.table_constraints AS tab_constraints 
+ON tab_constraints.constraint_name = col_constraints.constraint_name
+where tab_columns.table_name = 'scenario1' and tab_columns.table_schema = 'demo' order by ordinal_position;
+\q
+select  tab_columns.table_schema as "schema",tab_columns.table_name as "table", tab_columns.column_name as field, tab_columns.column_name as label, tab_columns.ordinal_position as "order", tab_columns.data_type as type, tab_columns.character_maximum_length, tab_constraints.constraint_type as column_key, tab_columns.column_default as extra,  1 as display, 1 as editable, tab_columns.udt_name as db_type from information_schema.columns AS tab_columns 
+LEFT OUTER JOIN 
+information_schema.constraint_column_usage AS col_constraints 
+ON tab_columns.table_name = col_constraints.table_name AND 
+tab_columns.column_name = col_constraints.column_name 
+LEFT OUTER JOIN 
+information_schema.table_constraints AS tab_constraints 
+ON tab_constraints.constraint_name = col_constraints.constraint_name
+where tab_columns.table_name = 'scenario1' and tab_columns.table_schema = 'demo' order by ordinal_position;
+\q
+\dt scenario1;
+\dt scenario1
+\d scenario1
+\d scenario1
+\d
+\dt
+\s demo

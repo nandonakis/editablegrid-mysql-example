@@ -60,7 +60,10 @@ class BackendDB extends DB {
 			// modify grid_type
 			if($k === 'type'){
 				$v = $this->get_col_type($v, $cols[2]);
+			}elseif($k==='extra'){
+				$v = str_replace('::character varying','',$v);
 			}
+			
 			$cols[]  = $v;
 		}
 		if($count <1)	{
@@ -99,13 +102,20 @@ class BackendDB extends DB {
 		// var_dump($meta);die;
 		//$grid->addColumn('id', 'ID', 'integer', NULL, false); 
 		foreach($meta as $name => $v){
-			$editable = $v['editable']; $name === 'id' and $editable = false;
+			$editable = $v['editable']> 0?TRUE:FALSE; 
+			$name === 'id' and $editable = false;
+			$hidden = $v['display']>0?FALSE:TRUE;
+			if($hidden)
+				$editable = false;
+			
 			//$type = get_col_type($v["native_type"],$name);
 			$type = $v['type'];
 			if($type === false) {
 					continue;
 			}
-			$grid->addColumn($name,$v['label'],$type,NULL,$editable);
+			
+			
+			$grid->addColumn($name,$v['label'],$type,NULL,$editable,NULL, TRUE, $hidden);
 		}
 		$grid->addColumn('action', 'Action', 'html', NULL, false, 'id');
 	}  
@@ -122,7 +132,7 @@ class BackendDB extends DB {
 		elseif(preg_match('/int|long/',$type)) {
 			return 'integer';
 		}
-		elseif(preg_match('/float|decimal|numeric/',$type)) {
+	elseif(preg_match('/float|decimal|numeric|real/',$type)) {
 			return 'float';
 		}
 		elseif($type == 'date') {
@@ -131,7 +141,7 @@ class BackendDB extends DB {
 		elseif(preg_match('/date|time/',$type)) {
 			return 'string';
 		}
-		elseif(preg_match('/tiny|bool/',$type)) {
+		elseif(preg_match('/tiny|bool|smallint/',$type)) {
 			return 'boolean';
 		}
 		else {
@@ -143,7 +153,7 @@ class BackendDB extends DB {
 	}
 	
 	
-	public function get_primary_values($table, $values){
+	public function get_primary_values($table, $values, &$cols=null, &$primary=null){
 		$cols  = $this->get_meta($table);
 		$primary = $this->get_primary($cols);
 		$keys = array();
@@ -179,6 +189,9 @@ class BackendDB extends DB {
 			return FALSE;
 		}
 		$values = array();
+		
+		/*
+		
 		$k = array_keys($primary)[0];
 		$id = "";
 		
@@ -200,8 +213,16 @@ class BackendDB extends DB {
 				$values[$k] = 'DEFAULT';
 			}
 		}
+		
 		debug('add', $k . ' vs ' . $values[$k] . 'v:' . $primary[$k]['extra'], $k);
+		*/
+		
 		// get default
+		// set default values
+		$values = $this->set_default_values($cols, $values, $primary);
+		
+		
+		/* moved tinto set_default_values
 		foreach($cols as $k2 => $c){
 			if($k2 == $k) {
 				continue;
@@ -213,15 +234,55 @@ class BackendDB extends DB {
 			}
 			else{
 				if(isset($col['extra']) && $col['extra'] !== ""){
-					$values[$k2] = $col['extra'];
+				
+					$values[$k2] = trim($col['extra'], "'");
 				}
 				else{
-					$values[$k2] = 'DEFAULT';
+					//$values[$k2] = 'DEFAULT';
+					$values[$k2] = 'NULL';
 				}
 			}
 		}
-		debug('add', print_r($values, TRUE), $values);
-		return $this->insert($table,$values,$id);
+		*/
+		try{
+				$id = $this->set_primary_keys($table,$values, $primary);
+				debug('add', print_r($values, TRUE), $values);
+			return $this->insert($table,$values,$id);
+				
+		}catch(Exception $e){
+			$info = $e->getMessage();
+			return FALSE;
+			
+		}
+		
+		
+		
+	}
+	
+	public function set_default_values($cols, $input_values, $excluded=array()){
+		$values = array();
+		foreach($cols as $k2 => $c){
+			if(array_key_exists($k2, $excluded))
+				continue;
+			
+			$col = $cols[$k2];
+			
+			if(isset($input_values[$k2])){
+				$values[$k2] = strip_tags($input_values[$k2]);
+			}
+			else{
+				if(isset($col['extra']) && $col['extra'] !== ""){
+				
+					$values[$k2] = trim($col['extra'], "'");
+				}
+				else{
+					//$values[$k2] = 'DEFAULT';
+					$values[$k2] = 'NULL';
+				}
+			}
+		}
+		return $values;
+		
 	}
 	
 	public function update($table, $values, $row, &$info){
@@ -272,15 +333,20 @@ class BackendDB extends DB {
 	}
 	
 	public function duplicate($table, $row, &$info){
-		$key_cols = $this->get_primary_values($table, $row);
+		$key_cols = $this->get_primary_values($table, $row,$cols,$primary);
 		$row = $this->get($key_cols,$table);
 		
 		if($row){
-			$cols = $this->get_meta($table);
+			//$cols = $this->get_meta($table);
 			//debug('duplicate',$query,print_r($row, TRUE));
 	
-			$primary = $this->get_primary($cols);
+			//$primary = $this->get_primary($cols);
 			// update default field
+			
+			// set default values
+			$row = $this->set_default_values($cols, $row,$primary);
+			
+			/*
 			foreach($row as $k => $v){
 				if (array_key_exists($k, $primary)){
 					continue;
@@ -305,7 +371,9 @@ class BackendDB extends DB {
 					$row[$k]= $v;
 				}
 			}
+			*/
 			// do a bit more check/amending before let it go
+			/*
 			$id = "";
 			foreach($primary as $k => $v){
 				if($this->is_auto_primary($v)) {
@@ -316,10 +384,37 @@ class BackendDB extends DB {
 					$row[$k] = $id;
 				}
 			}
+			*/
+			
+			$id = $this->set_primary_keys($table,$row, $primary);
+			
 			return $this->insert($table,$row,$id);
 		}
 		$info = "Record not found!";
 		return $row;
+	}
+	
+	public function set_primary_keys($table,&$row, $primary){
+		
+		//echo '$primary:', print_r($primary, True);
+		$id = "";
+		foreach($primary as $k => $v){
+			if($this->is_auto_primary($v)) {
+				if($this->config['db_type'] === 'pgsql')
+					$row[$k] = 'DEFAULT';
+				else
+					$row[$k] = 'NULL';
+			}
+			else if ($v['type'] === 'integer'){
+				$id = $this->get_next_id($table, $k);
+				$row[$k] = $id;
+			}else if (!isset($row[$k])){
+				throw new Exception("Primary not integer and it is null");
+			}
+		}
+			
+		return $id;
+		
 	}
 	
 	

@@ -1,15 +1,15 @@
 schema	table	field	label	order	type	character_maximum_length	column_key	extra	display	editable	db_type
-demo	scenario1	id	id	1	integer		PRIMARY KEY	nextval('scenario1_id_seq'::regclass)	1	0	int4
-demo	scenario1	name	name	2	string	10		''::character varying	1	1	varchar
+demo	scenario1	id	id	1	integer		PRIMARY KEY	nextval('scenario1_id_seq1'::regclass)	1	0	int4
+demo	scenario1	name	name	2	string	32		''	1	1	varchar
 demo	scenario1	int	int	3	integer				1	1	int4
 demo	scenario1	currency	currency	4	float				1	1	numeric
-demo	scenario1	float	float	5					1	1	float4
+demo	scenario1	float	float	5	float				1	1	float4
 demo	scenario1	bool	bool	6	boolean				1	1	bool
 demo	scenario1	date	date	7	date				1	1	date
 demo	scenario1	datetime	datetime	8	string				1	1	timestamp
 demo	scenario1	text	text	9	string				1	1	text
-demo	scenario1	email	email_readonly	10	email	100			1	0	varchar
+demo	scenario1	email	email	10	email	100			1	1	varchar
 demo	scenario1	varchar_10	varchar_10	11	string	10			1	1	varchar
 demo	scenario1	int4	int4	12	integer				1	1	int4
-demo	scenario1	todo	todo	13	string	255			0	1	varchar
-demo	scenario1	default	default	14	string	255		'Sydney'::character varying	1	1	varchar
+demo	scenario1	todo	todo	13	string	255			1	1	varchar
+demo	scenario1	default	default	14	string	255		'Sydney'	1	1	varchar
