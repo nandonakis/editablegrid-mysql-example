@@ -17,7 +17,7 @@ class BackendDB extends DB {
 		
 		if(!file_exists($spec) || $forced){
 			$spec = sprintf("%s/%s.tsv", $profile_dir, $table);
-			if(!file_exists($spec)|| $forced) {
+			if(!file_exists($spec) || filesize ($spec) < 10 || $forced) {
 				### create it here
 				$query=file_get_contents("$sql_dir/meta.sql");
 				if(!$query){
@@ -59,7 +59,7 @@ class BackendDB extends DB {
 			$h[] =$k;
 			// modify grid_type
 			if($k === 'type'){
-				$v = get_col_type($v, $cols[2]);
+				$v = $this->get_col_type($v, $cols[2]);
 			}
 			$cols[]  = $v;
 		}
