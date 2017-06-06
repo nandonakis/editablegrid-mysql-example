@@ -6,10 +6,10 @@ demo	scenario2	currency	currency	4	float				1	1	numeric
 demo	scenario2	float	float	5	float				1	1	float4
 demo	scenario2	bool	bool	6	integer				1	1	int2
 demo	scenario2	date	date	7	date				1	1	date
-demo	scenario2	datetime	datetime	8	string				1	1	timestamp
+demo	scenario2	datetime	datetime	8	string				0	1	timestamp
 demo	scenario2	text	text	9	string				1	1	text
 demo	scenario2	email	email	10	email	100			1	1	varchar
 demo	scenario2	varchar_10	varchar_10	11	string	10			1	1	varchar
 demo	scenario2	id_detail	id_detail	12	integer				1	1	int4
-demo	scenario2	enum	enum	13	string	255			1	1	varchar
+demo	scenario2	enum	enum	13	string	255			0	1	varchar
 demo	scenario2	default	default	14	string	255			1	1	varchar

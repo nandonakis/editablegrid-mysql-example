@@ -186,6 +186,8 @@ DatabaseGrid.prototype.fetchGrid = function(table,config) {
 	url = backend + "?action=load&profile="+config+ "&table=" + table;
 	var that = this;
 	this.editableGrid.loadJSON(url);
+	
+	
 };
 
 
@@ -212,40 +214,7 @@ DatabaseGrid.prototype.initializeGrid = function(grid,table) {
 	}));
 
 	
-function get_table_id(ele) {
-		var id = ele.closest('tr').prop('id');
-		var x = id.split('_');
-		id = x.pop();
-		var table = x.join('_');
-		return {
-			id: id,
-			table: table
-		};
-	}
-	/*
-	$('body').on('click', '.delete-row', function(e) {
-		console.log('delete row id: ');
-		var xdata = get_table_id($(this));
-		e.stopImmediatePropagation();
-		console.log('delete row id: ',  xdata, self.editableGrid.name);
-		if (xdata.table == self.editableGrid.name)
-			self.deleteRow(xdata.id);
-	});
-			
 
-	$('body').on('click', '.copy-row', function(e) {
-		//console.log(this, 'copy row vs', e.target);
-		console.log('copy row id: ');
-		e.preventDefault();
-		e.stopImmediatePropagation();
-		var xdata = get_table_id($(this));
-		console.log('duplicateRow id: ', $(this).data('id'), xdata, self.editableGrid.name);
-		if (xdata.table == self.editableGrid.name){
-			self.duplicateRow(xdata.id);
-		}
-		return false;
-	});
-	*/
 	var actionEle = '#'+table +' .editablegrid-action a';
 	$('body').off('click', actionEle).on('click', actionEle, function(e) {
 	//$('body').one('click', actionEle, function(e){
@@ -288,7 +257,19 @@ function get_table_id(ele) {
 		// To filter on some columns, you can set an array of column index 
 		//datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
 	});
-	grid.renderGrid(table,'excel testgrid');
+	var table_grid = table+'-grid';
+	grid.renderGrid(table,'excel testgrid '+table_grid);
+	
+	var colcount = self.editableGrid.getColumnCount();
+	//console.log('colcount:', colcount);
+	for(var i=0;i<colcount;i++){
+		var col= self.editableGrid.getColumn(i);
+		
+		if(col.hidden === true){
+			//console.log('col:', i, col);
+			$('.'+table_grid + ' .editablegrid-'+col.name).toggle();
+		}
+	}
 };
 
 

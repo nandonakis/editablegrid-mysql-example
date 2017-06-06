@@ -7986,3 +7986,221 @@ where tab_columns.table_name = 'demo' and tab_columns.table_schema = 'demo' orde
 2017-06-06 23:55:52:__construct:demo
 2017-06-06 23:55:52:db:load:SELECT * FROM "scenario1"
 2017-06-06 23:55:52:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-06 23:59:34:__construct:demo
+2017-06-06 23:59:34:db:load:SELECT * FROM "scenario1"
+2017-06-06 23:59:34:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-06 23:59:34:__construct:demo
+2017-06-06 23:59:34:db:load:SELECT * FROM "scenario2"
+2017-06-06 23:59:34:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario2.tsv
+2017-06-06 23:59:34:__construct:demo
+2017-06-06 23:59:34:db:load:SELECT * FROM "demo"
+2017-06-06 23:59:34:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/demo.tsv
+2017-06-07 00:00:05:__construct:demo
+2017-06-07 00:00:05:db:load:SELECT * FROM "scenario1"
+2017-06-07 00:00:05:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-07 00:00:05:__construct:demo
+2017-06-07 00:00:05:__construct:demo
+2017-06-07 00:00:05:db:load:SELECT * FROM "scenario2"
+2017-06-07 00:00:05:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario2.tsv
+2017-06-07 00:00:05:db:load:SELECT * FROM "demo"
+2017-06-07 00:00:05:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/demo.tsv
+2017-06-07 00:00:13:__construct:demo
+2017-06-07 00:00:13:db:load:SELECT * FROM "scenario1"
+2017-06-07 00:00:13:__construct:demo
+2017-06-07 00:00:13:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-07 00:00:13:db:load:SELECT * FROM "scenario2"
+2017-06-07 00:00:13:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario2.tsv
+2017-06-07 00:00:13:__construct:demo
+2017-06-07 00:00:13:db:load:SELECT * FROM "demo"
+2017-06-07 00:00:13:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/demo.tsv
+2017-06-07 00:15:46:__construct:demo
+2017-06-07 00:15:46:db:load:SELECT * FROM "scenario1"
+2017-06-07 00:15:46:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-07 00:15:46:__construct:demo
+2017-06-07 00:15:46:db:load:SELECT * FROM "scenario2"
+2017-06-07 00:15:46:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario2.tsv
+2017-06-07 00:15:46:__construct:demo
+2017-06-07 00:15:46:db:load:SELECT * FROM "demo"
+2017-06-07 00:15:46:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/demo.tsv
+2017-06-07 00:15:54:__construct:demo
+2017-06-07 00:15:54:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-07 00:15:54:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-07 00:15:54:update db_cols:int4:NaN
+2017-06-07 00:15:54:db:modify::rows: query:UPDATE "scenario1" SET "int4"='NaN' WHERE "id"='11'
+2017-06-07 00:15:54:modify:int4:
+2017-06-07 00:18:27:__construct:demo
+2017-06-07 00:18:27:db:load:SELECT * FROM "scenario1"
+2017-06-07 00:18:27:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-07 00:18:27:__construct:demo
+2017-06-07 00:18:27:db:load:SELECT * FROM "scenario2"
+2017-06-07 00:18:27:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario2.tsv
+2017-06-07 00:18:27:__construct:demo
+2017-06-07 00:18:27:db:load:SELECT * FROM "demo"
+2017-06-07 00:18:27:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/demo.tsv
+2017-06-07 00:31:34:__construct:demo
+2017-06-07 00:31:34:db:load:SELECT * FROM "scenario1"
+2017-06-07 00:31:34:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-07 00:31:34:__construct:demo
+2017-06-07 00:31:34:db:load:SELECT * FROM "scenario2"
+2017-06-07 00:31:34:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario2.tsv
+2017-06-07 00:31:34:__construct:demo
+2017-06-07 00:31:34:db:load:SELECT * FROM "demo"
+2017-06-07 00:31:34:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/demo.tsv
+2017-06-07 00:31:42:__construct:demo
+2017-06-07 00:31:42:db:load:SELECT * FROM "scenario1"
+2017-06-07 00:31:42:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-07 00:31:42:__construct:demo
+2017-06-07 00:31:42:db:load:SELECT * FROM "scenario2"
+2017-06-07 00:31:42:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario2.tsv
+2017-06-07 00:31:42:__construct:demo
+2017-06-07 00:31:42:db:load:SELECT * FROM "demo"
+2017-06-07 00:31:42:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/demo.tsv
+2017-06-07 00:32:59:__construct:demo
+2017-06-07 00:32:59:db:load:SELECT * FROM "scenario2"
+2017-06-07 00:32:59:__construct:demo
+2017-06-07 00:32:59:db:load:SELECT * FROM "scenario1"
+2017-06-07 00:32:59:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-07 00:32:59:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario2.tsv
+2017-06-07 00:32:59:__construct:demo
+2017-06-07 00:32:59:db:load:SELECT * FROM "demo"
+2017-06-07 00:32:59:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/demo.tsv
+2017-06-07 00:33:02:__construct:demo
+2017-06-07 00:33:02:db:load:SELECT * FROM "scenario2"
+2017-06-07 00:33:02:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario2.tsv
+2017-06-07 00:33:02:__construct:demo
+2017-06-07 00:33:02:db:load:SELECT * FROM "scenario1"
+2017-06-07 00:33:02:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-07 00:33:02:__construct:demo
+2017-06-07 00:33:02:db:load:SELECT * FROM "demo"
+2017-06-07 00:33:02:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/demo.tsv
+2017-06-07 00:33:10:__construct:demo
+2017-06-07 00:33:10:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-07 00:33:10:add:Array
+(
+    [name] => 
+    [int] => NULL
+    [currency] => NULL
+    [float] => NULL
+    [bool] => NULL
+    [date] => NULL
+    [datetime] => NULL
+    [text] => NULL
+    [email] => NULL
+    [varchar_10] => NULL
+    [int4] => NULL
+    [todo] => NULL
+    [default] => Sydney
+    [id] => DEFAULT
+)
+
+2017-06-07 00:33:10:db:insert:1:rows:1 id:25 query:INSERT INTO demo."scenario1"  ("name","int","currency","float","bool","date","datetime","text","email","varchar_10","int4","todo","default","id") VALUES ('',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Sydney',DEFAULT)
+2017-06-07 00:33:10:__construct:demo
+2017-06-07 00:33:10:db:load:SELECT * FROM "scenario1"
+2017-06-07 00:33:10:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-07 00:39:41:__construct:demo
+2017-06-07 00:39:41:db:load:SELECT * FROM "scenario1"
+2017-06-07 00:39:41:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-07 00:39:41:__construct:demo
+2017-06-07 00:39:41:db:load:SELECT * FROM "scenario2"
+2017-06-07 00:39:41:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario2.tsv
+2017-06-07 00:39:41:__construct:demo
+2017-06-07 00:39:41:db:load:SELECT * FROM "demo"
+2017-06-07 00:39:41:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/demo.tsv
+2017-06-07 00:40:08:__construct:demo
+2017-06-07 00:40:08:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/demo.tsv
+2017-06-07 00:40:08:get cond:"id"='1000':"id"='1000'
+2017-06-07 00:40:08:get:select * from "demo" where "id"='1000'
+2017-06-07 00:40:08:db:insert:1:rows:1 id:1012 query:INSERT INTO demo."demo"  ("name","firstname","age","height","id_continent","id_country","email","freelance","lastvisit","website","id") VALUES ('Hoffman','Tatyana','88','1.32','na','CA','Nam@quisdiamluctus.org','1','2012-04-17','www.qktogkjbsvz.rdh',DEFAULT)
+2017-06-07 00:40:08:__construct:demo
+2017-06-07 00:40:08:db:load:SELECT * FROM "demo"
+2017-06-07 00:40:08:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/demo.tsv
+2017-06-07 00:41:04:__construct:demo
+2017-06-07 00:41:04:db:load:SELECT * FROM "scenario1"
+2017-06-07 00:41:04:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-07 00:41:04:__construct:demo
+2017-06-07 00:41:04:db:load:SELECT * FROM "scenario2"
+2017-06-07 00:41:04:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario2.tsv
+2017-06-07 00:41:04:__construct:demo
+2017-06-07 00:41:04:db:load:SELECT * FROM "demo"
+2017-06-07 00:41:04:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/demo.tsv
+2017-06-07 00:41:10:__construct:demo
+2017-06-07 00:41:10:__construct:demo
+2017-06-07 00:41:10:db:load:SELECT * FROM "scenario1"
+2017-06-07 00:41:10:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-07 00:41:10:db:load:SELECT * FROM "scenario2"
+2017-06-07 00:41:10:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario2.tsv
+2017-06-07 00:41:10:__construct:demo
+2017-06-07 00:41:10:db:load:SELECT * FROM "demo"
+2017-06-07 00:41:10:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/demo.tsv
+2017-06-07 00:42:09:__construct:demo
+2017-06-07 00:42:09:__construct:demo
+2017-06-07 00:42:09:db:load:SELECT * FROM "scenario1"
+2017-06-07 00:42:09:db:load:SELECT * FROM "scenario2"
+2017-06-07 00:42:09:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario2.tsv
+2017-06-07 00:42:09:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-07 00:42:09:__construct:demo
+2017-06-07 00:42:09:db:load:SELECT * FROM "demo"
+2017-06-07 00:42:09:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/demo.tsv
+2017-06-07 00:42:28:__construct:demo
+2017-06-07 00:42:28:db:load:SELECT * FROM "scenario1"
+2017-06-07 00:42:28:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-07 00:42:28:__construct:demo
+2017-06-07 00:42:28:db:load:SELECT * FROM "scenario2"
+2017-06-07 00:42:28:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario2.tsv
+2017-06-07 00:42:28:__construct:demo
+2017-06-07 00:42:28:db:load:SELECT * FROM "demo"
+2017-06-07 00:42:28:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/demo.tsv
+2017-06-07 00:44:08:__construct:demo
+2017-06-07 00:44:08:db:load:SELECT * FROM "scenario1"
+2017-06-07 00:44:08:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-07 00:44:08:__construct:demo
+2017-06-07 00:44:08:db:load:SELECT * FROM "scenario2"
+2017-06-07 00:44:08:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario2.tsv
+2017-06-07 00:44:08:__construct:demo
+2017-06-07 00:44:08:db:load:SELECT * FROM "demo"
+2017-06-07 00:44:08:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/demo.tsv
+2017-06-07 00:46:34:__construct:demo
+2017-06-07 00:46:34:db:load:SELECT * FROM "scenario1"
+2017-06-07 00:46:34:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-07 00:46:34:__construct:demo
+2017-06-07 00:46:34:db:load:SELECT * FROM "scenario2"
+2017-06-07 00:46:34:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario2.tsv
+2017-06-07 00:46:34:__construct:demo
+2017-06-07 00:46:34:db:load:SELECT * FROM "demo"
+2017-06-07 00:46:34:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/demo.tsv
+2017-06-07 00:46:36:__construct:demo
+2017-06-07 00:46:36:db:load:SELECT * FROM "scenario1"
+2017-06-07 00:46:36:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-07 00:46:36:__construct:demo
+2017-06-07 00:46:36:db:load:SELECT * FROM "scenario2"
+2017-06-07 00:46:36:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario2.tsv
+2017-06-07 00:46:36:__construct:demo
+2017-06-07 00:46:36:db:load:SELECT * FROM "demo"
+2017-06-07 00:46:36:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/demo.tsv
+2017-06-07 00:47:10:__construct:demo
+2017-06-07 00:47:10:__construct:demo
+2017-06-07 00:47:10:db:load:SELECT * FROM "scenario1"
+2017-06-07 00:47:10:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-07 00:47:10:db:load:SELECT * FROM "scenario2"
+2017-06-07 00:47:10:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario2.tsv
+2017-06-07 00:47:10:__construct:demo
+2017-06-07 00:47:10:db:load:SELECT * FROM "demo"
+2017-06-07 00:47:10:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/demo.tsv
+2017-06-07 00:47:22:__construct:demo
+2017-06-07 00:47:22:db:load:SELECT * FROM "scenario1"
+2017-06-07 00:47:22:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-07 00:47:22:__construct:demo
+2017-06-07 00:47:22:db:load:SELECT * FROM "scenario2"
+2017-06-07 00:47:22:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario2.tsv
+2017-06-07 00:47:22:__construct:demo
+2017-06-07 00:47:22:db:load:SELECT * FROM "demo"
+2017-06-07 00:47:22:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/demo.tsv
+2017-06-07 00:47:27:__construct:demo
+2017-06-07 00:47:27:db:load:SELECT * FROM "scenario1"
+2017-06-07 00:47:27:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario1.tsv
+2017-06-07 00:47:27:__construct:demo
+2017-06-07 00:47:27:db:load:SELECT * FROM "scenario2"
+2017-06-07 00:47:27:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/scenario2.tsv
+2017-06-07 00:47:27:__construct:demo
+2017-06-07 00:47:27:db:load:SELECT * FROM "demo"
+2017-06-07 00:47:27:parse_meta_file:/home/dat/projects/editablegrid-mysql-pdo/backend/profiles/2_postgres/demo.tsv
