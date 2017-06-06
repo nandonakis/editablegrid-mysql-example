@@ -1,0 +1,15 @@
+schema	table	order	field	label	db_type	type	character_maximum_length	not_nullable	column_key	serial	default	extra (split this into 2 columns on left)	display	editable
+demo	scenario1	1	id	ID	int4	integer		1	PRIMARY KEY	1		nextval('scenario1_id_seq'::regclass)	1	0
+demo	scenario1	2	name	Name	varchar	string	10				empty?		1	1
+demo	scenario1	3	int	Number	int4	integer					0		1	1
+demo	scenario1	4	currency	Amount	numeric	float							1	1
+demo	scenario1	5	float	float	float4	float							1	1
+demo	scenario1	6	bool	Checkbox	bool	boolean							1	1
+demo	scenario1	7	date	date	date	date							1	1
+demo	scenario1	8	datetime	datetime	timestamp	string							1	1
+demo	scenario1	9	text	text	text	string							1	1
+demo	scenario1	10	email	email_readonly	varchar	email	100						1	0
+demo	scenario1	11	varchar_10	varchar_10	varchar	string	10						1	1
+demo	scenario1	12	int4	int4	int4	integer							1	1
+demo	scenario1	13	todo	todo	varchar	string	255						0	1
+demo	scenario1	14	default	default	varchar	string	255				Sydney		1	1
