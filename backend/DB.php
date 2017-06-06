@@ -4,11 +4,15 @@ class DB{
 
 	protected $config = array();
 	
-	function __construct($config) {
+	function __construct($config,$profile) {
 		$params = array('db_type','db_host','db_name','db_user','db_password');
 		$this->db_type = $config['db_type'];
-	
-		$this->dbh = new PDO(sprintf('%s:host=%s;dbname=%s', $config['db_type'],$config['db_host'],$config['db_name']), $config['db_user'], $config['db_password']);
+		$this->profile = $profile;
+		$string = sprintf('%s:host=%s;dbname=%s', $config['db_type'],$config['db_host'],$config['db_name']);
+		if ($config['db_port']) {
+			$string .= ";port=".$config['db_port'];
+		}
+		$this->dbh = new PDO($string, $config['db_user'], $config['db_password']);
 		if(isset($config['db_schema']) and $config['db_type'] == 'pgsql') {
 			$schema = $config['db_schema'];
 			$this->dbh->exec("SET search_path TO $schema");
@@ -118,12 +122,8 @@ class DB{
 		$fields = array();
 		
 		foreach($values as $k => $v){
-			
-			
-			$v = $this->quote_value($v); //TODO: don't do this for non-text fields
-			
+			$v = $this->quote_value($v); 
 			$k = $this->quote_identifier($k);
-			
 			$fields[] = sprintf("%s=%s", $k, $v);
 
 		}

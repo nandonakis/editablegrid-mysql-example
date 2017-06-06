@@ -11,9 +11,8 @@ class BackendDB extends DB {
 	}
 	
 	public function get_meta($table, $forced=FALSE) {
-		$sql_dir = sprintf("%s/sql/%s", dirname(__FILE__), $this->config['db_type'] == 'mysql'? $this->config['db_type']:'postgres');
-	
-		$profile_dir = sprintf("%s/profiles/%s", dirname(__FILE__), $this->config['db_type'] == 'mysql'? $this->config['db_type']:'postgres');
+		$sql_dir = sprintf("%s/sql/%s", dirname(__FILE__), $this->db_type);
+		$profile_dir = sprintf("%s/profiles/%s", dirname(__FILE__), $this->profile);
 		$spec = sprintf("%s/%s.spec.tsv", $profile_dir, $table);
 		
 		if(!file_exists($spec) || $forced){
@@ -217,7 +216,7 @@ class BackendDB extends DB {
 					$values[$k2] = $col['extra'];
 				}
 				else{
-					$values[$k2] = 'NULL';
+					$values[$k2] = 'DEFAULT';
 				}
 			}
 		}

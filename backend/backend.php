@@ -14,7 +14,7 @@
 	require_once('EditableGrid.php');
 	require_once('BackendDB.php');
 	
-	$db = new BackendDB($config);
+	$db = new BackendDB($config,$profile);
 	isset($db) or die("No DB");
 	
 	$error="";
